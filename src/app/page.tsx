@@ -1,72 +1,114 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, GraduationCap, Users, Phone, Youtube, ExternalLink } from "lucide-react";
+import { ArrowRight, Building2, GraduationCap, Users, Phone, Youtube, ExternalLink, Shield, Award, MapPin } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
 
 export default function Home() {
   const featuredColleges = colleges.slice(0, 6);
-  
+
   return (
     <div className="flex flex-col min-h-screen">
-      {/* Hero Section */}
-      <section className="relative flex flex-col items-center justify-center min-h-[600px] w-full py-12 md:py-24 lg:py-32 xl:py-48 bg-background border-b">
-        {/* Background decoration */}
-        <div className="absolute inset-0 -z-10 h-full w-full bg-white dark:bg-black bg-[linear-gradient(to_right,#8080800a_1px,transparent_1px),linear-gradient(to_bottom,#8080800a_1px,transparent_1px)] bg-[size:14px_24px]"></div>
+      {/* Hero Section - Anti-Gravity Design */}
+      <section className="relative w-full py-6 md:py-10 bg-black">
+        {/* Hero Card Container */}
+        <div className="container px-4 md:px-6">
+          <div className="relative mx-auto w-[95%] max-w-[1400px] rounded-3xl overflow-hidden bg-gradient-to-br from-gray-900 via-gray-800 to-black border border-gray-800">
+            {/* Background Image with Overlay */}
+            <div className="absolute inset-0 bg-[url('/globe.svg')] bg-no-repeat bg-right-bottom opacity-10"></div>
+            <div className="absolute inset-0 bg-gradient-to-r from-black/90 via-black/70 to-transparent"></div>
 
-        <div className="container px-4 md:px-6 flex flex-col items-center text-center space-y-4">
-          <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium bg-primary/10 text-primary mb-4">
-            {companyInfo.tagline}
-          </div>
-          <div className="space-y-2">
-            <h1 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl lg:text-6xl/none">
-              Unlock Your Future with <span className="text-primary">{companyInfo.name}</span>
-            </h1>
-            <p className="mx-auto max-w-[700px] text-gray-500 md:text-xl dark:text-gray-400">
-              Your trusted partner for direct B.Tech admissions in top colleges across {companyInfo.states.length} states.
-            </p>
-          </div>
-          <div className="flex flex-col sm:flex-row gap-4 mt-4">
-            <Link href="/colleges">
-              <Button size="lg" className="h-12 px-8 text-lg font-semibold">
-                Explore Colleges <ArrowRight className="ml-2 h-5 w-5" />
-              </Button>
-            </Link>
-            <Link href="/contact">
-              <Button variant="outline" size="lg" className="h-12 px-8 text-lg">
-                <Phone className="mr-2 h-5 w-5" />
-                Book Free Consultation
-              </Button>
-            </Link>
-          </div>
-          <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-muted-foreground">
-            {companyInfo.phones.map((phone) => (
-              <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1 hover:text-primary transition-colors">
-                <Phone className="h-4 w-4" /> {phone}
-              </a>
-            ))}
+            {/* Hero Content */}
+            <div className="relative z-10 px-8 py-16 md:px-16 md:py-24 lg:py-32">
+              <div className="max-w-2xl">
+                {/* Tagline Badge */}
+                <div className="inline-flex items-center rounded-full border border-[#f6c804]/30 bg-[#f6c804]/10 px-4 py-1.5 text-sm font-medium text-[#f6c804] mb-6">
+                  {companyInfo.tagline}
+                </div>
+
+                {/* Headline */}
+                <h1 className="text-4xl font-bold tracking-tight text-white sm:text-5xl md:text-6xl lg:text-7xl mb-4">
+                  Unlock Your Future with{" "}
+                  <span className="text-[#f6c804]">{companyInfo.name}</span>
+                </h1>
+
+                {/* Sub-headline */}
+                <p className="text-xl md:text-2xl text-[#f6c804] font-medium mb-4">
+                  Direct Admission in B.Tech, MBA & More
+                </p>
+
+                {/* Body Text */}
+                <p className="text-gray-300 text-lg max-w-xl mb-8">
+                  Your trusted partner for direct admissions in top colleges across {companyInfo.states.length} states. Expert guidance, guaranteed results.
+                </p>
+
+                {/* Buttons */}
+                <div className="flex flex-col sm:flex-row gap-4 mb-8">
+                  <Link href="/colleges">
+                    <Button
+                      size="lg"
+                      className="h-14 px-8 text-lg font-semibold bg-[#f6c804] hover:bg-[#e5b703] text-black"
+                    >
+                      Explore Colleges <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="h-14 px-8 text-lg border-white/30 text-white hover:bg-white/10 hover:text-white"
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      Book Free Consultation
+                    </Button>
+                  </Link>
+                </div>
+
+                {/* Phone Numbers */}
+                <div className="flex flex-wrap gap-4 text-sm text-gray-400">
+                  {companyInfo.phones.map((phone) => (
+                    <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1 hover:text-[#f6c804] transition-colors">
+                      <Phone className="h-4 w-4" /> {phone}
+                    </a>
+                  ))}
+                </div>
+              </div>
+
+              {/* Floating Pills - Bottom Right */}
+              <div className="absolute bottom-8 right-8 hidden lg:flex flex-col gap-3 items-end">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white text-sm font-medium">
+                  <Shield className="h-4 w-4 text-[#f6c804]" /> Trusted
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white text-sm font-medium">
+                  <Award className="h-4 w-4 text-[#f6c804]" /> 10+ Years Experience
+                </div>
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2 text-white text-sm font-medium">
+                  <MapPin className="h-4 w-4 text-[#f6c804]" /> Nationwide
+                </div>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
-      {/* Stats Section */}
-      <section className="w-full py-8 bg-primary text-primary-foreground">
+      {/* Stats Section - Outside Hero Card */}
+      <section className="w-full py-10 bg-black">
         <div className="container px-4 md:px-6">
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+          <div className="flex flex-wrap justify-center gap-8 md:gap-16 text-center">
             <div>
-              <p className="text-3xl md:text-4xl font-bold">{colleges.length}+</p>
-              <p className="text-sm opacity-90">Partner Colleges</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#f6c804]">{colleges.length}+</p>
+              <p className="text-sm text-gray-400 mt-1">Partner Colleges</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-bold">{companyInfo.states.length}</p>
-              <p className="text-sm opacity-90">States Covered</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#f6c804]">{companyInfo.states.length}</p>
+              <p className="text-sm text-gray-400 mt-1">States Covered</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-bold">5000+</p>
-              <p className="text-sm opacity-90">Students Placed</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#f6c804]">5000+</p>
+              <p className="text-sm text-gray-400 mt-1">Students Placed</p>
             </div>
             <div>
-              <p className="text-3xl md:text-4xl font-bold">10+</p>
-              <p className="text-sm opacity-90">Years Experience</p>
+              <p className="text-4xl md:text-5xl font-bold text-[#f6c804]">10+</p>
+              <p className="text-sm text-gray-400 mt-1">Years Experience</p>
             </div>
           </div>
         </div>
@@ -170,11 +212,11 @@ export default function Home() {
               </p>
             </div>
           </div>
-          
+
           {/* YouTube Channel Embed */}
           <div className="max-w-4xl mx-auto">
             <div className="aspect-video rounded-xl overflow-hidden border shadow-lg bg-muted">
-              <iframe 
+              <iframe
                 className="w-full h-full"
                 src="https://www.youtube.com/embed/videoseries?list=UU&si=akash_talks"
                 title="Akash Talks YouTube Channel"
@@ -206,9 +248,9 @@ export default function Home() {
 
           {/* Channel Subscribe CTA */}
           <div className="mt-10 flex flex-col items-center space-y-4">
-            <a 
-              href="https://www.youtube.com/@akash_talks" 
-              target="_blank" 
+            <a
+              href="https://www.youtube.com/@akash_talks"
+              target="_blank"
               rel="noopener noreferrer"
             >
               <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white h-12 px-8">
@@ -246,23 +288,23 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-12 md:py-24 bg-primary text-primary-foreground">
+      <section className="w-full py-12 md:py-24 bg-[#f6c804]">
         <div className="container px-4 md:px-6 text-center">
-          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-4">Ready to Start Your Journey?</h2>
-          <p className="max-w-[600px] mx-auto mb-8 opacity-90">
+          <h2 className="text-3xl font-bold tracking-tighter md:text-4xl mb-4 text-black">Ready to Start Your Journey?</h2>
+          <p className="max-w-[600px] mx-auto mb-8 text-black/80">
             Get in touch with our expert counselors for personalized guidance on B.Tech admissions.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contact">
-              <Button variant="secondary" size="lg" className="h-12 px-8 text-lg font-semibold">
+              <Button variant="secondary" size="lg" className="h-12 px-8 text-lg font-semibold bg-black text-white hover:bg-black/90">
                 <Phone className="mr-2 h-5 w-5" />
                 Contact Us Now
               </Button>
             </Link>
           </div>
-          <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm opacity-90">
+          <div className="flex flex-wrap justify-center gap-4 mt-6 text-sm text-black/70">
             {companyInfo.phones.map((phone) => (
-              <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1 hover:opacity-100 transition-opacity">
+              <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-1 hover:text-black transition-opacity">
                 <Phone className="h-4 w-4" /> {phone}
               </a>
             ))}
