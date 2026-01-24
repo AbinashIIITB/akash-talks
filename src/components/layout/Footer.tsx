@@ -1,6 +1,6 @@
 import Link from "next/link"
 import { companyInfo } from "@/lib/data"
-import { Phone } from "lucide-react"
+import { Phone, Youtube } from "lucide-react"
 
 export function Footer() {
     return (
@@ -15,6 +15,18 @@ export function Footer() {
                             {companyInfo.address.city}<br />
                             {companyInfo.address.state} - {companyInfo.address.pincode}
                         </p>
+                        {/* Social Links */}
+                        <div className="flex gap-3 pt-2">
+                            <a 
+                                href={companyInfo.youtube} 
+                                target="_blank" 
+                                rel="noopener noreferrer"
+                                className="p-2 rounded-full bg-red-600 text-white hover:bg-red-700 transition-colors"
+                                aria-label="YouTube Channel"
+                            >
+                                <Youtube className="h-4 w-4" />
+                            </a>
+                        </div>
                     </div>
 
                     {/* Quick Links */}

@@ -407,6 +407,7 @@ export const companyInfo = {
     tagline: "Direct Admission in B.Tech",
     phones: ["+91 9874878782", "+91 8825352628"],
     email: "admissions@akashtalks.com",
+    youtube: "https://www.youtube.com/@akash_talks",
     address: {
         line1: "GN-34/1, Aurora Water Front",
         line2: "Unit 21, 11th Floor, Sector V",

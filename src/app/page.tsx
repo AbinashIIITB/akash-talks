@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Building2, GraduationCap, Users, Phone } from "lucide-react";
+import { ArrowRight, Building2, GraduationCap, Users, Phone, Youtube, ExternalLink } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
 
 export default function Home() {
@@ -152,6 +152,74 @@ export default function Home() {
             <Link href="/colleges">
               <Button variant="outline" size="lg">View All {colleges.length} Colleges</Button>
             </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* YouTube Feed Section */}
+      <section className="w-full py-12 md:py-24 bg-background">
+        <div className="container px-4 md:px-6">
+          <div className="flex flex-col items-center justify-center space-y-4 text-center mb-10">
+            <div className="inline-flex items-center rounded-full border px-4 py-1.5 text-sm font-medium bg-red-500/10 text-red-600 dark:text-red-400">
+              <Youtube className="mr-2 h-4 w-4" /> Watch Our Latest Videos
+            </div>
+            <div className="space-y-2">
+              <h2 className="text-3xl font-bold tracking-tighter md:text-4xl">Akash Talks YouTube Channel</h2>
+              <p className="max-w-[900px] text-muted-foreground">
+                Get expert guidance, college reviews, and admission tips on our YouTube channel.
+              </p>
+            </div>
+          </div>
+          
+          {/* YouTube Channel Embed */}
+          <div className="max-w-4xl mx-auto">
+            <div className="aspect-video rounded-xl overflow-hidden border shadow-lg bg-muted">
+              <iframe 
+                className="w-full h-full"
+                src="https://www.youtube.com/embed/videoseries?list=UU&si=akash_talks"
+                title="Akash Talks YouTube Channel"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                allowFullScreen
+              ></iframe>
+            </div>
+          </div>
+
+          {/* Video Categories */}
+          <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto mt-8">
+            <div className="p-4 border rounded-xl bg-card text-center hover:border-red-500 transition-colors">
+              <Youtube className="h-6 w-6 mx-auto mb-2 text-red-500" />
+              <h3 className="font-semibold text-sm">College Reviews</h3>
+            </div>
+            <div className="p-4 border rounded-xl bg-card text-center hover:border-red-500 transition-colors">
+              <Youtube className="h-6 w-6 mx-auto mb-2 text-red-500" />
+              <h3 className="font-semibold text-sm">Admission Tips</h3>
+            </div>
+            <div className="p-4 border rounded-xl bg-card text-center hover:border-red-500 transition-colors">
+              <Youtube className="h-6 w-6 mx-auto mb-2 text-red-500" />
+              <h3 className="font-semibold text-sm">Campus Tours</h3>
+            </div>
+            <div className="p-4 border rounded-xl bg-card text-center hover:border-red-500 transition-colors">
+              <Youtube className="h-6 w-6 mx-auto mb-2 text-red-500" />
+              <h3 className="font-semibold text-sm">Student Stories</h3>
+            </div>
+          </div>
+
+          {/* Channel Subscribe CTA */}
+          <div className="mt-10 flex flex-col items-center space-y-4">
+            <a 
+              href="https://www.youtube.com/@akash_talks" 
+              target="_blank" 
+              rel="noopener noreferrer"
+            >
+              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white h-12 px-8">
+                <Youtube className="mr-2 h-5 w-5" />
+                Subscribe to Our Channel
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </Button>
+            </a>
+            <p className="text-sm text-muted-foreground">
+              Join thousands of students getting free admission guidance!
+            </p>
           </div>
         </div>
       </section>
