@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone } from "lucide-react";
+import { companyInfo } from "@/lib/data";
 
 export default function ContactPage() {
     return (
@@ -11,7 +12,7 @@ export default function ContactPage() {
                 <div className="space-y-2">
                     <h1 className="text-3xl font-bold tracking-tighter sm:text-5xl">Contact Us</h1>
                     <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed">
-                        Get in touch with our expert counselors for personalized guidance.
+                        Get in touch with our expert counselors for personalized guidance on B.Tech admissions.
                     </p>
                 </div>
             </div>
@@ -26,8 +27,9 @@ export default function ContactPage() {
                         <div>
                             <h3 className="text-lg font-bold">Visit Us</h3>
                             <p className="text-muted-foreground">
-                                123 Education Lane, Knowledge Park<br />
-                                Bangalore, Karnataka 560001
+                                {companyInfo.address.line1}<br />
+                                {companyInfo.address.line2}<br />
+                                {companyInfo.address.city} - {companyInfo.address.pincode}
                             </p>
                         </div>
                     </div>
@@ -38,7 +40,7 @@ export default function ContactPage() {
                         <div>
                             <h3 className="text-lg font-bold">Email Us</h3>
                             <p className="text-muted-foreground">
-                                admissions@akashtalks.com
+                                {companyInfo.email}
                             </p>
                         </div>
                     </div>
@@ -49,8 +51,21 @@ export default function ContactPage() {
                         <div>
                             <h3 className="text-lg font-bold">Call Us</h3>
                             <p className="text-muted-foreground">
-                                +91 98765 43210
+                                {companyInfo.phones[0]}<br />
+                                {companyInfo.phones[1]}
                             </p>
+                        </div>
+                    </div>
+
+                    {/* States We Cover */}
+                    <div className="mt-8 p-6 bg-secondary/50 rounded-xl">
+                        <h3 className="text-lg font-bold mb-3">States We Cover</h3>
+                        <div className="flex flex-wrap gap-2">
+                            {companyInfo.states.map((state) => (
+                                <span key={state} className="px-3 py-1 bg-primary/10 text-primary rounded-full text-sm font-medium">
+                                    {state}
+                                </span>
+                            ))}
                         </div>
                     </div>
                 </div>
