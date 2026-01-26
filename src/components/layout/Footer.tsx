@@ -1,6 +1,7 @@
 import Link from "next/link"
+import Image from "next/image"
 import { companyInfo } from "@/lib/data"
-import { ArrowUpRight, MessageCircle } from "lucide-react"
+import { ArrowUpRight, MessageCircle, Youtube, Twitter, Facebook, Instagram } from "lucide-react"
 
 export function Footer() {
     return (
@@ -11,9 +12,13 @@ export function Footer() {
                     {/* Left Column: Branding and Nav */}
                     <div className="space-y-10">
                         <div className="space-y-4">
-                            <div className="h-12 w-12 bg-white rounded-lg flex items-center justify-center">
-                                {/* Placeholder for Logo if SVG is complex, else using text as backup or image */}
-                                <span className="text-[#020617] font-bold text-xl">AT</span>
+                            <div className="relative h-16 w-16 rounded-lg overflow-hidden">
+                                <Image
+                                    src="/footer-logo.jpg"
+                                    alt="Akash Talks Logo"
+                                    fill
+                                    className="object-contain"
+                                />
                             </div>
                             <h2 className="text-2xl font-medium tracking-wide">
                                 Shaping Futures with Innovation
@@ -21,11 +26,64 @@ export function Footer() {
                         </div>
 
                         <nav className="flex flex-col space-y-4 text-gray-300">
-                            <Link href="/" className="hover:text-[#f6c804] transition-colors text-lg">Home</Link>
-                            <Link href="/colleges" className="hover:text-[#f6c804] transition-colors text-lg">Colleges</Link>
-                            <Link href="/exams" className="hover:text-[#f6c804] transition-colors text-lg">Exams</Link>
-                            <Link href="/blogs" className="hover:text-[#f6c804] transition-colors text-lg">Blogs</Link>
+                            <Link href="/" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Home</Link>
+                            <Link href="/colleges" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Colleges</Link>
+                            <Link href="/exams" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Exams</Link>
                         </nav>
+
+                        {/* Social Links */}
+                        <div className="flex flex-wrap gap-4 pt-4">
+                            <a
+                                href="https://www.instagram.com/akash_talks/?utm_source=ig_profile_share"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                aria-label="Instagram"
+                            >
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    strokeWidth="2"
+                                    strokeLinecap="round"
+                                    strokeLinejoin="round"
+                                >
+                                    <rect width="20" height="20" x="2" y="2" rx="5" ry="5" />
+                                    <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
+                                    <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
+                                </svg>
+                            </a>
+                            <a
+                                href="https://facebook.com/profile.php?id=61582065763156"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                aria-label="Facebook"
+                            >
+                                <Facebook className="h-5 w-5" />
+                            </a>
+                            <a
+                                href="https://twitter.com/akash_talks"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                aria-label="Twitter"
+                            >
+                                <Twitter className="h-5 w-5" />
+                            </a>
+                            <a
+                                href="https://youtube.com/@featuredColleges"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                aria-label="YouTube"
+                            >
+                                <Youtube className="h-5 w-5" />
+                            </a>
+                        </div>
                     </div>
 
                     {/* Right Column: Map and Contact */}
