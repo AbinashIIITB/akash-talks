@@ -1,12 +1,31 @@
 "use client"
 
-import { motion } from "framer-motion"
+import { useState, useMemo } from "react"
+import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
 import collegesData from "../../data/colleges.json"
 
 export default function CollegesPage() {
+    const [selectedState, setSelectedState] = useState("All");
+
+    // Extract unique states from the data
+    const states = useMemo(() => {
+        const uniqueStates = new Set(collegesData.map(college => {
+            // Assuming location format "City, State" - taking the last part
+            const parts = college.location.split(',');
+            return parts[parts.length - 1].trim();
+        }));
+        return ["All", ...Array.from(uniqueStates).sort()];
+    }, []);
+
+    // Filter colleges based on selection
+    const filteredColleges = useMemo(() => {
+        if (selectedState === "All") return collegesData;
+        return collegesData.filter(college => college.location.includes(selectedState));
+    }, [selectedState]);
+
     const container = {
         hidden: { opacity: 0 },
         show: {
@@ -35,53 +54,83 @@ export default function CollegesPage() {
                     </p>
                 </div>
 
-                <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8"
-                >
-                    {collegesData.map((college) => (
-                        <motion.div
-                            key={college.id}
-                            variants={item}
-                            className="group relative bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                {/* Filter Section */}
+                <div className="flex flex-wrap justify-center gap-2 pt-4 pb-4">
+                    {states.map((state) => (
+                        <button
+                            key={state}
+                            onClick={() => setSelectedState(state)}
+                            className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedState === state
+                                ? "bg-[#f6c804] text-black shadow-md scale-105"
+                                : "bg-card border border-border text-muted-foreground hover:bg-[#f6c804]/10 hover:text-[#f6c804]"
+                                }`}
                         >
-                            <div className="relative h-48 w-full overflow-hidden">
-                                <Image
-                                    src={college.imageUrl}
-                                    alt={college.name}
-                                    fill
-                                    className="object-cover transition-transform duration-500 group-hover:scale-110"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
-                            </div>
-
-                            <div className="p-6 space-y-4">
-                                <div className="space-y-2">
-                                    <h3 className="text-xl font-bold text-card-foreground line-clamp-1 group-hover:text-yellow-500 transition-colors">
-                                        {college.name}
-                                    </h3>
-                                    <div className="flex items-center text-sm text-muted-foreground">
-                                        <MapPin className="h-4 w-4 mr-1 text-yellow-500" />
-                                        {college.location}
-                                    </div>
-                                </div>
-
-                                <p className="text-sm text-muted-foreground line-clamp-2">
-                                    {college.description}
-                                </p>
-
-                                <div className="pt-2">
-                                    <button className="w-full inline-flex items-center justify-center rounded-lg bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn">
-                                        See Details
-                                        <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                                    </button>
-                                </div>
-                            </div>
-                        </motion.div>
+                            {state}
+                        </button>
                     ))}
-                </motion.div>
+                </div>
+
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={selectedState} // Re-trigger animations on filter change
+                        variants={container}
+                        initial="hidden"
+                        animate="show"
+                        exit={{ opacity: 0, y: 20 }}
+                        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4"
+                    >
+                        {filteredColleges.length > 0 ? (
+                            filteredColleges.map((college) => (
+                                <motion.div
+                                    key={college.id}
+                                    variants={item}
+                                    className="group relative bg-card rounded-2xl overflow-hidden border border-border shadow-sm hover:shadow-xl transition-all duration-300 hover:-translate-y-1"
+                                >
+                                    <div className="relative h-48 w-full overflow-hidden">
+                                        <Image
+                                            src={college.imageUrl}
+                                            alt={college.name}
+                                            fill
+                                            className="object-cover transition-transform duration-500 group-hover:scale-110"
+                                        />
+                                        <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                                    </div>
+
+                                    <div className="p-6 space-y-4">
+                                        <div className="space-y-2">
+                                            <h3 className="text-xl font-bold text-card-foreground line-clamp-1 group-hover:text-yellow-500 transition-colors">
+                                                {college.name}
+                                            </h3>
+                                            <div className="flex items-center text-sm text-muted-foreground">
+                                                <MapPin className="h-4 w-4 mr-1 text-yellow-500" />
+                                                {college.location}
+                                            </div>
+                                        </div>
+
+                                        <p className="text-sm text-muted-foreground line-clamp-2">
+                                            {college.description}
+                                        </p>
+
+                                        <div className="pt-2">
+                                            <button className="w-full inline-flex items-center justify-center rounded-lg bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn">
+                                                See Details
+                                                <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
+                                            </button>
+                                        </div>
+                                    </div>
+                                </motion.div>
+                            ))
+                        ) : (
+                            <motion.div
+                                initial={{ opacity: 0 }}
+                                animate={{ opacity: 1 }}
+                                className="col-span-full text-center py-20 text-muted-foreground"
+                            >
+                                No colleges found for this filter.
+                            </motion.div>
+                        )}
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </div>
     )
