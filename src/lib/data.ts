@@ -12,9 +12,119 @@ export interface College {
     logoUrl?: string;
     coverUrl?: string;
     tags: string[];
+    // Rich content fields
+    about?: string;
+    highlights?: string[];
+    infrastructure?: string[];
+    cutoffs?: {
+        title: string;
+        table: { label: string; value: string }[];
+        description?: string;
+    }[];
+    placements?: {
+        highlights: string[];
+        topRecruiters: { category: string; companies: string[] }[];
+        stats: { label: string; value: string }[];
+    };
+    scholarships?: {
+        title: string;
+        items: { label: string; value: string }[];
+    }[];
+    faqs?: { question: string; answer: string }[];
+    admissions?: {
+        process: string[];
+        eligibility: string[];
+        documents: string[];
+    };
 }
 
 export const colleges: College[] = [
+    // BITS Pilani Dubai (New Entry)
+    {
+        id: "bits-dubai",
+        slug: "bits-pilani-dubai-campus",
+        name: "BITS Pilani Dubai Campus",
+        location: "Dubai, UAE",
+        state: "Dubai",
+        rating: 4.8,
+        reviews: 3500,
+        fees: "AED 52,840 (₹12.30 L) per year",
+        courses: ["B.E. CSE", "B.E. ECE", "B.E. Mechanical", "B.E. EEE", "B.E. Chemical", "B.E. Civil", "B.E. Biotechnology"],
+        type: "Private",
+        tags: ["International Campus", "Direct Admission", "No BITSAT Required"],
+        logoUrl: "/footer-logo.jpg", // Using placeholder/brand logo for now
+        about: "BITS Pilani Dubai Campus (BPDC), established in 2000, is the first international campus of Birla Institute of Technology & Science, Pilani. Located in Dubai International Academic City, BPDC represents a pioneering milestone as India's first internationally deemed university campus, delivering world-class engineering education to the Middle East. It follows the same academic standards, curriculum, and examination system as Pilani, Goa, and Hyderabad campuses.",
+        highlights: [
+            "KHDA 5-Star Rating (2022)",
+            "Best Engineering University in UAE Award (2022)",
+            "QS Top 300 in Graduate Employability",
+            "Direct Admission based on Class 12 marks (No BITSAT required)",
+            "SAME BITS PILANI Degree globally recognized"
+        ],
+        infrastructure: [
+            "Modern Academic Building in Dubai International Academic City",
+            "40+ Specialized Laboratories with international-standard equipment",
+            "Central Library with 25,000+ books and IEEE/Springer access",
+            "Research Labs for AI, ML, Robotics, IoT, VLSI",
+            "Single-Room Hostels (AC, attached bath) for 700+ students",
+            "Sports facilities: Badminton, TT, Gym, and more"
+        ],
+        cutoffs: [
+            {
+                title: "Direct Admission Eligibility (Class 12)",
+                table: [
+                    { label: "Aggregate (PCM)", value: "Minimum 60%" },
+                    { label: "Physics", value: "Minimum 50%" },
+                    { label: "Mathematics", value: "Minimum 50%" },
+                    { label: "English Proficiency", value: "IELTS 6.0 / TOEFL 61+" }
+                ],
+                description: "Unlike India campuses requiring BITSAT 300+, Dubai campus offers direct admission."
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "AED 300,000 (₹70 LPA)" },
+                { label: "Median Package", value: "AED 90,000 (₹21 LPA)" },
+                { label: "Placement Rate", value: "95% (UAE Based)" }
+            ],
+            highlights: [
+                "100% Core Engineering Placement",
+                "Tax-Free Salaries in UAE",
+                "Practice School program (7.5 months internship)"
+            ],
+            topRecruiters: [
+                { category: "Tech Giants", companies: ["Microsoft", "Google", "Amazon", "Dell"] },
+                { category: "UAE Based", companies: ["Landmark Group", "Noon.com", "Emaar", "Careem"] },
+                { category: "Engineering", companies: ["Siemens", "Schindler", "ABB", "Schneider Electric"] }
+            ]
+        },
+        scholarships: [
+            {
+                title: "Merit Scholarship (Board Marks)",
+                items: [
+                    { label: "> 95% PCM", value: "40% Tuition Waiver" },
+                    { label: "90% - 94.99%", value: "20% Tuition Waiver" },
+                    { label: "Top 3 in Board", value: "100% Tuition Waiver" }
+                ]
+            },
+            {
+                title: "BITSAT Score Scholarship",
+                items: [
+                    { label: "Score > 300", value: "25% - 75% Tuition Waiver" }
+                ]
+            }
+        ],
+        admissions: {
+            process: ["Consultation & Eligibility Check", "Branch Selection & Seat Booking", "Admission Letter", "Visa Process"],
+            eligibility: ["Min 60% in Class 12 PCM", "Valid Passport"],
+            documents: ["Class 10/12 Marksheets", "Passport Copy", "Passport Photos"]
+        },
+        faqs: [
+            { question: "Is the degree valid in India?", answer: "Yes, it is the exact same BITS Pilani degree awarded at Pilani/Goa/Hyderabad campuses." },
+            { question: "Is BITSAT mandatory?", answer: "No, admission is primarily based on Class 12 merit. BITSAT is optional for scholarships." },
+            { question: "What is the Practice School?", answer: "It is a unique 7.5-month internship program included in the curriculum, offering industry exposure before graduation." }
+        ]
+    },
     // West Bengal
     {
         id: "1",
