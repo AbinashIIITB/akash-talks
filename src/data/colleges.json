@@ -1,0 +1,50 @@
+[
+    {
+        "id": 1,
+        "name": "BITS Pilani Dubai Campus",
+        "location": "Dubai, UAE",
+        "description": "Direct Admission & Cutoff Insights for B.Tech programs at BITS Pilani Dubai Campus.",
+        "imageUrl": "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/bits-pilani-dubai"
+    },
+    {
+        "id": 2,
+        "name": "Christ University Bangalore",
+        "location": "Bangalore, India",
+        "description": "Top-ranked university offering diverse disciplines in Law, Engineering, and Management.",
+        "imageUrl": "https://images.unsplash.com/photo-1590579491624-9f8290132649?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/christ-university"
+    },
+    {
+        "id": 3,
+        "name": "Manipal Institute of Technology",
+        "location": "Manipal, Karnataka",
+        "description": "One of India's leading private engineering institutions with world-class facilities.",
+        "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/manipal-institute-technology"
+    },
+    {
+        "id": 4,
+        "name": "PES University",
+        "location": "Bangalore, Karnataka",
+        "description": "Renowned for its academic excellence and strong industry connections in technology.",
+        "imageUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/pes-university"
+    },
+    {
+        "id": 5,
+        "name": "RV College of Engineering",
+        "location": "Bangalore, Karnataka",
+        "description": "Placement-focused autonomous engineering college known for its rigorous curriculum.",
+        "imageUrl": "https://images.unsplash.com/photo-1607237138185-eedd9c632b0b?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/rv-college-engineering"
+    },
+    {
+        "id": 6,
+        "name": "Adamas University",
+        "location": "Kolkata, West Bengal",
+        "description": "A green campus providing holistic education across multiple disciplines.",
+        "imageUrl": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=1000&auto=format&fit=crop",
+        "link": "/college/adamas-university"
+    }
+]
