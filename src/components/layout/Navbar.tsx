@@ -3,10 +3,11 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { Menu, Search } from "lucide-react"
+import { Menu } from "lucide-react"
 import { useTheme } from "next-themes"
 
 import { Button } from "@/components/ui/button"
+import { Search } from "@/components/ui/Search"
 import { AnimatedThemeToggle } from "@/components/ui/AnimatedThemeToggle"
 import { LayoutContainer } from "@/components/layout/LayoutContainer"
 import {
@@ -83,15 +84,8 @@ export function Navbar() {
                         </Button>
                     </Link>
 
-                    {/* Search Icon */}
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        aria-label="Search"
-                        className="rounded-full hover:bg-foreground/10"
-                    >
-                        <Search className="h-5 w-5" />
-                    </Button>
+                    {/* Search Component */}
+                    <Search />
 
                     {/* Animated Theme Toggle */}
                     <AnimatedThemeToggle />
