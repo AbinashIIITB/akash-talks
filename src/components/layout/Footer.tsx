@@ -99,7 +99,7 @@ export function Footer() {
                                 width="100%"
                                 height="100%"
                                 frameBorder="0"
-                                scrolling="no"
+                                scrolling="yes"
                                 marginHeight={0}
                                 marginWidth={0}
                                 src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&t=&z=15&ie=UTF8&iwloc=&output=embed"
