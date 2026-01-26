@@ -3,7 +3,8 @@
 import { motion } from "framer-motion"
 import { Calendar, FileText, ArrowUpRight } from "lucide-react"
 import Image from "next/image"
-import examsData from "../../data/exams.json"
+import Link from "next/link"
+import { exams } from "@/lib/examData"
 
 export default function ExamsPage() {
     const container = {
@@ -40,44 +41,49 @@ export default function ExamsPage() {
                     animate="show"
                     className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8"
                 >
-                    {examsData.map((exam) => (
+                    {exams.map((exam) => (
                         <motion.div
                             key={exam.id}
                             variants={item}
-                            className="group relative bg-card rounded-xl border border-border p-6 hover:border-yellow-500/50 transition-colors duration-300"
+                            className="group relative bg-card rounded-xl border border-border p-6 hover:border-yellow-500/50 transition-colors duration-300 flex flex-col justify-between"
                         >
-                            <div className="flex items-start justify-between mb-4">
-                                <div className="relative h-12 w-12 rounded-lg overflow-hidden bg-muted">
-                                    <Image
-                                        src={exam.logoUrl}
-                                        alt={exam.title}
-                                        fill
-                                        className="object-cover"
-                                    />
+                            <div>
+                                <div className="flex items-start justify-between mb-4">
+                                    <div className="relative h-12 w-12 rounded-lg overflow-hidden bg-muted">
+                                        {/* Use logoUrl or placeholder */}
+                                        <Image
+                                            src={exam.logoUrl || "/footer-logo.jpg"}
+                                            alt={exam.title}
+                                            fill
+                                            className="object-cover"
+                                        />
+                                    </div>
+                                    <Link href={`/exams/${exam.slug}`}>
+                                        <div className="h-8 w-8 rounded-full bg-yellow-400/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
+                                            <ArrowUpRight className="h-4 w-4 text-yellow-600" />
+                                        </div>
+                                    </Link>
                                 </div>
-                                <div className="h-8 w-8 rounded-full bg-yellow-400/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
-                                    <ArrowUpRight className="h-4 w-4 text-yellow-600" />
-                                </div>
+
+                                <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-yellow-500 transition-colors">
+                                    {exam.title}
+                                </h3>
+
+                                <p className="text-sm text-muted-foreground mb-6 line-clamp-3">
+                                    {exam.description}
+                                </p>
                             </div>
 
-                            <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-yellow-500 transition-colors">
-                                {exam.title}
-                            </h3>
-
-                            <p className="text-sm text-muted-foreground mb-6 line-clamp-2">
-                                {exam.description}
-                            </p>
-
-                            <div className="flex items-center justify-between pt-4 border-t border-border">
-                                <button className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                            <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
+                                <Link href={`/exams/${exam.slug}#intro`} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                                     <FileText className="h-4 w-4 mr-2" />
-                                    Syllabus
-                                </button>
+                                    Details
+                                </Link>
                                 <div className="h-4 w-px bg-border" />
-                                <button className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
+                                <Link href={`/exams/${exam.slug}#dates`} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
                                     <Calendar className="h-4 w-4 mr-2" />
                                     Dates
-                                </button>
+                                </Link>
                             </div>
                         </motion.div>
                     ))}

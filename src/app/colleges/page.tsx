@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion"
 import { MapPin, ArrowRight } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import collegesData from "../../data/colleges.json"
+import { colleges as collegesData } from "@/lib/data"
 
 export default function CollegesPage() {
     const [selectedState, setSelectedState] = useState("All");
@@ -112,10 +112,10 @@ export default function CollegesPage() {
                                         </p>
 
                                         <div className="pt-2">
-                                            <button className="w-full inline-flex items-center justify-center rounded-lg bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn">
+                                            <Link href={`/colleges/${college.slug}`} className="w-full inline-flex items-center justify-center rounded-lg bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn">
                                                 See Details
                                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
-                                            </button>
+                                            </Link>
                                         </div>
                                     </div>
                                 </motion.div>

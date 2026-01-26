@@ -104,7 +104,7 @@ export function Footer() {
                                 marginWidth={0}
                                 src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&t=&z=15&ie=UTF8&iwloc=&output=embed"
                                 title="Office Location"
-                                className="filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100"
+                                className="filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100 pointer-events-auto"
                             ></iframe>
                         </div>
 

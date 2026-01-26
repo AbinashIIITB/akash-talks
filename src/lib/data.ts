@@ -9,6 +9,8 @@ export interface College {
     fees: string;
     courses: string[];
     type: "Private" | "Government" | "Deemed";
+    description?: string; // Brief description for cards
+    imageUrl?: string;    // Cover image for cards
     logoUrl?: string;
     coverUrl?: string;
     tags: string[];
@@ -22,8 +24,8 @@ export interface College {
         description?: string;
     }[];
     placements?: {
-        highlights: string[];
-        topRecruiters: { category: string; companies: string[] }[];
+        highlights?: string[];
+        topRecruiters?: { category: string; companies: string[] }[];
         stats: { label: string; value: string }[];
     };
     scholarships?: {
@@ -52,6 +54,8 @@ export const colleges: College[] = [
         courses: ["B.E. CSE", "B.E. ECE", "B.E. Mechanical", "B.E. EEE", "B.E. Chemical", "B.E. Civil", "B.E. Biotechnology"],
         type: "Private",
         tags: ["International Campus", "Direct Admission", "No BITSAT Required"],
+        description: "India's first internationally deemed university campus delivering world-class engineering education in Dubai.",
+        imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
         logoUrl: "/footer-logo.jpg", // Using placeholder/brand logo for now
         about: "BITS Pilani Dubai Campus (BPDC), established in 2000, is the first international campus of Birla Institute of Technology & Science, Pilani. Located in Dubai International Academic City, BPDC represents a pioneering milestone as India's first internationally deemed university campus, delivering world-class engineering education to the Middle East. It follows the same academic standards, curriculum, and examination system as Pilani, Goa, and Hyderabad campuses.",
         highlights: [
@@ -221,6 +225,15 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MCA"],
         type: "Private",
         tags: ["IT Focused"],
+        description: "Government-aided engineering college affiliated with MAKAUT, focused on IT and related fields.",
+        imageUrl: "https://images.unsplash.com/photo-1592280771190-3e2cb5038c36?q=80&w=1000&auto=format&fit=crop",
+        about: "RCC Institute of Information Technology is a government-aided engineering college in Kolkata. It specializes in IT and Computer Science education and is known for its affordable fee structure and quality faculty.",
+        highlights: ["Govt Aided", "Low Fess", "Strong Coding Culture"],
+        placements: {
+            stats: [{ label: "Highest Package", value: "₹ 14 LPA" }, { label: "Average Package", value: "₹ 5.5 LPA" }, { label: "Placement Rate", value: "92%" }],
+            highlights: ["Excellent ROI", "Specialized in IT placements"],
+            topRecruiters: [{ category: "IT", companies: ["TCS", "Cognizant", "IBM"] }]
+        }
     },
     {
         id: "5",
@@ -247,6 +260,15 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA"],
         type: "Private",
         tags: ["Legacy Institution"],
+        description: "Renowned for its lush green campus and rigorous academic curriculum.",
+        imageUrl: "https://images.unsplash.com/photo-1626084605969-90d0b0b8c282?q=80&w=1000&auto=format&fit=crop",
+        about: "Heritage Institute of Technology (HIT-K) is one of the top private engineering colleges in Kolkata. Known for its rigorous academic curriculum and excellent faculty, it is a preferred choice for WBJEE rank holders.",
+        highlights: ["Autonomous", "Excellent Faculty", "Premium Infrastructure"],
+        placements: {
+            stats: [{ label: "Highest Package", value: "₹ 16 LPA" }, { label: "Average Package", value: "₹ 6 LPA" }],
+            highlights: ["Consistently High Placements"],
+            topRecruiters: [{ category: "IT", companies: ["TCS", "Infosys"] }]
+        }
     },
     {
         id: "7",
@@ -260,6 +282,15 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech"],
         type: "Private",
         tags: ["Modern Campus"],
+        description: "Modern engineering college focused on emerging technologies and holistic development.",
+        imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop",
+        about: "Techno International New Town (TINT) is a modern engineering college under the Techno India Group. Located in New Town, it focuses on emerging technologies like AI, ML, and IoT.",
+        highlights: ["Modern Campus", "Focus on Emerging Tech"],
+        placements: {
+            stats: [{ label: "Highest Package", value: "₹ 8 LPA" }, { label: "Average Package", value: "₹ 4 LPA" }],
+            highlights: ["Growing Placement Record"],
+            topRecruiters: [{ category: "IT", companies: ["Capgemini", "LTI"] }]
+        }
     },
     {
         id: "8",
@@ -273,6 +304,15 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA"],
         type: "Private",
         tags: ["Top Ranked"],
+        description: "One of the oldest and most reputed private engineering colleges in West Bengal.",
+        imageUrl: "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1000&auto=format&fit=crop",
+        about: "Netaji Subhash Engineering College (NSEC) is one of the best and oldest private engineering colleges in West Bengal. It has a legacy of producing successful engineers.",
+        highlights: ["Oldest Private College", "Strong Alumni Base"],
+        placements: {
+            stats: [{ label: "Highest Package", value: "₹ 15 LPA" }, { label: "Average Package", value: "₹ 5.5 LPA" }],
+            highlights: ["Stable Placements"],
+            topRecruiters: [{ category: "IT", companies: ["TCS", "Cerner", "Amazon"] }]
+        }
     },
     {
         id: "9",
@@ -286,6 +326,15 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MCA"],
         type: "Private",
         tags: ["Best Placements", "Top Ranked"],
+        description: "Techno India Group college dedicated to high standards of technical education.",
+        imageUrl: "https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1000&auto=format&fit=crop",
+        about: "Meghnad Saha Institute of Technology (MSIT) is a prominent college under Techno India Group, known for its strategic location and quality education.",
+        highlights: ["Strategic Location", "Techno India Group"],
+        placements: {
+            stats: [{ label: "Highest Package", value: "₹ 10 LPA" }, { label: "Average Package", value: "₹ 4.5 LPA" }],
+            highlights: ["Consistent IT Placements"],
+            topRecruiters: [{ category: "IT", companies: ["Wipro", "Cognizant"] }]
+        }
     },
     {
         id: "10",
@@ -382,6 +431,11 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech"],
         type: "Private",
         tags: ["Heritage", "Top Ranked"],
+        description: "First private engineering college in India, known for its historic legacy and quality education.",
+        imageUrl: "https://images.unsplash.com/photo-1576267423048-15c0040fec78?q=80&w=1000&auto=format&fit=crop",
+        about: "B.M.S. College of Engineering is an autonomous engineering college in Basavanagudi, Bangalore. Established in 1946, it is the first private sector initiative in engineering education in India.",
+        highlights: ["Historic Legacy", "Strong Alumni", "Autonomous"],
+        placements: { stats: [{ label: "Highest", value: "₹ 50 LPA" }, { label: "Average", value: "₹ 8 LPA" }] }
     },
     {
         id: "14",
@@ -408,6 +462,11 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "BBA"],
         type: "Private",
         tags: ["Top Ranked", "Best Placements"],
+        description: "Top-ranked university focused on research, innovation, and entrepreneurship.",
+        imageUrl: "https://images.unsplash.com/photo-1627556944963-71829e577265?q=80&w=1000&auto=format&fit=crop",
+        about: "PES University, located in Bengaluru, is one of the country's leading teaching and research universities. The university is committed to providing 'education for the real world'.",
+        highlights: ["Top Ranked", "Excellent Placements"],
+        placements: { stats: [{ label: "Highest", value: "₹ 65 LPA" }, { label: "Average", value: "₹ 12 LPA" }] }
     },
     {
         id: "16",
@@ -436,6 +495,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "Medical"],
         type: "Deemed",
         tags: ["Deemed University", "Multi-disciplinary"],
+        description: "Deemed-to-be University known for medical and engineering excellence.",
+        imageUrl: "https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1000&auto=format&fit=crop",
+        about: "Dr. D. Y. Patil Vidyapeeth, Pune is a Deemed-to-be University. It offers a wide range of courses in Medicine, Dentistry, Nursing, Physiotherapy, Optometry, Biotechnology, Management, and more.",
+        placements: { stats: [{ label: "Highest", value: "₹ 15 LPA" }] }
     },
     {
         id: "18",
@@ -449,6 +512,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech"],
         type: "Private",
         tags: ["Top Ranked", "NIRF Top 100"],
+        description: "Prestigious private engineering college dedicated to nation-building.",
+        imageUrl: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop",
+        about: "MIT World Peace University (formerly MIT Pune) is a private university located in Kothrud, Pune. It is part of the MIT Group of Institutions.",
+        placements: { stats: [{ label: "Highest", value: "₹ 44 LPA" }] }
     },
     {
         id: "19",
@@ -462,6 +529,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "MBA", "Law", "Design"],
         type: "Deemed",
         tags: ["Premium", "Top Ranked"],
+        description: "Multi-disciplinary university fostering international understanding through quality education.",
+        imageUrl: "https://images.unsplash.com/photo-1596522354195-e84e9c0a5d25?q=80&w=1000&auto=format&fit=crop",
+        about: "Symbiosis International (Deemed University) is a multi-campus private higher-education institute deemed to be university, headquartered in Pune.",
+        placements: { stats: [{ label: "Highest", value: "₹ 24 LPA" }] }
     },
     {
         id: "20",
@@ -603,6 +674,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "MBA", "Law", "Design"],
         type: "Private",
         tags: ["Energy Sector Focus", "Top Placements"],
+        description: "Specialized university known for its energy and allied sector programs.",
+        imageUrl: "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=1000&auto=format&fit=crop",
+        about: "UPES is a private university in Dehradun. It is known for its specialized programs in Energy, Petroleum, and Cloud Computing.",
+        placements: { stats: [{ label: "Highest", value: "₹ 50 LPA" }] }
     },
     {
         id: "24",
@@ -616,6 +691,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "Arts"],
         type: "Government",
         tags: ["Government", "Affordable"],
+        description: "State university situated in the foothills of the Himalayas offering quality education.",
+        imageUrl: "https://images.unsplash.com/photo-1592280771190-3e2cb5038c36?q=80&w=1000&auto=format&fit=crop",
+        about: "Doon University is a state public university located in Dehradun. It offers a scenic campus and residential facilities.",
+        placements: { stats: [{ label: "Highest", value: "₹ 10 LPA" }] }
     },
 
     // Odisha
@@ -686,6 +765,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "Medical", "Dental"],
         type: "Deemed",
         tags: ["Multi-disciplinary", "Research Focused"],
+        description: "Deemed university known for its medical and engineering programs.",
+        imageUrl: "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1000&auto=format&fit=crop",
+        about: "Siksha 'O' Anusandhan (SOA) is a deemed university located in Bhubaneswar. It is known for its medical college and engineering programs (ITER).",
+        placements: { stats: [{ label: "Highest", value: "₹ 30 LPA" }] }
     },
     {
         id: "27",
@@ -699,6 +782,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA"],
         type: "Private",
         tags: ["Growing Institution"],
+        description: "Focused on technical education and skill development for global industry needs.",
+        imageUrl: "https://images.unsplash.com/photo-1627556944963-71829e577265?q=80&w=1000&auto=format&fit=crop",
+        about: "C. V. Raman Global University is a private university in Bhubaneswar. It focuses on skill development and technical education.",
+        placements: { stats: [{ label: "Highest", value: "₹ 18 LPA" }] }
     },
     {
         id: "28",
@@ -712,6 +799,10 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MCA"],
         type: "Private",
         tags: ["IT Focused", "Good Placements"],
+        description: "Known for its rigorous academics and strong foundation in computer science and electronics.",
+        imageUrl: "https://images.unsplash.com/photo-1590579491624-9f8290132649?q=80&w=1000&auto=format&fit=crop",
+        about: "Silicon University (formerly Silicon Institute of Technology) is known for its strict academics and excellent placement record in the IT sector.",
+        placements: { stats: [{ label: "Highest", value: "₹ 20 LPA" }] }
     },
 ];
 
