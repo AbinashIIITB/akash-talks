@@ -12,9 +12,25 @@ export function Footer() {
                         <h3 className="font-bold text-lg">{companyInfo.name}</h3>
                         <p className="text-sm text-muted-foreground">{companyInfo.tagline}</p>
                         <p className="text-sm text-muted-foreground">
-                            {companyInfo.address.city}<br />
-                            {companyInfo.address.state} - {companyInfo.address.pincode}
+                            {companyInfo.address.line1}<br />
+                            {companyInfo.address.line2}<br />
+                            {companyInfo.address.city} - {companyInfo.address.pincode}
                         </p>
+
+                        {/* Google Map Widget */}
+                        <div className="w-full h-48 rounded-lg overflow-hidden border border-border mt-4">
+                            <iframe
+                                width="100%"
+                                height="100%"
+                                frameBorder="0"
+                                scrolling="no"
+                                marginHeight={0}
+                                marginWidth={0}
+                                src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                title="Office Location"
+                                className="filter grayscale hover:grayscale-0 transition-all duration-300"
+                            ></iframe>
+                        </div>
                         {/* Social Links */}
                         <div className="flex flex-wrap gap-3 pt-2">
                             <a

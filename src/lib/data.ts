@@ -409,8 +409,8 @@ export const companyInfo = {
     email: "admissions@akashtalks.com",
     youtube: "https://www.youtube.com/@akash_talks",
     address: {
-        line1: "GN-34/1, Aurora Water Front",
-        line2: "Unit 21, 11th Floor, Sector V",
+        line1: "GN-34/1, Aurora Water Front, Unit 21",
+        line2: "11th Floor, Sector V",
         city: "Salt Lake, Kolkata",
         state: "West Bengal",
         pincode: "700091",
