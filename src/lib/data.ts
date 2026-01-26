@@ -138,6 +138,50 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "BCA", "MCA"],
         type: "Private",
         tags: ["Top Ranked", "Best Placements"],
+        logoUrl: "/footer-logo.jpg",
+        about: "Institute of Engineering & Management (IEM) is a premier private engineering college in Kolkata. Established in 1989, it is known for its strict academic discipline, excellent placement records, and strong alumni network. IEM has consistently been ranked among the top private engineering colleges in West Bengal.",
+        highlights: [
+            "NAAC 'A' Grade Accredited",
+            "NIRF Ranked Institution",
+            "Oldest Private Engineering College in West Bengal",
+            "Strong Industry Connections in Salt Lake Tech Hub"
+        ],
+        infrastructure: [
+            "3 Campuses located in the IT Hub of Salt Lake",
+            "State-of-the-art Innovation & IoT Labs",
+            "Techno-Management Fest Halls",
+            "Digital Library with International Journal Access"
+        ],
+        cutoffs: [
+            {
+                title: "WBJEE / JEE Main Cutoff (General)",
+                table: [
+                    { label: "CSE", value: "WBJEE Ranks 2000 - 4000" },
+                    { label: "ECE", value: "WBJEE Ranks 4000 - 8000" },
+                    { label: "IT", value: "WBJEE Ranks 3000 - 5000" }
+                ],
+                description: "Admission is primarily through WBJEE counseling and JEE Main quota."
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "₹ 72 LPA (Off-campus)" },
+                { label: "Average Package", value: "₹ 6.5 LPA" },
+                { label: "Placement Rate", value: "95%+" }
+            ],
+            highlights: [
+                "Consistent placement record for over 30 years",
+                "Multiple offers for top students"
+            ],
+            topRecruiters: [
+                { category: "IT Services", companies: ["TCS", "Cognizant", "Wipro", "Infosys"] },
+                { category: "Product", companies: ["Adobe", "SAP", "Oracle"] }
+            ]
+        },
+        faqs: [
+            { question: "Is there a management quota?", answer: "Yes, a limited number of seats are available under the management quota." },
+            { question: "Is uniform mandatory?", answer: "Yes, IEM follows a strict dress code and uniform policy." }
+        ]
     },
     {
         id: "2",
@@ -270,6 +314,48 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MCA"],
         type: "Private",
         tags: ["Top Ranked", "NIRF Top 100"],
+        logoUrl: "/footer-logo.jpg",
+        about: "Rashtreeya Vidyalaya College of Engineering (RVCE) established in 1963, is one of the earliest self-financing engineering colleges in the country. The institution is run by Rashtreeya Sikshana Samithi Trust (RSST). RVCE is widely regarded as one of the best private engineering colleges in India, known for its rigorous academics and outstanding placements.",
+        highlights: [
+            "Ranked among top 100 in NIRF Engineering",
+            "Autonomous Institution affiliated to VTU",
+            "Strong Research & Development focus",
+            "1000+ Offers in Day 1 Placements"
+        ],
+        infrastructure: [
+            "Sprawling 50+ Acre Green Campus in Bengaluru",
+            "Center of Excellence in Macroelectronics",
+            "Interdisciplinary Research Centers",
+            "Huge Sports Complex and Hostels"
+        ],
+        cutoffs: [
+            {
+                title: "KCET / COMEDK Cutoff",
+                table: [
+                    { label: "CSE (KCET)", value: "Rank < 200" },
+                    { label: "CSE (COMEDK)", value: "Rank < 500" },
+                    { label: "ECE (COMEDK)", value: "Rank < 1500" }
+                ]
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "₹ 62 LPA" },
+                { label: "Average Package", value: "₹ 14 LPA" },
+                { label: "Offers", value: "1500+" }
+            ],
+            highlights: [
+                "Top recruiters visit for core profiles",
+                "High average package for CSE/ISE branches"
+            ],
+            topRecruiters: [
+                { category: "Tech Giants", companies: ["Atlassian", "Microsoft", "Cisco", "Nvidia"] },
+                { category: "Auto/Core", companies: ["Mercedes Benz", "Bosch", "Texas Instruments"] }
+            ]
+        },
+        faqs: [
+            { question: "How to get admission?", answer: "Admission is through KCET (Karnataka students), COMEDK (All India), and Management Quota." }
+        ]
     },
     {
         id: "12",
@@ -404,6 +490,49 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "PhD"],
         type: "Deemed",
         tags: ["Top Ranked", "NIRF Top 20", "Best Placements"],
+        logoUrl: "/footer-logo.jpg",
+        about: "Vellore Institute of Technology (VIT) is a private deemed university known for its academic excellence. Founded in 1984 as Vellore Engineering College, it has grown into a major institution with campuses in Vellore, Chennai, Bhopal, and Amravati. It is recognized as an 'Institution of Eminence' by the Govt. of India.",
+        highlights: [
+            "Ranked #11 in NIRF Engineering 2023",
+            "ABET Accredited Engineering Programs",
+            "QS World Ranking 800-1000",
+            "Limca Book of Records for Campus Recruitments"
+        ],
+        infrastructure: [
+            "370+ Acre Eco-friendly Campus",
+            "Smart Classrooms & Modern Labs",
+            "Huge Library with RFID technology",
+            "Swimming Pools, Gyms, and Stadiums"
+        ],
+        cutoffs: [
+            {
+                title: "VITEEE Cutoff (Expected)",
+                table: [
+                    { label: "CSE (Cat-1)", value: "Rank < 20,000" },
+                    { label: "CSE (Cat-2)", value: "Rank < 45,000" },
+                    { label: "ECE (Cat-1)", value: "Rank < 50,000" }
+                ],
+                description: "Admissions are based on VITEEE rank. Fees vary by 'Category' (Cat-1 is lowest fees, Cat-5 is highest)."
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "₹ 1.02 Cr (Intl)" },
+                { label: "Average Package", value: "₹ 9.23 LPA" },
+                { label: "Dream Offers", value: "4500+" }
+            ],
+            highlights: [
+                "Record placements with multiple offers per student",
+                "Strong presence of Super Dream companies (>10 LPA)"
+            ],
+            topRecruiters: [
+                { category: "Super Dream", companies: ["Microsoft", "Amazon", "PayPal", "De Shaw"] },
+                { category: "Mass Recruiters", companies: ["TCS Digital", "Wipro Turbo", "Accenture"] }
+            ]
+        },
+        faqs: [
+            { question: "What is the Category system?", answer: "VIT has a differential fee structure. Lower ranks get Category 1 (lower fees), while higher ranks might get seats in Category 2-5 (higher fees)." }
+        ]
     },
     {
         id: "22",
@@ -417,6 +546,48 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "Medical"],
         type: "Deemed",
         tags: ["Top Ranked", "NIRF Top 50"],
+        logoUrl: "/footer-logo.jpg",
+        about: "SRM Institute of Science and Technology (formerly SRM University) is a top-ranking private deemed university in Chennai. It has a huge campus with over 50,000 students. SRM is known for its semester abroad program, strong research culture, and diverse student community.",
+        highlights: [
+            "NAAC A++ Grade Accreditation",
+            "Category 1 University by UGC",
+            "Semester Abroad Program with MIT, Harvard, etc.",
+            "Formidable Placement Record"
+        ],
+        infrastructure: [
+            "250 Acre Kattankulathur Main Campus",
+            "SRM Hospital & Medical College within campus",
+            "Multi-story Library & auditorium",
+            "100+ Buses for transport"
+        ],
+        cutoffs: [
+            {
+                title: "SRMJEEE Cutoff",
+                table: [
+                    { label: "CSE (Main Campus)", value: "Rank < 10,000" },
+                    { label: "ECE (Main Campus)", value: "Rank < 25,000" }
+                ],
+                description: "Admission for B.Tech is strictly through SRMJEEE rank."
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "₹ 57 LPA" },
+                { label: "Average Package", value: "₹ 7.5 LPA" },
+                { label: "Companies Visited", value: "1200+" }
+            ],
+            highlights: [
+                "High volume of Job Offers (>10,000)",
+                "Good opportunities for Core branches"
+            ],
+            topRecruiters: [
+                { category: "Top Tech", companies: ["Google", "Amazon", "Hitachi", "Human Resocia"] },
+                { category: "Consulting", companies: ["Deloitte", "KPMG", "PwC"] }
+            ]
+        },
+        faqs: [
+            { question: "Are there other campuses?", answer: "Yes, apart from KTR (Main), there are campuses in Ramapuram, Vadapalani, and NCR." }
+        ]
     },
 
     // Uttarakhand
@@ -460,6 +631,48 @@ export const colleges: College[] = [
         courses: ["B.Tech", "M.Tech", "MBA", "Law", "Medical"],
         type: "Deemed",
         tags: ["Top Ranked", "NIRF Top 50", "Best Campus"],
+        logoUrl: "/footer-logo.jpg",
+        about: "Kalinga Institute of Industrial Technology (KIIT) is a prestigious deemded university located in Bhubaneswar, Odisha. It is known for its world-class infrastructure, completely residential campus, and the 'Art of Giving' philosophy. KIIT has been recognized as an Institution of Eminence.",
+        highlights: [
+            "Ranked #16 in NIRF University Category",
+            "Assessment & Accreditation A++ by NAAC",
+            "First Indian Univ to get 5 Stars from QS",
+            "Host of World University Games"
+        ],
+        infrastructure: [
+            "25 sq. km. Township Campus",
+            "20+ Food Courts & 15 Sports Complexes",
+            "KIMS Medical Hospital associated",
+            "Every Classroom is AC and Smart"
+        ],
+        cutoffs: [
+            {
+                title: "KIITEE Cutoff",
+                table: [
+                    { label: "CSE", value: "Percentile > 90" },
+                    { label: "CS - System Engineering", value: "Percentile > 85" }
+                ],
+                description: "KIITEE is free of cost. Admission is purely merit-based on entrance score."
+            }
+        ],
+        placements: {
+            stats: [
+                { label: "Highest Package", value: "₹ 63 LPA" },
+                { label: "Average Package", value: "₹ 6.5 LPA" },
+                { label: "Placement Rate", value: "100%" }
+            ],
+            highlights: [
+                "Guaranteed placement assistance",
+                "Zero Day Placement with top MNCs"
+            ],
+            topRecruiters: [
+                { category: "MNCs", companies: ["HighRadius", "Accenture", "Cognizant", "Capgemini"] },
+                { category: "Core", companies: ["ArcelorMittal", "JSW", "Tata Power"] }
+            ]
+        },
+        faqs: [
+            { question: "Is exam fee required?", answer: "No, KIITEE application and exam are completely free." }
+        ]
     },
     {
         id: "26",
