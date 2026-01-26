@@ -43,14 +43,14 @@ export function Navbar() {
 
                 {/* Center: Nav Links (Desktop) */}
                 <nav className="hidden md:flex items-center space-x-8 text-sm font-medium">
+                    <Link href="/" className="transition-colors hover:text-[#f6c804] text-foreground/70">
+                        Home
+                    </Link>
                     <Link href="/colleges" className="transition-colors hover:text-[#f6c804] text-foreground/70">
                         Colleges
                     </Link>
                     <Link href="/exams" className="transition-colors hover:text-[#f6c804] text-foreground/70">
                         Exams
-                    </Link>
-                    <Link href="/courses" className="transition-colors hover:text-[#f6c804] text-foreground/70">
-                        Courses
                     </Link>
                 </nav>
 
@@ -91,14 +91,14 @@ export function Navbar() {
                                 <span className="font-bold text-xl">Akash Talks</span>
                             </Link>
                             <div className="flex flex-col space-y-4">
+                                <Link href="/" className="text-lg font-medium hover:text-[#f6c804] transition-colors">
+                                    Home
+                                </Link>
                                 <Link href="/colleges" className="text-lg font-medium hover:text-[#f6c804] transition-colors">
                                     Colleges
                                 </Link>
                                 <Link href="/exams" className="text-lg font-medium hover:text-[#f6c804] transition-colors">
                                     Exams
-                                </Link>
-                                <Link href="/courses" className="text-lg font-medium hover:text-[#f6c804] transition-colors">
-                                    Courses
                                 </Link>
                                 <Link href="/contact" className="mt-4">
                                     <Button className="w-full bg-[#f6c804] hover:bg-[#e5b703] text-black font-semibold rounded-full">
