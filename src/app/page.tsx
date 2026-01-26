@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
 import { ArrowRight, Building2, GraduationCap, Users, Phone, Youtube, ExternalLink, Shield, Award, MapPin } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
+import testimonials from "@/data/testimonials.json";
 
 // Animation variants
 const fadeInUp = {
@@ -277,8 +278,8 @@ export default function Home() {
         </LayoutContainer>
       </section>
 
-      {/* YouTube Section */}
-      <section className="w-full py-20 md:py-32">
+      {/* Testimonials Section - Verified Students Feedback */}
+      <section className="w-full py-20 md:py-32 overflow-hidden bg-muted/30">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -288,77 +289,50 @@ export default function Home() {
             className="text-center space-y-4 mb-16"
           >
             <motion.div variants={fadeInUp}>
-              <span className="inline-flex items-center rounded-full border border-red-500/30 bg-red-500/10 px-4 py-1.5 text-sm font-medium text-red-500">
-                <Youtube className="mr-2 h-4 w-4" /> Watch Our Latest Videos
+              <span className="inline-flex items-center rounded-full border border-green-500/30 bg-green-500/10 px-4 py-1.5 text-sm font-medium text-green-600">
+                <Users className="mr-2 h-4 w-4" /> Verified Students Feedback
               </span>
             </motion.div>
             <motion.h2 variants={fadeInUp} className="text-3xl md:text-4xl lg:text-5xl font-bold">
-              Akash Talks <span className="text-red-500">YouTube</span> Channel
+              Stories of <span className="gradient-text-yellow">Success</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Get expert guidance, college reviews, and admission tips on our YouTube channel.
+              Don't just take our word for it. Hear from the students we've guided to their dream colleges.
             </motion.p>
           </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-            className="max-w-4xl mx-auto"
-          >
-            <div className="aspect-video rounded-2xl overflow-hidden border border-border/50 shadow-2xl bg-muted">
-              <iframe
-                className="w-full h-full"
-                src="https://www.youtube.com/embed/videoseries?list=UU&si=akash_talks"
-                title="Akash Talks YouTube Channel"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                allowFullScreen
-              ></iframe>
+          {/* Marquee Animation Container */}
+          <div className="relative w-full overflow-hidden mask-linear-fade">
+            <div className="flex gap-6 animate-scroll hover:[animation-play-state:paused] w-max">
+              {[...testimonials, ...testimonials].map((testimonial, index) => (
+                <div
+                  key={`${testimonial.id}-${index}`}
+                  className="w-[350px] md:w-[400px] flex-shrink-0 p-6 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-xl hover:border-[#f6c804]/30 transition-all duration-300"
+                >
+                  <div className="flex items-center gap-4 mb-4">
+                    <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-[#f6c804]/20">
+                      {/* Using a simple img here since next/image needs width/height or fill, creating structure issues in marquee */}
+                      <img
+                        src={testimonial.avatarUrl}
+                        alt={testimonial.name}
+                        className="h-full w-full object-cover"
+                      />
+                    </div>
+                    <div>
+                      <h4 className="font-bold text-lg leading-none">{testimonial.name}</h4>
+                      <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    </div>
+                  </div>
+                  <p className="text-muted-foreground italic">"{testimonial.message}"</p>
+                  <div className="mt-4 flex text-[#f6c804]">
+                    {[1, 2, 3, 4, 5].map((star) => (
+                      <span key={star}>★</span>
+                    ))}
+                  </div>
+                </div>
+              ))}
             </div>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-            variants={staggerContainer}
-            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 max-w-4xl mx-auto mt-8"
-          >
-            {["College Reviews", "Admission Tips", "Campus Tours", "Student Stories"].map((category, index) => (
-              <motion.div
-                key={category}
-                variants={fadeInUp}
-                className="p-4 border border-border/50 rounded-xl bg-card/30 text-center hover:border-red-500/50 transition-colors"
-              >
-                <Youtube className="h-6 w-6 mx-auto mb-2 text-red-500" />
-                <h3 className="font-semibold text-sm">{category}</h3>
-              </motion.div>
-            ))}
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.4 }}
-            className="mt-10 flex flex-col items-center space-y-4"
-          >
-            <a
-              href="https://www.youtube.com/@akash_talks"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              <Button size="lg" className="bg-red-600 hover:bg-red-700 text-white h-12 px-8 rounded-full">
-                <Youtube className="mr-2 h-5 w-5" />
-                Subscribe to Our Channel
-                <ExternalLink className="ml-2 h-4 w-4" />
-              </Button>
-            </a>
-            <p className="text-sm text-muted-foreground">
-              Join thousands of students getting free admission guidance!
-            </p>
-          </motion.div>
+          </div>
         </LayoutContainer>
       </section>
 
