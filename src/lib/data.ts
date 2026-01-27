@@ -14,6 +14,7 @@ export interface College {
     logoUrl?: string;
     coverUrl?: string;
     tags: string[];
+    established?: string; // Year established
     // Rich content fields
     about?: string;
     highlights?: string[];
@@ -22,6 +23,16 @@ export interface College {
         title: string;
         table: { label: string; value: string }[];
         description?: string;
+    }[];
+    coursesDetails?: {
+        name: string;
+        duration: string;
+        type: string;
+    }[];
+    feesDetails?: {
+        title: string;
+        items: { label: string; value: string }[];
+        note?: string;
     }[];
     placements?: {
         highlights?: string[];
@@ -38,10 +49,33 @@ export interface College {
         eligibility: string[];
         documents: string[];
     };
+    keyDates?: {
+        event: string;
+        date: string;
+    }[];
+    whyChoose?: string[];
+    alumni?: {
+        description?: string;
+        companies?: string[];
+        achievements?: string[];
+    };
+    compare?: {
+        parameter: string;
+        thisCollege: string;
+        competitor1?: string;
+        competitor2?: string;
+    }[];
+    contact?: {
+        phone?: string;
+        email?: string;
+        website?: string;
+        address?: string;
+        whatsapp?: string;
+    };
 }
 
 export const colleges: College[] = [
-    // BITS Pilani Dubai (New Entry)
+    // BITS Pilani Dubai (Reference Implementation with ALL sections)
     {
         id: "bits-dubai",
         slug: "bits-pilani-dubai-campus",
@@ -53,82 +87,316 @@ export const colleges: College[] = [
         fees: "AED 52,840 (₹12.30 L) per year",
         courses: ["B.E. CSE", "B.E. ECE", "B.E. Mechanical", "B.E. EEE", "B.E. Chemical", "B.E. Civil", "B.E. Biotechnology"],
         type: "Private",
-        tags: ["International Campus", "Direct Admission", "No BITSAT Required"],
-        description: "India's first internationally deemed university campus delivering world-class engineering education in Dubai.",
+        tags: ["International Campus", "Direct Admission", "No BITSAT Required", "KHDA 5-Star"],
+        established: "2000",
+        description: "India's first internationally deemed university campus delivering world-class engineering education in Dubai. Part of BITS Pilani (QS World Rank #668).",
         imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
-        logoUrl: "/footer-logo.jpg", // Using placeholder/brand logo for now
-        about: "BITS Pilani Dubai Campus (BPDC), established in 2000, is the first international campus of Birla Institute of Technology & Science, Pilani. Located in Dubai International Academic City, BPDC represents a pioneering milestone as India's first internationally deemed university campus, delivering world-class engineering education to the Middle East. It follows the same academic standards, curriculum, and examination system as Pilani, Goa, and Hyderabad campuses.",
+        logoUrl: "/footer-logo.jpg",
+
+        // ABOUT SECTION
+        about: `BITS Pilani Dubai Campus (BPDC), established in 2000, is the first international campus of Birla Institute of Technology & Science, Pilani — India's Institution of Eminence. Located in Dubai International Academic City, BPDC represents a pioneering milestone as India's first internationally deemed university campus, delivering world-class engineering education to the Middle East.
+
+As a constituent campus of BITS Pilani (QS World Rank #668), BPDC follows the same academic standards, curriculum, and examination system as Pilani, Goa, and Hyderabad campuses.
+
+With 25 years of excellence in the UAE, BITS Dubai has earned:
+• KHDA 5-Star Rating (2022)
+• Best Engineering University in UAE Award (2022)
+• QS Top 300 in Graduate Employability
+
+The campus hosts 1,700+ international students from 20+ countries. Its strategic Dubai location offers strong industry exposure with 400+ companies participating in the Practice School program — a mandatory 7.5-month internship, unique in UAE engineering institutions.
+
+BITS Dubai stands out with 80% campus placement, 95% UAE-based placements, a median package of AED 90,000 (₹21 LPA), and a highest package of AED 300,000 (₹70 LPA).
+
+Unlike India campuses that require BITSAT scores of 300+, the Dubai campus offers direct admission based on Class 12 marks (60% in PCM) while granting the same globally recognized BITS degree.`,
+
         highlights: [
             "KHDA 5-Star Rating (2022)",
             "Best Engineering University in UAE Award (2022)",
             "QS Top 300 in Graduate Employability",
             "Direct Admission based on Class 12 marks (No BITSAT required)",
-            "SAME BITS PILANI Degree globally recognized"
+            "SAME BITS PILANI Degree globally recognized",
+            "1,700+ international students from 20+ countries",
+            "400+ Practice School partner companies"
         ],
+
+        // INFRASTRUCTURE
         infrastructure: [
             "Modern Academic Building in Dubai International Academic City",
             "40+ Specialized Laboratories with international-standard equipment",
-            "Central Library with 25,000+ books and IEEE/Springer access",
-            "Research Labs for AI, ML, Robotics, IoT, VLSI",
-            "Single-Room Hostels (AC, attached bath) for 700+ students",
-            "Sports facilities: Badminton, TT, Gym, and more"
+            "Computer Labs: 500+ systems (MATLAB, AutoCAD, Python, Cloud Tools)",
+            "Central Library: 25,000+ books, 3,000+ e-journals, IEEE/Springer/ACM/Elsevier access",
+            "Smart Classrooms: 60+ AC classrooms with projectors & AV systems",
+            "Seminar Halls: 10+ halls with 50–300 capacity",
+            "Auditorium: 500+ seating capacity",
+            "Research Labs: AI, ML, Robotics, IoT, VLSI, Embedded Systems",
+            "Innovation Center (CIIED): Startups, incubation, entrepreneurship",
+            "Practice School Office: Coordinates 400+ company collaborations",
+            "Language Lab: Communication and professional skills enhancement",
+            "High-Speed Wi-Fi (200 Mbps)",
+            "Single-Room Hostels: AC, attached bathrooms (Boys 400+, Girls 300+)",
+            "Hostel Amenities: Mess, Wi-Fi, gym, laundry, common rooms, 24/7 security",
+            "Sports: Badminton, TT, chess, carrom, fitness center",
+            "15+ Student Clubs: Microsoft, Robotics, Music, Dance, Photography, Astronomy"
         ],
+
+        // CUTOFFS
         cutoffs: [
             {
-                title: "Direct Admission Eligibility (Class 12)",
+                title: "Direct Admission Eligibility (Primary Path – BITSAT NOT Mandatory)",
                 table: [
-                    { label: "Aggregate (PCM)", value: "Minimum 60%" },
+                    { label: "Class 12 Aggregate (PCM)", value: "Minimum 60%" },
                     { label: "Physics", value: "Minimum 50%" },
                     { label: "Mathematics", value: "Minimum 50%" },
-                    { label: "English Proficiency", value: "IELTS 6.0 / TOEFL 61+" }
+                    { label: "English Proficiency", value: "IELTS 6.0–6.5 or TOEFL iBT 61–80" },
+                    { label: "Age Limit", value: "No upper age limit" },
+                    { label: "Acceptance Rate", value: "60–70% (moderately competitive)" }
                 ],
-                description: "Unlike India campuses requiring BITSAT 300+, Dubai campus offers direct admission."
-            }
-        ],
-        placements: {
-            stats: [
-                { label: "Highest Package", value: "AED 300,000 (₹70 LPA)" },
-                { label: "Median Package", value: "AED 90,000 (₹21 LPA)" },
-                { label: "Placement Rate", value: "95% (UAE Based)" }
-            ],
-            highlights: [
-                "100% Core Engineering Placement",
-                "Tax-Free Salaries in UAE",
-                "Practice School program (7.5 months internship)"
-            ],
-            topRecruiters: [
-                { category: "Tech Giants", companies: ["Microsoft", "Google", "Amazon", "Dell"] },
-                { category: "UAE Based", companies: ["Landmark Group", "Noon.com", "Emaar", "Careem"] },
-                { category: "Engineering", companies: ["Siemens", "Schindler", "ABB", "Schneider Electric"] }
-            ]
-        },
-        scholarships: [
+                description: "Unlike India campuses requiring BITSAT 300+, Dubai campus offers direct admission based on Class 12 marks."
+            },
             {
-                title: "Merit Scholarship (Board Marks)",
-                items: [
-                    { label: "> 95% PCM", value: "40% Tuition Waiver" },
-                    { label: "90% - 94.99%", value: "20% Tuition Waiver" },
-                    { label: "Top 3 in Board", value: "100% Tuition Waiver" }
+                title: "BITSAT Score-Based Scholarship (Optional – Only if Exam Taken)",
+                table: [
+                    { label: "360–390 (98+ percentile)", value: "75% waiver (AED 19,815 = ₹4.61L)" },
+                    { label: "330–359 (95–98 percentile)", value: "50% waiver (AED 13,210 = ₹3.07L)" },
+                    { label: "300–329 (90–95 percentile)", value: "25% waiver (AED 6,605 = ₹1.54L)" }
                 ]
             },
             {
-                title: "BITSAT Score Scholarship",
-                items: [
-                    { label: "Score > 300", value: "25% - 75% Tuition Waiver" }
+                title: "Class 12 Board Marks-Based Scholarship (Automatic)",
+                table: [
+                    { label: "95%+ in PCM", value: "40% tuition waiver (AED 10,568 = ₹2.46L)" },
+                    { label: "90–94.9%", value: "20% tuition waiver (AED 5,284 = ₹1.23L)" },
+                    { label: "Top 3 in Board", value: "100% tuition waiver (AED 26,420 = ₹6.15L)" }
                 ]
             }
         ],
-        admissions: {
-            process: ["Consultation & Eligibility Check", "Branch Selection & Seat Booking", "Admission Letter", "Visa Process"],
-            eligibility: ["Min 60% in Class 12 PCM", "Valid Passport"],
-            documents: ["Class 10/12 Marksheets", "Passport Copy", "Passport Photos"]
+
+        // COURSES DETAILS
+        coursesDetails: [
+            { name: "Computer Science and Engineering (CSE)", duration: "4 Years", type: "B.E." },
+            { name: "Electronics and Communication Engineering (ECE)", duration: "4 Years", type: "B.E." },
+            { name: "Mechanical Engineering", duration: "4 Years", type: "B.E." },
+            { name: "Electrical and Electronics Engineering (EEE)", duration: "4 Years", type: "B.E." },
+            { name: "Chemical Engineering", duration: "4 Years", type: "B.E." },
+            { name: "Civil Engineering", duration: "4 Years", type: "B.E." },
+            { name: "Biotechnology", duration: "4 Years", type: "B.E." }
+        ],
+
+        // FEES DETAILS
+        feesDetails: [
+            {
+                title: "Regular B.E Fee Structure",
+                items: [
+                    { label: "Tuition Fee (Per Year)", value: "AED 52,840 (₹12.30 L)" },
+                    { label: "Total Tuition (4 Years)", value: "AED 211,360 (₹49.21 L)" },
+                    { label: "Activity Fee (One-time)", value: "AED 1,250 (₹29,100)" }
+                ],
+                note: "Total Tuition (4 Years): ₹49.49 Lakhs"
+            },
+            {
+                title: "Additional Mandatory Costs",
+                items: [
+                    { label: "Application Fee", value: "AED 200 (₹4,650)" },
+                    { label: "Admission Fee (One-time)", value: "AED 2,000 (₹46,520)" },
+                    { label: "Visa – Year 1 (incl. insurance)", value: "AED 5,000 (₹1.16 L)" },
+                    { label: "Visa Renewal (Years 2–4)", value: "AED 3,000/year (₹69,780/year)" },
+                    { label: "Total Visa (4 Years)", value: "AED 14,000 (₹3.26 L)" }
+                ],
+                note: "Grand Total (4 Years): ₹53.22 Lakhs | Conversion: 1 AED ≈ ₹23.26"
+            },
+            {
+                title: "Hostel Fees (Optional)",
+                items: [
+                    { label: "Single Room (Per Year)", value: "AED 30,000 (₹6,97,800)" },
+                    { label: "Total for 4 Years", value: "AED 120,000 (₹27.91 Lakhs)" }
+                ],
+                note: "Includes: Room, 4 meals daily, Wi-Fi, Laundry, Gym, 24/7 security"
+            },
+            {
+                title: "Management Quota Fee Structure",
+                items: [
+                    { label: "CSE", value: "₹55–58 Lakhs total" },
+                    { label: "Other Branches", value: "₹53–56 Lakhs total" }
+                ],
+                note: "Includes ₹2–5 Lakhs facilitation fee + regular fees"
+            }
+        ],
+
+        // PLACEMENTS
+        placements: {
+            stats: [
+                { label: "Placement Rate", value: "80% (95% UAE-based)" },
+                { label: "Highest Package", value: "AED 300,000 (₹70 LPA)" },
+                { label: "Median Package", value: "AED 90,000 (₹21 LPA)" },
+                { label: "Average Package", value: "AED 90,000–120,000 (₹21–28 LPA)" },
+                { label: "Core Engineering Placement", value: "100% (Mech, Elec, Chem – 2024)" },
+                { label: "Practice School PPOs", value: "50%+ students" }
+            ],
+            highlights: [
+                "Tax-Free Salaries in UAE",
+                "100% Core Engineering Placement (2024)",
+                "Practice School program (7.5 months paid internship)",
+                "400+ partner companies for internships",
+                "Stipend: AED 3,000–8,000 per month"
+            ],
+            topRecruiters: [
+                { category: "UAE-Based Companies", companies: ["Landmark Group (AED 60K–100K)", "Noon.com (AED 80K–150K)", "Emaar Properties (AED 70K–120K)", "Emirates NBD (AED 70K–120K)", "Siemens Middle East (AED 80K–140K)", "Bosch UAE", "Careem (Uber)"] },
+                { category: "Tech Giants", companies: ["Microsoft UAE (AED 100K–300K)", "Amazon UAE (AED 90K–250K)", "Google (via PS) (AED 150K–300K)", "Dell"] },
+                { category: "Consulting", companies: ["PwC Middle East (AED 80K–140K)", "Deloitte UAE", "EY UAE", "KPMG Dubai"] },
+                { category: "Engineering", companies: ["Schindler UAE", "Schneider Electric", "ABB UAE"] },
+                { category: "Others", companies: ["Dabur Middle East", "Zomato UAE", "Sobha Construction", "Dubai Properties", "Dubizzle", "Asian Paints"] }
+            ]
         },
+
+        // SCHOLARSHIPS
+        scholarships: [
+            {
+                title: "Automatic Scholarships (Based on Class 12 Marks)",
+                items: [
+                    { label: "95%+ in PCM", value: "40% first semester waiver (₹2.46L savings)" },
+                    { label: "90–94.9%", value: "20% first semester waiver (₹1.23L savings)" },
+                    { label: "Top 3 in Board", value: "100% first semester waiver (₹6.15L savings)" }
+                ]
+            },
+            {
+                title: "BITSAT-Based Scholarships (Optional)",
+                items: [
+                    { label: "360–390 (98+ percentile)", value: "75% waiver (₹4.61L)" },
+                    { label: "330–359 (95–98 percentile)", value: "50% waiver (₹3.07L)" },
+                    { label: "300–329 (90–95 percentile)", value: "25% waiver (₹1.54L)" }
+                ]
+            },
+            {
+                title: "Continuation Scholarships (Based on CGPA)",
+                items: [
+                    { label: "CGPA 9.5–10", value: "50% tuition waiver for next semester" },
+                    { label: "CGPA 9.0–9.49", value: "25% next semester" },
+                    { label: "CGPA 8.5–8.99", value: "10% next semester" }
+                ]
+            },
+            {
+                title: "Special Scholarships",
+                items: [
+                    { label: "Sports Excellence", value: "25–100% depending on performance level" },
+                    { label: "Sibling Discount", value: "10% if sibling studies at any BITS campus" },
+                    { label: "Children of Alumni", value: "15% tuition discount" }
+                ]
+            }
+        ],
+
+        // ADMISSIONS (How to Apply)
+        admissions: {
+            process: [
+                "Consultation & Eligibility Check – Contact GetIntoCampus, share Class 12 marks, get immediate eligibility verification along with branch guidance and scholarship estimation.",
+                "Branch Selection & Seat Booking – Choose your preferred branch (CSE, ECE, Mechanical, Civil, etc.). Pay the seat booking amount (₹2–3 Lakhs) to reserve your seat.",
+                "Admission Letter & Scholarship Confirmation – Receive the official admission letter, fee structure, scholarship details, and BITS Pilani Dubai student ID within 24–48 hours.",
+                "Visa Process & Final Documentation – GetIntoCampus assists with: Student visa processing, Emirates ID, Medical tests, Submission of final documents, On-arrival support in Dubai."
+            ],
+            eligibility: [
+                "Minimum 60% aggregate in PCM (Class 12)",
+                "Minimum 50% in Physics & Math/Technical subjects individually",
+                "Class 12 must be from a recognized board",
+                "IELTS 6.0+ or TOEFL 61+ or English medium certificate",
+                "No upper age limit"
+            ],
+            documents: [
+                "Class 10 mark sheet & certificate",
+                "Class 12 mark sheet & certificate",
+                "English proficiency proof (IELTS/TOEFL/English medium certificate)",
+                "Passport with minimum 2+ years validity",
+                "Aadhaar card (optional but recommended for records)",
+                "Passport-size photographs",
+                "Parents' passport copies (for NRI category if applicable)",
+                "Medical fitness certificate (required for UAE visa)"
+            ]
+        },
+
+        // KEY DATES
+        keyDates: [
+            { event: "Direct Admission Opens", date: "January 2026" },
+            { event: "Management Quota Opens", date: "March 2026" },
+            { event: "BITSAT 2026 (Optional)", date: "May–June 2026" },
+            { event: "Application Deadline", date: "June 25, 2026" },
+            { event: "Visa Processing", date: "June–August 2026" },
+            { event: "Orientation", date: "Last week August 2026" },
+            { event: "Classes Commence", date: "First week September 2026" }
+        ],
+
+        // WHY CHOOSE US
+        whyChoose: [
+            "Same BITS Degree – Identical to Pilani/Goa/Hyderabad with global recognition",
+            "No BITSAT Required – Direct admission (unlike India campuses requiring 300+ score)",
+            "KHDA 5-Star Rating – Highest educational rating in UAE (2022)",
+            "Tax-Free Salaries – AED 90K (₹21L) equals ₹28L India equivalent",
+            "95% UAE Placements – Strong job market with excellent employer connections",
+            "Practice School Program – 7.5-month paid internship with 400+ top companies",
+            "AED 300K Highest Package (₹70L) – Record-breaking placement",
+            "International Exposure – Students from 20+ nationalities",
+            "Dubai Advantage – Access to Middle East tech, finance, construction & engineering hubs",
+            "100% Core Placement – Mechanical, Electrical & Chemical branches (2024)",
+            "QS Global Rank #668 – Strong international academic standing",
+            "No Reservation System – 100% merit-based admission",
+            "Powerful Alumni Network – Graduates placed in Google, Microsoft, Amazon globally",
+            "Lower Competition – Easier entry compared to Pilani/Goa/Hyderabad",
+            "UAE Career Pathway – Gateway to Middle East engineering & tech jobs"
+        ],
+
+        // ALUMNI
+        alumni: {
+            description: "BITS Dubai has a strong and growing alumni network of 5,000+ graduates (2000–2024) working across 50+ countries, especially in the Middle East, USA, Europe, and India.",
+            companies: [
+                "Microsoft", "Google", "Amazon", "Apple", "Meta", "Dell",
+                "Landmark Group", "Noon.com", "Careem", "Emaar", "Emirates NBD",
+                "McKinsey", "BCG", "Deloitte", "PwC", "EY",
+                "Goldman Sachs", "JP Morgan",
+                "Siemens", "Bosch", "Schneider Electric"
+            ],
+            achievements: [
+                "500+ alumni across USA, UAE, India in Tech Giants",
+                "400+ alumni working in UAE-based companies",
+                "200+ alumni in Consulting (Middle East, USA, India)",
+                "100+ startup founders in UAE, India, USA",
+                "200+ alumni pursuing MS/PhD at MIT, Stanford, CMU, UC Berkeley",
+                "Packages above AED 200,000 (₹46 LPA) in FAANG & top global companies",
+                "Successful UAE startup exits valued at $10M+",
+                "Alumni in CXO roles across major Middle East conglomerates",
+                "Patent holders in AI, IoT, semiconductor technologies"
+            ]
+        },
+
+        // COMPARE
+        compare: [
+            { parameter: "Established", thisCollege: "2000", competitor1: "1964 (BITS Pilani)", competitor2: "2000 (Manipal Dubai)" },
+            { parameter: "Location", thisCollege: "Dubai, UAE", competitor1: "Pilani, India", competitor2: "Dubai, UAE" },
+            { parameter: "Admission", thisCollege: "Direct / BITSAT", competitor1: "BITSAT 300+", competitor2: "Direct" },
+            { parameter: "Total Fees (4 Years)", thisCollege: "₹53.22 L", competitor1: "₹23 L", competitor2: "₹45 L" },
+            { parameter: "Median Package", thisCollege: "AED 90K (₹21L)", competitor1: "₹12 LPA", competitor2: "AED 55K (₹13L)" },
+            { parameter: "Highest Package", thisCollege: "AED 300K (₹70L)", competitor1: "₹60.75 LPA", competitor2: "AED 150K (₹35L)" },
+            { parameter: "Placement %", thisCollege: "80% (95% UAE)", competitor1: "85%", competitor2: "75%" },
+            { parameter: "Practice School (7.5 months)", thisCollege: "Yes", competitor1: "Yes", competitor2: "No" },
+            { parameter: "Tax-Free Salary", thisCollege: "Yes", competitor1: "No", competitor2: "Yes" }
+        ],
+
+        // CONTACT
+        contact: {
+            phone: "+971-4-4200700",
+            email: "admissions@bfreedubai.ac.ae",
+            website: "https://www.bits-pilani.ac.in/dubai",
+            address: "Dubai International Academic City, Dubai, UAE",
+            whatsapp: "+917815052090"
+        },
+
+        // FAQS
         faqs: [
-            { question: "Is the degree valid in India?", answer: "Yes, it is the exact same BITS Pilani degree awarded at Pilani/Goa/Hyderabad campuses." },
-            { question: "Is BITSAT mandatory?", answer: "No, admission is primarily based on Class 12 merit. BITSAT is optional for scholarships." },
-            { question: "What is the Practice School?", answer: "It is a unique 7.5-month internship program included in the curriculum, offering industry exposure before graduation." }
+            { question: "Is the degree valid in India?", answer: "Yes, it is the exact same BITS Pilani degree awarded at Pilani/Goa/Hyderabad campuses. It is globally recognized and holds the same value." },
+            { question: "Is BITSAT mandatory for admission?", answer: "No, admission is primarily based on Class 12 merit. BITSAT is only optional for scholarships." },
+            { question: "What is the Practice School program?", answer: "It is a unique 7.5-month mandatory internship program included in the curriculum, offering industry exposure with 400+ companies before graduation." },
+            { question: "What are the living costs in Dubai?", answer: "Hostel costs approximately AED 30,000 (₹7 Lakhs) per year including meals. Living off-campus can vary." },
+            { question: "Can I work part-time while studying?", answer: "UAE student visa allows part-time work. Many students intern at Practice School partner companies." },
+            { question: "What is the language of instruction?", answer: "All courses are taught in English. IELTS 6.0 or equivalent is required for admission." }
         ]
     },
+
     // West Bengal
     {
         id: "1",
