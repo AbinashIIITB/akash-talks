@@ -88,7 +88,7 @@ export default function CollegesPage() {
                                 >
                                     <div className="relative h-48 w-full overflow-hidden">
                                         <Image
-                                            src={college.imageUrl}
+                                            src={college.imageUrl || "/college.jpg"}
                                             alt={college.name}
                                             fill
                                             className="object-cover transition-transform duration-500 group-hover:scale-110"
