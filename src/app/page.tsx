@@ -44,18 +44,22 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Hero Section - Full Viewport Height with Background Image */}
-      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900">
+        {/* Side Margin Overlays - blend with navbar */}
+        <div className="absolute inset-y-0 left-0 w-[5%] bg-white dark:bg-slate-900 z-20" />
+        <div className="absolute inset-y-0 right-0 w-[5%] bg-white dark:bg-slate-900 z-20" />
+
+        {/* Background Image Container - centered with margins */}
+        <div className="absolute inset-y-0 left-[5%] right-[5%] z-0 rounded-[2rem] overflow-hidden">
           <Image
             src="/college.jpg"
             alt="College Campus"
             fill
-            className="object-cover"
+            className="object-cover brightness-[0.35]"
             priority
           />
           {/* Dark Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
         </div>
 
         {/* Main Content Container - Floating Rounded Card */}
@@ -63,16 +67,16 @@ export default function Home() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          className="relative z-10 w-[95%] max-w-7xl mx-auto"
+          className="relative z-10 w-[90%] max-w-7xl mx-auto text-white"
         >
-          <div className="relative bg-card/95 dark:bg-card/90 backdrop-blur-xl rounded-[2.5rem] border border-border/50 shadow-2xl overflow-hidden">
+          <div className="relative bg-transparent rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
             {/* Decorative Large Typography Background */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
               <motion.span
                 initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 0.03, scale: 1 }}
+                animate={{ opacity: 0.05, scale: 1 }}
                 transition={{ duration: 1, delay: 0.3 }}
-                className="text-[20vw] font-black tracking-tighter text-foreground select-none whitespace-nowrap"
+                className="text-[20vw] font-black tracking-tighter text-white select-none whitespace-nowrap"
               >
                 AKASH
               </motion.span>
@@ -97,7 +101,7 @@ export default function Home() {
                       className="object-contain"
                     />
                   </div>
-                  <span className="font-bold text-lg hidden sm:block">Akash Talks</span>
+                  <span className="font-bold text-lg hidden sm:block text-white">Akash Talks</span>
                 </Link>
 
                 {/* Center Links */}
@@ -105,10 +109,10 @@ export default function Home() {
                   <Link href="/" className="px-4 py-2 rounded-full bg-[#f6c804] text-black font-semibold">
                     Home
                   </Link>
-                  <Link href="/colleges" className="transition-colors hover:text-[#f6c804] text-foreground/70">
+                  <Link href="/colleges" className="transition-colors hover:text-[#f6c804] text-white/80 hover:text-white">
                     Colleges
                   </Link>
-                  <Link href="/exams" className="transition-colors hover:text-[#f6c804] text-foreground/70">
+                  <Link href="/exams" className="transition-colors hover:text-[#f6c804] text-white/80 hover:text-white">
                     Exams
                   </Link>
                 </div>
@@ -128,7 +132,7 @@ export default function Home() {
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                className="text-center space-y-6 md:space-y-8 py-8 md:py-16"
+                className="text-center space-y-4 md:space-y-6 py-6 md:py-12"
               >
                 {/* Tagline Badge */}
                 <motion.div variants={fadeInUp}>
@@ -148,18 +152,10 @@ export default function Home() {
                   with <span className="gradient-text-yellow">{companyInfo.name}</span>
                 </motion.h1>
 
-                {/* Sub-headline */}
-                <motion.p
-                  variants={fadeInUp}
-                  className="text-xl md:text-2xl text-[#f6c804] font-medium"
-                >
-                  Direct Admission in B.Tech, MBA & More
-                </motion.p>
-
                 {/* Body Text */}
                 <motion.p
                   variants={fadeInUp}
-                  className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
+                  className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto"
                 >
                   Your trusted partner for direct admissions in top colleges across {companyInfo.states.length} states.
                   Expert guidance, guaranteed results.
