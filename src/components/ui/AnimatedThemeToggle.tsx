@@ -4,9 +4,11 @@ import * as React from "react"
 import { motion } from "framer-motion"
 import { Moon, Sun } from "lucide-react"
 import { useTheme } from "next-themes"
+import { useThemeTransition } from "@/components/providers/theme-transition-provider"
 
 export function AnimatedThemeToggle() {
-    const { setTheme, resolvedTheme } = useTheme()
+    const { toggleTheme } = useThemeTransition()
+    const { resolvedTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
 
     React.useEffect(() => {
@@ -23,10 +25,10 @@ export function AnimatedThemeToggle() {
 
     return (
         <button
-            onClick={() => setTheme(isDark ? "light" : "dark")}
+            onClick={toggleTheme}
             className={`relative w-16 h-8 rounded-full p-1 transition-colors duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f6c804] focus-visible:ring-offset-2 ${isDark
-                    ? "bg-slate-900 border border-slate-700"
-                    : "bg-gray-100 border border-gray-300"
+                ? "bg-slate-900 border border-slate-700"
+                : "bg-gray-100 border border-gray-300"
                 }`}
             aria-label="Toggle theme"
         >
