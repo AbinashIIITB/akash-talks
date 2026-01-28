@@ -4,12 +4,13 @@ import { colleges } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
+import { ImageGallery } from "@/components/ui/image-gallery";
 import {
     MapPin, Star, Building2, Download, Share2,
     CheckCircle2, Globe, GraduationCap, Briefcase,
     Calendar, Users, DollarSign, BookOpen, Award,
     Phone, Mail, ExternalLink, TrendingUp, Scale,
-    ClipboardList, HelpCircle, Lightbulb, MessageCircle
+    ClipboardList, HelpCircle, Lightbulb, MessageCircle, Images
 } from "lucide-react";
 
 // In Next.js 15, params is a Promise
@@ -29,6 +30,7 @@ export default async function CollegeDetailPage(props: PageProps) {
 
     // Build dynamic sections based on available data
     const allSections = [
+        { id: "gallery", label: "Gallery", icon: Images, available: !!college.galleryImages && college.galleryImages.length > 0 },
         { id: "about", label: "About", icon: Building2, available: true },
         { id: "cutoffs", label: "Cutoffs", icon: TrendingUp, available: !!college.cutoffs },
         { id: "courses", label: "Courses", icon: BookOpen, available: true },
@@ -114,6 +116,18 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Main Content */}
                     <div className="lg:col-span-6 space-y-12">
+
+                        {/* Image Gallery */}
+                        {college.galleryImages && college.galleryImages.length > 0 && (
+                            <section id="gallery" className="scroll-mt-24 space-y-4">
+                                <h2 className="text-3xl font-bold flex items-center gap-2">
+                                    <Images className="h-6 w-6 text-[#f6c804]" /> Campus Gallery
+                                </h2>
+                                <ImageGallery images={college.galleryImages} collegeName={college.name} />
+                            </section>
+                        )}
+
+                        {college.galleryImages && college.galleryImages.length > 0 && <div className="h-px w-full bg-border" />}
 
                         {/* About */}
                         <section id="about" className="scroll-mt-24 space-y-4">
@@ -572,7 +586,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                         <div className="sticky top-24 space-y-6">
                             <div className="border border-[#f6c804]/20 rounded-2xl p-6 bg-card shadow-lg relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-1 bg-[#f6c804]" />
-                                <h3 className="text-xl font-bold mb-2">Admissions Open 2026</h3>
+                                <h3 className="text-xl font-bold mb-2">Secure Your Admission Now</h3>
                                 <p className="text-sm text-muted-foreground mb-6">Get detailed counseling and fee breakdown for {college.name}.</p>
 
                                 <form className="space-y-4">

@@ -1,10 +1,11 @@
 "use client"
 
 import Link from "next/link";
+import Image from "next/image";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
-import { ArrowRight, Building2, GraduationCap, Users, Phone, Youtube, ExternalLink, Shield, Award, MapPin } from "lucide-react";
+import { ArrowRight, Building2, GraduationCap, Users, Phone, ChevronDown, Shield, Award, MapPin } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
 import testimonials from "@/data/testimonials.json";
 
@@ -25,119 +26,222 @@ const staggerContainer = {
   }
 };
 
+const scaleIn = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
+};
+
 export default function Home() {
   const featuredColleges = colleges.slice(0, 6);
 
+  const scrollToSection = (sectionId: string) => {
+    const element = document.getElementById(sectionId);
+    if (element) {
+      element.scrollIntoView({ behavior: 'smooth' });
+    }
+  };
+
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
-      {/* Hero Section - SaaS Anti-Gravity Design */}
-      <section className="relative w-full min-h-[90vh] flex items-center justify-center bg-gradient-to-br from-background via-background to-background overflow-hidden">
-        {/* Background Glow Effect */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-[#f6c804]/10 rounded-full blur-[120px] pointer-events-none" />
-        <div className="absolute top-1/4 right-1/4 w-[300px] h-[300px] bg-[#f6c804]/5 rounded-full blur-[80px] pointer-events-none" />
+      {/* Hero Section - Full Viewport Height with Background Image */}
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden">
+        {/* Background Image */}
+        <div className="absolute inset-0 z-0">
+          <Image
+            src="/college.jpg"
+            alt="College Campus"
+            fill
+            className="object-cover"
+            priority
+          />
+          {/* Dark Overlay for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/80" />
+        </div>
 
-        <LayoutContainer className="relative z-10 py-20 text-center">
-          <motion.div
-            variants={staggerContainer}
-            initial="hidden"
-            animate="visible"
-            className="space-y-8"
-          >
-            {/* Tagline Badge */}
-            <motion.div variants={fadeInUp}>
-              <span className="inline-flex items-center rounded-full border border-[#f6c804]/30 bg-[#f6c804]/10 px-6 py-2 text-sm font-medium text-[#f6c804]">
-                {companyInfo.tagline}
-              </span>
-            </motion.div>
+        {/* Main Content Container - Floating Rounded Card */}
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: "easeOut" }}
+          className="relative z-10 w-[95%] max-w-7xl mx-auto"
+        >
+          <div className="relative bg-card/95 dark:bg-card/90 backdrop-blur-xl rounded-[2.5rem] border border-border/50 shadow-2xl overflow-hidden">
+            {/* Decorative Large Typography Background */}
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
+              <motion.span
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 0.03, scale: 1 }}
+                transition={{ duration: 1, delay: 0.3 }}
+                className="text-[20vw] font-black tracking-tighter text-foreground select-none whitespace-nowrap"
+              >
+                AKASH
+              </motion.span>
+            </div>
 
-            {/* Headline */}
-            <motion.h1
-              variants={fadeInUp}
-              className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
-            >
-              Unlock Your{" "}
-              <span className="gradient-text-yellow">Future</span>
-              <br />
-              with <span className="gradient-text-yellow">{companyInfo.name}</span>
-            </motion.h1>
+            {/* Inner Content */}
+            <div className="relative z-10 px-6 md:px-12 lg:px-16 py-8 md:py-12">
+              {/* Integrated Navigation */}
+              <motion.nav
+                variants={fadeInUp}
+                initial="hidden"
+                animate="visible"
+                className="flex items-center justify-between mb-12 md:mb-16"
+              >
+                {/* Logo */}
+                <Link href="/" className="flex items-center space-x-3">
+                  <div className="relative h-10 w-10 overflow-hidden">
+                    <Image
+                      src="/logo.png"
+                      alt="Akash Talks"
+                      fill
+                      className="object-contain"
+                    />
+                  </div>
+                  <span className="font-bold text-lg hidden sm:block">Akash Talks</span>
+                </Link>
 
-            {/* Sub-headline */}
-            <motion.p
-              variants={fadeInUp}
-              className="text-xl md:text-2xl text-[#f6c804] font-medium"
-            >
-              Direct Admission in B.Tech, MBA & More
-            </motion.p>
+                {/* Center Links */}
+                <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
+                  <Link href="/" className="px-4 py-2 rounded-full bg-[#f6c804] text-black font-semibold">
+                    Home
+                  </Link>
+                  <Link href="/colleges" className="transition-colors hover:text-[#f6c804] text-foreground/70">
+                    Colleges
+                  </Link>
+                  <Link href="/exams" className="transition-colors hover:text-[#f6c804] text-foreground/70">
+                    Exams
+                  </Link>
+                </div>
 
-            {/* Body Text */}
-            <motion.p
-              variants={fadeInUp}
-              className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
-            >
-              Your trusted partner for direct admissions in top colleges across {companyInfo.states.length} states.
-              Expert guidance, guaranteed results.
-            </motion.p>
+                {/* Right Actions */}
+                <div className="flex items-center space-x-3">
+                  <Link href="/contact">
+                    <Button className="bg-[#f6c804] hover:bg-[#e5b703] text-black font-semibold px-6 rounded-full">
+                      Contact
+                    </Button>
+                  </Link>
+                </div>
+              </motion.nav>
 
-            {/* Buttons */}
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
-            >
-              <Link href="/colleges">
-                <Button
-                  size="lg"
-                  className="h-14 px-10 text-lg font-semibold bg-[#f6c804] hover:bg-[#e5b703] text-black rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(246,200,4,0.5)] transition-all duration-300"
+              {/* Hero Content */}
+              <motion.div
+                variants={staggerContainer}
+                initial="hidden"
+                animate="visible"
+                className="text-center space-y-6 md:space-y-8 py-8 md:py-16"
+              >
+                {/* Tagline Badge */}
+                <motion.div variants={fadeInUp}>
+                  <span className="inline-flex items-center rounded-full border border-[#f6c804]/30 bg-[#f6c804]/10 px-6 py-2 text-sm font-medium text-[#f6c804]">
+                    {companyInfo.tagline}
+                  </span>
+                </motion.div>
+
+                {/* Headline */}
+                <motion.h1
+                  variants={fadeInUp}
+                  className="text-4xl font-bold tracking-tight sm:text-5xl md:text-6xl lg:text-7xl"
                 >
-                  Explore Colleges <ArrowRight className="ml-2 h-5 w-5" />
-                </Button>
-              </Link>
-              <Link href="/contact">
-                <Button
-                  variant="outline"
-                  size="lg"
-                  className="h-14 px-10 text-lg rounded-full border-foreground/20 hover:bg-foreground/5 transition-all duration-300"
+                  Unlock Your{" "}
+                  <span className="gradient-text-yellow">Future</span>
+                  <br />
+                  with <span className="gradient-text-yellow">{companyInfo.name}</span>
+                </motion.h1>
+
+                {/* Sub-headline */}
+                <motion.p
+                  variants={fadeInUp}
+                  className="text-xl md:text-2xl text-[#f6c804] font-medium"
                 >
-                  <Phone className="mr-2 h-5 w-5" />
-                  Book Free Consultation
-                </Button>
-              </Link>
-            </motion.div>
+                  Direct Admission in B.Tech, MBA & More
+                </motion.p>
 
-            {/* Phone Numbers */}
-            <motion.div
-              variants={fadeInUp}
-              className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground pt-4"
-            >
-              {companyInfo.phones.map((phone) => (
-                <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
-                  <Phone className="h-4 w-4" /> {phone}
-                </a>
-              ))}
-            </motion.div>
-          </motion.div>
+                {/* Body Text */}
+                <motion.p
+                  variants={fadeInUp}
+                  className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto"
+                >
+                  Your trusted partner for direct admissions in top colleges across {companyInfo.states.length} states.
+                  Expert guidance, guaranteed results.
+                </motion.p>
 
-          {/* Floating Trust Pills */}
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.6 }}
-            className="flex flex-wrap justify-center gap-4 mt-16"
-          >
-            <div className="animate-float flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
-              <Shield className="h-4 w-4 text-[#f6c804]" /> Trusted
+                {/* Buttons */}
+                <motion.div
+                  variants={fadeInUp}
+                  className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+                >
+                  <Link href="/colleges">
+                    <Button
+                      size="lg"
+                      className="h-14 px-10 text-lg font-semibold bg-[#f6c804] hover:bg-[#e5b703] text-black rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(246,200,4,0.5)] transition-all duration-300"
+                    >
+                      Explore Colleges <ArrowRight className="ml-2 h-5 w-5" />
+                    </Button>
+                  </Link>
+                  <Link href="/contact">
+                    <Button
+                      variant="outline"
+                      size="lg"
+                      className="h-14 px-10 text-lg rounded-full border-foreground/20 hover:bg-foreground/5 transition-all duration-300"
+                    >
+                      <Phone className="mr-2 h-5 w-5" />
+                      Book Free Consultation
+                    </Button>
+                  </Link>
+                </motion.div>
+
+                {/* Phone Numbers */}
+                <motion.div
+                  variants={fadeInUp}
+                  className="flex flex-wrap justify-center gap-6 text-sm text-muted-foreground pt-2"
+                >
+                  {companyInfo.phones.map((phone) => (
+                    <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
+                      <Phone className="h-4 w-4" /> {phone}
+                    </a>
+                  ))}
+                </motion.div>
+              </motion.div>
+
+              {/* Floating Trust Pills - Inside Container Bottom */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.8, duration: 0.6 }}
+                className="flex flex-wrap justify-center gap-4 pb-4"
+              >
+                <div className="animate-float flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                  <Shield className="h-4 w-4 text-[#f6c804]" /> Trusted
+                </div>
+                <div className="animate-float-delayed flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                  <Award className="h-4 w-4 text-[#f6c804]" /> 5+ Years Experience
+                </div>
+                <div className="animate-float-delayed-2 flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                  <MapPin className="h-4 w-4 text-[#f6c804]" /> Nationwide
+                </div>
+              </motion.div>
             </div>
-            <div className="animate-float-delayed flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
-              <Award className="h-4 w-4 text-[#f6c804]" /> 5+ Years Experience
-            </div>
-            <div className="animate-float-delayed-2 flex items-center gap-2 bg-card/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
-              <MapPin className="h-4 w-4 text-[#f6c804]" /> Nationwide
-            </div>
-          </motion.div>
-        </LayoutContainer>
+          </div>
+        </motion.div>
+
+        {/* Scroll Down Arrow - Outside Container */}
+        <motion.button
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, y: [0, 10, 0] }}
+          transition={{
+            opacity: { delay: 1.2, duration: 0.5 },
+            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }}
+          onClick={() => scrollToSection('stats-section')}
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
+          aria-label="Scroll down"
+        >
+          <ChevronDown className="h-6 w-6" />
+        </motion.button>
       </section>
 
       {/* Stats Section */}
-      <section className="w-full py-16 bg-card/30 border-y border-border/50">
+      <section id="stats-section" className="w-full py-16 bg-card/30 border-y border-border/50">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -162,7 +266,7 @@ export default function Home() {
       </section>
 
       {/* Features Section */}
-      <section className="w-full py-20 md:py-32">
+      <section id="features-section" className="w-full py-20 md:py-32">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -194,7 +298,7 @@ export default function Home() {
               <motion.div
                 key={index}
                 variants={fadeInUp}
-                className="flex flex-col items-center text-center p-8 rounded-2xl border border-border/50 bg-card/30 hover:border-[#f6c804]/50 hover:bg-card/50 transition-all duration-300 group"
+                className="flex flex-col items-center text-center p-8 rounded-3xl border border-border/50 bg-card/30 hover:border-[#f6c804]/50 hover:bg-card/50 hover:scale-105 transition-all duration-300 group"
               >
                 <div className="p-4 bg-[#f6c804]/10 rounded-2xl mb-6 group-hover:bg-[#f6c804]/20 transition-colors">
                   <feature.icon className="h-10 w-10 text-[#f6c804]" />
@@ -208,7 +312,7 @@ export default function Home() {
       </section>
 
       {/* Featured Colleges */}
-      <section className="w-full py-20 md:py-32 bg-card/20">
+      <section id="colleges-section" className="w-full py-20 md:py-32 bg-card/20">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -235,8 +339,8 @@ export default function Home() {
             {featuredColleges.map((college, index) => (
               <motion.div key={college.id} variants={fadeInUp}>
                 <Link href={`/colleges/${college.slug}`}>
-                  <div className="group relative overflow-hidden rounded-2xl border border-border/50 bg-card/50 p-3 transition-all duration-300 hover:border-[#f6c804]/50 hover:shadow-lg">
-                    <div className="aspect-video w-full overflow-hidden rounded-xl bg-muted relative">
+                  <div className="group relative overflow-hidden rounded-3xl border border-border/50 bg-card/50 p-3 transition-all duration-300 hover:border-[#f6c804]/50 hover:shadow-lg hover:scale-[1.02]">
+                    <div className="aspect-video w-full overflow-hidden rounded-2xl bg-muted relative">
                       <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-gradient-to-br from-secondary to-secondary/50">
                         <Building2 className="h-12 w-12 opacity-50" />
                       </div>
@@ -270,7 +374,7 @@ export default function Home() {
             className="mt-12 flex justify-center"
           >
             <Link href="/colleges">
-              <Button variant="outline" size="lg" className="rounded-full px-8">
+              <Button variant="outline" size="lg" className="rounded-full px-8 hover:scale-105 transition-all duration-300">
                 View All {colleges.length} Colleges
               </Button>
             </Link>
@@ -279,7 +383,7 @@ export default function Home() {
       </section>
 
       {/* Testimonials Section - Verified Students Feedback */}
-      <section className="w-full py-20 md:py-32 overflow-hidden bg-muted/30">
+      <section id="testimonials-section" className="w-full py-20 md:py-32 overflow-hidden bg-muted/30">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -307,11 +411,10 @@ export default function Home() {
               {[...testimonials, ...testimonials].map((testimonial, index) => (
                 <div
                   key={`${testimonial.id}-${index}`}
-                  className="w-[350px] md:w-[400px] flex-shrink-0 p-6 rounded-2xl border border-border/50 bg-card shadow-sm hover:shadow-xl hover:border-[#f6c804]/30 transition-all duration-300"
+                  className="w-[350px] md:w-[400px] flex-shrink-0 p-6 rounded-3xl border border-border/50 bg-card shadow-sm hover:shadow-xl hover:border-[#f6c804]/30 hover:scale-[1.02] transition-all duration-300"
                 >
                   <div className="flex items-center gap-4 mb-4">
                     <div className="relative h-12 w-12 rounded-full overflow-hidden border-2 border-[#f6c804]/20">
-                      {/* Using a simple img here since next/image needs width/height or fill, creating structure issues in marquee */}
                       <img
                         src={testimonial.avatarUrl}
                         alt={testimonial.name}
@@ -337,7 +440,7 @@ export default function Home() {
       </section>
 
       {/* States Section */}
-      <section className="w-full py-20 md:py-32 bg-card/20">
+      <section id="states-section" className="w-full py-20 md:py-32 bg-card/20">
         <LayoutContainer>
           <motion.div
             initial="hidden"
@@ -365,7 +468,7 @@ export default function Home() {
               <motion.div
                 key={state}
                 variants={fadeInUp}
-                className="p-4 border border-border/50 rounded-xl bg-card/30 text-center hover:border-[#f6c804]/50 hover:bg-card/50 transition-all duration-300"
+                className="p-4 border border-border/50 rounded-2xl bg-card/30 text-center hover:border-[#f6c804]/50 hover:bg-card/50 hover:scale-105 transition-all duration-300"
               >
                 <h3 className="font-semibold">{state}</h3>
               </motion.div>
@@ -375,7 +478,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="w-full py-20 md:py-32 bg-[#f6c804] relative overflow-hidden">
+      <section id="cta-section" className="w-full py-20 md:py-32 bg-[#f6c804] relative overflow-hidden">
         {/* Background glow */}
         <div className="absolute inset-0 bg-gradient-to-r from-[#f6c804] via-[#ffd700] to-[#f6c804] opacity-50" />
 
