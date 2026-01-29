@@ -1,15 +1,15 @@
 import { notFound } from "next/navigation";
-import Link from "next/link";
+
 import { colleges } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Input } from "@/components/ui/input";
 import { ImageGallery } from "@/components/ui/image-gallery";
 import {
-    MapPin, Star, Building2, Download, Share2,
-    CheckCircle2, Globe, GraduationCap, Briefcase,
+    MapPin, Star, Building2,
+    CheckCircle2, Globe, Briefcase,
     Calendar, Users, DollarSign, BookOpen, Award,
-    Phone, Mail, ExternalLink, TrendingUp, Scale,
+    TrendingUp, Scale,
     ClipboardList, HelpCircle, Lightbulb, MessageCircle, Images
 } from "lucide-react";
 
@@ -43,7 +43,6 @@ export default async function CollegeDetailPage(props: PageProps) {
         { id: "alumni", label: "Alumni", icon: Users, available: !!college.alumni },
         { id: "compare", label: "Compare", icon: Scale, available: !!college.compare },
         { id: "faqs", label: "FAQs", icon: HelpCircle, available: !!college.faqs },
-        { id: "contact", label: "Contact", icon: Phone, available: !!college.contact },
     ];
 
     const sections = allSections.filter(s => s.available);
@@ -538,46 +537,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                             </>
                         )}
 
-                        {/* Contact */}
-                        {college.contact && (
-                            <section id="contact" className="scroll-mt-24 space-y-6">
-                                <h2 className="text-3xl font-bold flex items-center gap-2">
-                                    <Phone className="h-6 w-6 text-[#f6c804]" /> Contact
-                                </h2>
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                                    {college.contact.phone && (
-                                        <a href={`tel:${college.contact.phone}`} className="flex items-center gap-3 p-4 border rounded-xl hover:border-[#f6c804]/50 transition-colors">
-                                            <Phone className="h-5 w-5 text-[#f6c804]" />
-                                            <span>{college.contact.phone}</span>
-                                        </a>
-                                    )}
-                                    {college.contact.email && (
-                                        <a href={`mailto:${college.contact.email}`} className="flex items-center gap-3 p-4 border rounded-xl hover:border-[#f6c804]/50 transition-colors">
-                                            <Mail className="h-5 w-5 text-[#f6c804]" />
-                                            <span className="truncate">{college.contact.email}</span>
-                                        </a>
-                                    )}
-                                    {college.contact.website && (
-                                        <a href={college.contact.website} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-[#f6c804]/50 transition-colors">
-                                            <ExternalLink className="h-5 w-5 text-[#f6c804]" />
-                                            <span>Official Website</span>
-                                        </a>
-                                    )}
-                                    {college.contact.whatsapp && (
-                                        <a href={`https://wa.me/${college.contact.whatsapp.replace(/[^0-9]/g, '')}`} target="_blank" rel="noopener noreferrer" className="flex items-center gap-3 p-4 border rounded-xl hover:border-green-500/50 transition-colors bg-green-500/5">
-                                            <MessageCircle className="h-5 w-5 text-green-500" />
-                                            <span className="text-green-600">Chat on WhatsApp</span>
-                                        </a>
-                                    )}
-                                </div>
-                                {college.contact.address && (
-                                    <div className="p-4 border rounded-xl">
-                                        <h3 className="font-semibold mb-2">Address</h3>
-                                        <p className="text-muted-foreground">{college.contact.address}</p>
-                                    </div>
-                                )}
-                            </section>
-                        )}
+
 
                     </div>
 

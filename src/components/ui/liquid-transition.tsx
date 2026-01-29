@@ -1,65 +1,81 @@
 "use client";
 
 import { motion, AnimatePresence } from "framer-motion";
-import { useEffect, useState } from "react";
 
 interface LiquidTransitionProps {
     isAnimating: boolean;
 }
 
 const LiquidTransition = ({ isAnimating }: LiquidTransitionProps) => {
-    // With mix-blend-mode: difference, we always want a WHITE overlay.
-    // White overlay over dark content -> inverts to light.
-    // White overlay over light content -> inverts to dark.
-    // This creates the perfect text-color-swap effect automatically.
-
-    // Viewport dimensions to calculate path
-    const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
-
-    useEffect(() => {
-        const updateDimensions = () => {
-            setDimensions({
-                width: window.innerWidth,
-                height: window.innerHeight
-            });
-        };
-
-        updateDimensions();
-        window.addEventListener("resize", updateDimensions);
-        return () => window.removeEventListener("resize", updateDimensions);
-    }, []);
-
     return (
         <AnimatePresence>
             {isAnimating && (
-                <motion.div
-                    className="fixed inset-0 pointer-events-none z-[9999] mix-blend-difference"
-                    initial={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    transition={{ duration: 0.5, delay: 0.1 }}
-                >
-                    <svg className="w-full h-full" preserveAspectRatio="none">
-                        <motion.path
-                            fill="#ffffff" // Always white for difference blend mode
-                            initial={{ d: `M0,0 L${dimensions.width},0 L${dimensions.width},0 C${dimensions.width / 2},0 ${dimensions.width / 2},0 0,0 Z` }}
+                <>
+                    {/* Radial blur/fade transition */}
+                    <motion.div
+                        className="fixed inset-0 pointer-events-none z-[9999]"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: [0, 1, 1, 0] }}
+                        transition={{
+                            duration: 1.2,
+                            times: [0, 0.3, 0.7, 1],
+                            ease: "easeInOut"
+                        }}
+                    >
+                        {/* Soft radial gradient overlay */}
+                        <motion.div
+                            className="absolute inset-0 bg-gradient-to-br from-[#f6c804]/30 via-transparent to-[#f6c804]/30"
+                            initial={{ scale: 0, opacity: 0 }}
                             animate={{
-                                d: [
-                                    // Start flat
-                                    `M0,0 L${dimensions.width},0 L${dimensions.width},0 C${dimensions.width * 0.5},0 ${dimensions.width * 0.5},0 0,0 Z`,
-                                    // Mid-way: Large droplet/wave hanging down
-                                    `M0,0 L${dimensions.width},0 L${dimensions.width},${dimensions.height * 0.5} C${dimensions.width * 0.5},${dimensions.height * 1.5} ${dimensions.width * 0.5},${dimensions.height * 1.5} 0,${dimensions.height * 0.5} Z`,
-                                    // End: Fill screen completely
-                                    `M0,0 L${dimensions.width},0 L${dimensions.width},${dimensions.height * 1.5} C${dimensions.width * 0.5},${dimensions.height * 1.5} ${dimensions.width * 0.5},${dimensions.height * 1.5} 0,${dimensions.height * 1.5} Z`
-                                ]
+                                scale: [0, 2.5, 2.5, 0],
+                                opacity: [0, 0.6, 0.6, 0]
                             }}
                             transition={{
-                                duration: 2.0, // Slower, smoother
-                                ease: [0.22, 1, 0.36, 1], // Custom cubic-bezier for "heavy liquid" feel
-                                times: [0, 0.5, 1]
+                                duration: 1.2,
+                                times: [0, 0.4, 0.6, 1],
+                                ease: [0.25, 0.46, 0.45, 0.94]
+                            }}
+                            style={{ transformOrigin: 'center center' }}
+                        />
+
+                        {/* Subtle blur backdrop */}
+                        <motion.div
+                            className="absolute inset-0 backdrop-blur-sm"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: [0, 1, 1, 0] }}
+                            transition={{
+                                duration: 1.2,
+                                times: [0, 0.25, 0.75, 1],
+                                ease: "easeInOut"
                             }}
                         />
-                    </svg>
-                </motion.div>
+
+                        {/* Animated circles ripple effect */}
+                        {[0, 1, 2].map((i) => (
+                            <motion.div
+                                key={i}
+                                className="absolute left-1/2 top-1/2 rounded-full border border-[#f6c804]/40"
+                                initial={{
+                                    width: 0,
+                                    height: 0,
+                                    x: '-50%',
+                                    y: '-50%',
+                                    opacity: 0
+                                }}
+                                animate={{
+                                    width: ['0vw', '200vw'],
+                                    height: ['0vw', '200vw'],
+                                    opacity: [0.8, 0]
+                                }}
+                                transition={{
+                                    duration: 1.0,
+                                    delay: i * 0.15,
+                                    ease: [0.25, 0.46, 0.45, 0.94]
+                                }}
+                            />
+                        ))}
+                    </motion.div>
+                </>
             )}
         </AnimatePresence>
     );

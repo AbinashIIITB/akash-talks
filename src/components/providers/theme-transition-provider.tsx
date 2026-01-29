@@ -1,8 +1,7 @@
 "use client";
 
-import React, { createContext, useContext, useState } from "react";
+import React, { createContext, useContext } from "react";
 import { useTheme } from "next-themes";
-import LiquidTransition from "@/components/ui/liquid-transition";
 
 interface ThemeTransitionContextType {
     toggleTheme: () => void;
@@ -12,31 +11,15 @@ interface ThemeTransitionContextType {
 const ThemeTransitionContext = createContext<ThemeTransitionContextType | undefined>(undefined);
 
 export function ThemeTransitionProvider({ children }: { children: React.ReactNode }) {
-    const { theme, setTheme, resolvedTheme } = useTheme();
-    const [isAnimating, setIsAnimating] = useState(false);
+    const { setTheme, resolvedTheme } = useTheme();
 
     const toggleTheme = () => {
-        if (isAnimating) return;
-
         const nextTheme = resolvedTheme === "dark" ? "light" : "dark";
-        setIsAnimating(true);
-
-        // Slowed down logic for viscous liquid feel:
-        // Duration: 2000ms total
-        // Switch point: ~900ms (when wave covers significant portion)
-
-        setTimeout(() => {
-            setTheme(nextTheme);
-        }, 900); // Switch theme when screen is consistently covered
-
-        setTimeout(() => {
-            setIsAnimating(false);
-        }, 2100); // Total animation duration (2.0s) + buffer
+        setTheme(nextTheme);
     };
 
     return (
-        <ThemeTransitionContext.Provider value={{ toggleTheme, isAnimating }}>
-            <LiquidTransition isAnimating={isAnimating} />
+        <ThemeTransitionContext.Provider value={{ toggleTheme, isAnimating: false }}>
             {children}
         </ThemeTransitionContext.Provider>
     );

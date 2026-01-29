@@ -5,7 +5,7 @@ import { ArrowUpRight, MessageCircle, Youtube, Twitter, Facebook, Instagram } fr
 
 export function Footer() {
     return (
-        <div className="w-full bg-background px-4 md:px-8 pb-8 pt-12">
+        <div className="w-full bg-background px-4 md:px-8 pb-8">
             <footer className="w-full bg-[#020617] rounded-[2.5rem] p-8 md:p-12 text-white overflow-hidden relative">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24 relative z-10">
 

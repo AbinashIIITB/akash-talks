@@ -10,11 +10,15 @@ import { cn } from "@/lib/utils"
 import collegesData from "@/data/colleges.json"
 import examsData from "@/data/exams.json"
 
+// Define types based on imported data
+type CollegeItem = typeof collegesData[number]
+type ExamItem = typeof examsData[number]
+
 export function Search() {
     const router = useRouter()
     const [isOpen, setIsOpen] = React.useState(false)
     const [query, setQuery] = React.useState("")
-    const [results, setResults] = React.useState<{ type: 'college' | 'exam', item: any }[]>([])
+    const [results, setResults] = React.useState<({ type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem })[]>([])
 
     // Ref for click outside
     const containerRef = React.useRef<HTMLDivElement>(null)
@@ -53,13 +57,13 @@ export function Search() {
         setResults([...matchedColleges, ...matchedExams])
     }, [query])
 
-    const handleSelect = (result: { type: 'college' | 'exam', item: any }) => {
+    const handleSelect = (result: { type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem }) => {
         setIsOpen(false)
         setQuery("")
         if (result.type === 'college') {
             // Assuming college link structure based on data
             // If link property exists use it, else construct it
-            const href = result.item.link || `/colleges/${result.item.slug || result.item.id}`
+            const href = result.item.link || `/colleges/${result.item.id}`
             router.push(href)
         } else {
             const href = result.item.link || `/exams/${result.item.id}`

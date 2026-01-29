@@ -2,8 +2,10 @@
 
 import Link from "next/link";
 import Image from "next/image";
+import React, { useState } from "react";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
+import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
 import { ArrowRight, Building2, GraduationCap, Users, Phone, ChevronDown, Shield, Award, MapPin } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
@@ -26,13 +28,11 @@ const staggerContainer = {
   }
 };
 
-const scaleIn = {
-  hidden: { opacity: 0, scale: 0.8 },
-  visible: { opacity: 1, scale: 1, transition: { duration: 0.6 } }
-};
+
 
 export default function Home() {
   const featuredColleges = colleges.slice(0, 6);
+  const [imageLoaded, setImageLoaded] = useState(false);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -44,10 +44,10 @@ export default function Home() {
   return (
     <div className="flex flex-col min-h-screen overflow-x-hidden">
       {/* Hero Section - Full Viewport Height with Background Image */}
-      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-white dark:bg-slate-900">
+      <section className="relative w-full h-screen flex items-center justify-center overflow-hidden bg-background">
         {/* Side Margin Overlays - blend with navbar */}
-        <div className="absolute inset-y-0 left-0 w-[5%] bg-white dark:bg-slate-900 z-20" />
-        <div className="absolute inset-y-0 right-0 w-[5%] bg-white dark:bg-slate-900 z-20" />
+        <div className="absolute inset-y-0 left-0 w-[5%] bg-background z-20" />
+        <div className="absolute inset-y-0 right-0 w-[5%] bg-background z-20" />
 
         {/* Background Image Container - centered with margins */}
         <div className="absolute inset-y-0 left-[5%] right-[5%] z-0 rounded-[2rem] overflow-hidden">
@@ -55,11 +55,17 @@ export default function Home() {
             src="/college.jpg"
             alt="College Campus"
             fill
-            className="object-cover brightness-[0.35]"
+            className={`object-cover transition-all duration-1000 ease-out ${imageLoaded ? 'blur-0 scale-100' : 'blur-xl scale-105 brightness-50'}`}
             priority
+            onLoad={() => setImageLoaded(true)}
           />
-          {/* Dark Overlay for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+          {/* Base Dark Overlay */}
+          <div className="absolute inset-0 bg-black/40" />
+
+          {/* Static Gradient Overlay - Subtle Pulse */}
+          <div
+            className="absolute inset-0 bg-gradient-to-tr from-black/80 via-black/20 to-black/80 opacity-80 animate-pulse-slow"
+          />
         </div>
 
         {/* Main Content Container - Floating Rounded Card */}
@@ -69,63 +75,9 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 w-[90%] max-w-7xl mx-auto text-white"
         >
-          <div className="relative bg-transparent rounded-[2.5rem] border border-white/10 shadow-2xl overflow-hidden">
-            {/* Decorative Large Typography Background */}
-            <div className="absolute inset-0 flex items-center justify-center pointer-events-none overflow-hidden">
-              <motion.span
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 0.05, scale: 1 }}
-                transition={{ duration: 1, delay: 0.3 }}
-                className="text-[20vw] font-black tracking-tighter text-white select-none whitespace-nowrap"
-              >
-                AKASH
-              </motion.span>
-            </div>
-
+          <div className="relative bg-transparent rounded-[2.5rem] shadow-2xl overflow-hidden">
             {/* Inner Content */}
             <div className="relative z-10 px-6 md:px-12 lg:px-16 py-8 md:py-12">
-              {/* Integrated Navigation */}
-              <motion.nav
-                variants={fadeInUp}
-                initial="hidden"
-                animate="visible"
-                className="flex items-center justify-between mb-12 md:mb-16"
-              >
-                {/* Logo */}
-                <Link href="/" className="flex items-center space-x-3">
-                  <div className="relative h-10 w-10 overflow-hidden">
-                    <Image
-                      src="/logo.png"
-                      alt="Akash Talks"
-                      fill
-                      className="object-contain"
-                    />
-                  </div>
-                  <span className="font-bold text-lg hidden sm:block text-white">Akash Talks</span>
-                </Link>
-
-                {/* Center Links */}
-                <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
-                  <Link href="/" className="px-4 py-2 rounded-full bg-[#f6c804] text-black font-semibold">
-                    Home
-                  </Link>
-                  <Link href="/colleges" className="transition-colors hover:text-[#f6c804] text-white/80 hover:text-white">
-                    Colleges
-                  </Link>
-                  <Link href="/exams" className="transition-colors hover:text-[#f6c804] text-white/80 hover:text-white">
-                    Exams
-                  </Link>
-                </div>
-
-                {/* Right Actions */}
-                <div className="flex items-center space-x-3">
-                  <Link href="/contact">
-                    <Button className="bg-[#f6c804] hover:bg-[#e5b703] text-black font-semibold px-6 rounded-full">
-                      Contact
-                    </Button>
-                  </Link>
-                </div>
-              </motion.nav>
 
               {/* Hero Content */}
               <motion.div
@@ -134,13 +86,6 @@ export default function Home() {
                 animate="visible"
                 className="text-center space-y-4 md:space-y-6 py-6 md:py-12"
               >
-                {/* Tagline Badge */}
-                <motion.div variants={fadeInUp}>
-                  <span className="inline-flex items-center rounded-full border border-[#f6c804]/30 bg-[#f6c804]/10 px-6 py-2 text-sm font-medium text-[#f6c804]">
-                    {companyInfo.tagline}
-                  </span>
-                </motion.div>
-
                 {/* Headline */}
                 <motion.h1
                   variants={fadeInUp}
@@ -152,19 +97,18 @@ export default function Home() {
                   with <span className="gradient-text-yellow">{companyInfo.name}</span>
                 </motion.h1>
 
-                {/* Body Text */}
+                {/* Specific Description Text */}
                 <motion.p
                   variants={fadeInUp}
-                  className="text-white/80 text-lg md:text-xl max-w-2xl mx-auto"
+                  className="text-white/80 text-lg md:text-xl max-w-3xl mx-auto pt-4"
                 >
-                  Your trusted partner for direct admissions in top colleges across {companyInfo.states.length} states.
-                  Expert guidance, guaranteed results.
+                  Get admission in top colleges of West Bengal, Maharastra, Karnataka, Tamil Nadu, Uttarakhand & Odisha
                 </motion.p>
 
                 {/* Buttons */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-col sm:flex-row gap-4 justify-center pt-4"
+                  className="flex flex-col sm:flex-row gap-4 justify-center pt-4 items-center"
                 >
                   <Link href="/colleges">
                     <Button
@@ -174,16 +118,19 @@ export default function Home() {
                       Explore Colleges <ArrowRight className="ml-2 h-5 w-5" />
                     </Button>
                   </Link>
-                  <Link href="/contact">
-                    <Button
-                      variant="outline"
-                      size="lg"
-                      className="h-14 px-10 text-lg rounded-full border-foreground/20 hover:bg-foreground/5 transition-all duration-300"
-                    >
-                      <Phone className="mr-2 h-5 w-5" />
-                      Book Free Consultation
-                    </Button>
-                  </Link>
+
+                  <MagneticWrapper strength={0.4} range={150}>
+                    <Link href="/contact" className="block">
+                      <Button
+                        variant="outline"
+                        size="lg"
+                        className="h-14 px-10 text-lg rounded-full border-foreground/20 hover:bg-foreground/5 dark:border-white hover:scale-105 hover:shadow-lg transition-all duration-300"
+                      >
+                        <Phone className="mr-2 h-5 w-5" />
+                        Book Free Consultation
+                      </Button>
+                    </Link>
+                  </MagneticWrapper>
                 </motion.div>
 
                 {/* Phone Numbers */}
@@ -206,13 +153,13 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="flex flex-wrap justify-center gap-4 pb-4"
               >
-                <div className="animate-float flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                <div className="animate-float flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 py-2.5 text-sm font-medium">
                   <Shield className="h-4 w-4 text-[#f6c804]" /> Trusted
                 </div>
-                <div className="animate-float-delayed flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                <div className="animate-float-delayed flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 py-2.5 text-sm font-medium">
                   <Award className="h-4 w-4 text-[#f6c804]" /> 5+ Years Experience
                 </div>
-                <div className="animate-float-delayed-2 flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 rounded-full px-5 py-2.5 text-sm font-medium">
+                <div className="animate-float-delayed-2 flex items-center gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 py-2.5 text-sm font-medium">
                   <MapPin className="h-4 w-4 text-[#f6c804]" /> Nationwide
                 </div>
               </motion.div>
@@ -228,7 +175,7 @@ export default function Home() {
             opacity: { delay: 1.2, duration: 0.5 },
             y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
           }}
-          onClick={() => scrollToSection('stats-section')}
+          onClick={() => scrollToSection('features-section')}
           className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
           aria-label="Scroll down"
         >
@@ -236,30 +183,7 @@ export default function Home() {
         </motion.button>
       </section>
 
-      {/* Stats Section */}
-      <section id="stats-section" className="w-full py-16 bg-card/30 border-y border-border/50">
-        <LayoutContainer>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-100px" }}
-            variants={staggerContainer}
-            className="flex flex-wrap justify-center gap-12 md:gap-20 text-center"
-          >
-            {[
-              { value: `${colleges.length}+`, label: "Partner Colleges" },
-              { value: companyInfo.states.length, label: "States Covered" },
-              { value: "5000+", label: "Students Placed" },
-              { value: "5+", label: "Years Experience" }
-            ].map((stat, index) => (
-              <motion.div key={index} variants={fadeInUp}>
-                <p className="text-4xl md:text-5xl font-bold gradient-text-yellow">{stat.value}</p>
-                <p className="text-sm text-muted-foreground mt-2">{stat.label}</p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </LayoutContainer>
-      </section>
+      {/* Stats Section - REMOVED */}
 
       {/* Features Section */}
       <section id="features-section" className="w-full py-20 md:py-32">
@@ -397,7 +321,7 @@ export default function Home() {
               Stories of <span className="gradient-text-yellow">Success</span>
             </motion.h2>
             <motion.p variants={fadeInUp} className="text-muted-foreground text-lg max-w-2xl mx-auto">
-              Don't just take our word for it. Hear from the students we've guided to their dream colleges.
+              Don&apos;t just take our word for it. Hear from the students we&apos;ve guided to their dream colleges.
             </motion.p>
           </motion.div>
 
@@ -422,7 +346,7 @@ export default function Home() {
                       <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
                   </div>
-                  <p className="text-muted-foreground italic">"{testimonial.message}"</p>
+                  <p className="text-muted-foreground italic">&quot;{testimonial.message}&quot;</p>
                   <div className="mt-4 flex text-[#f6c804]">
                     {[1, 2, 3, 4, 5].map((star) => (
                       <span key={star}>★</span>
@@ -510,6 +434,24 @@ export default function Home() {
           </motion.div>
         </LayoutContainer>
       </section>
+
+      {/* Scroll to Top Button */}
+      <div className="w-full py-12 flex justify-center bg-background">
+        <motion.button
+          initial={{ opacity: 0 }}
+          whileInView={{ opacity: 1, y: [0, -10, 0] }}
+          viewport={{ once: true }}
+          transition={{
+            opacity: { duration: 0.5 },
+            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+          }}
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg"
+          aria-label="Scroll to top"
+        >
+          <ArrowRight className="h-6 w-6 rotate-[-90deg]" />
+        </motion.button>
+      </div>
     </div>
   );
 }
