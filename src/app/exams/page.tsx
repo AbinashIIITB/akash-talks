@@ -1,94 +1,82 @@
-"use client"
+"use client";
 
-import { motion } from "framer-motion"
-import { Calendar, FileText, ArrowUpRight } from "lucide-react"
-import Image from "next/image"
-import Link from "next/link"
-import { exams } from "@/lib/examData"
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { LayoutContainer } from "@/components/layout/LayoutContainer";
+import { exams } from "@/lib/data";
+import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Calendar, ExternalLink, GraduationCap } from "lucide-react";
+import Link from "next/link";
+import Image from "next/image";
 
 export default function ExamsPage() {
-    const container = {
-        hidden: { opacity: 0 },
-        show: {
-            opacity: 1,
-            transition: {
-                staggerChildren: 0.1
-            }
-        }
-    }
-
-    const item = {
-        hidden: { opacity: 0, y: 20 },
-        show: { opacity: 1, y: 0 }
-    }
-
     return (
-        <div className="min-h-screen bg-background pt-24 pb-12 px-4 sm:px-6 lg:px-8">
-            <div className="max-w-6xl mx-auto space-y-8">
-                <div className="text-center space-y-4">
-                    <h1 className="text-4xl font-bold tracking-tight text-foreground sm:text-5xl">
-                        Entrance <span className="text-yellow-500">Exams</span>
-                    </h1>
-                    <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                        Stay updated with the latest entrance exam notifications, dates,
-                        syllabus, and application details.
-                    </p>
-                </div>
-
+        <div className="min-h-screen bg-background pt-24 pb-12">
+            <LayoutContainer>
                 <motion.div
-                    variants={container}
-                    initial="hidden"
-                    animate="show"
-                    className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-8"
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    className="space-y-8"
                 >
-                    {exams.map((exam) => (
-                        <motion.div
-                            key={exam.id}
-                            variants={item}
-                            className="group relative bg-card rounded-xl border border-border p-6 hover:border-yellow-500/50 transition-colors duration-300 flex flex-col justify-between"
-                        >
-                            <div>
-                                <div className="flex items-start justify-between mb-4">
-                                    <div className="relative h-12 w-12 rounded-lg overflow-hidden bg-muted">
-                                        {/* Use logoUrl or placeholder */}
-                                        <Image
-                                            src={exam.logoUrl || "/footer-logo.jpg"}
-                                            alt={exam.title}
-                                            fill
-                                            className="object-cover"
-                                        />
-                                    </div>
-                                    <Link href={`/exams/${exam.slug}`}>
-                                        <div className="h-8 w-8 rounded-full bg-yellow-400/10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity cursor-pointer">
-                                            <ArrowUpRight className="h-4 w-4 text-yellow-600" />
+                    <div className="text-center space-y-4 max-w-2xl mx-auto">
+                        <h1 className="text-4xl font-bold tracking-tight">Entrance Exams <span className="text-[#f6c804]">2026</span></h1>
+                        <p className="text-muted-foreground text-lg">
+                            Stay updated with the latest entrance exam dates, syllabus, and application details for top engineering colleges.
+                        </p>
+                    </div>
+
+                    <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+                        {exams.map((exam, index) => (
+                            <motion.div
+                                key={exam.id}
+                                initial={{ opacity: 0, y: 20 }}
+                                animate={{ opacity: 1, y: 0 }}
+                                transition={{ delay: index * 0.1 }}
+                            >
+                                <Card className="h-full flex flex-col hover:border-[#f6c804]/50 transition-colors group">
+                                    <CardHeader className="flex flex-row items-center gap-4">
+                                        <div className="relative h-16 w-16 bg-white rounded-lg p-2 border shadow-sm">
+                                            {/* Using img for external URLs to avoid config issues */}
+                                            <img
+                                                src={exam.logoUrl}
+                                                alt={exam.name}
+                                                className="w-full h-full object-contain"
+                                            />
                                         </div>
-                                    </Link>
-                                </div>
-
-                                <h3 className="text-xl font-bold text-card-foreground mb-2 group-hover:text-yellow-500 transition-colors">
-                                    {exam.title}
-                                </h3>
-
-                                <p className="text-sm text-muted-foreground mb-6 line-clamp-3">
-                                    {exam.description}
-                                </p>
-                            </div>
-
-                            <div className="flex items-center justify-between pt-4 border-t border-border mt-auto">
-                                <Link href={`/exams/${exam.slug}#intro`} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                                    <FileText className="h-4 w-4 mr-2" />
-                                    Details
-                                </Link>
-                                <div className="h-4 w-px bg-border" />
-                                <Link href={`/exams/${exam.slug}#dates`} className="flex items-center text-sm font-medium text-muted-foreground hover:text-foreground transition-colors">
-                                    <Calendar className="h-4 w-4 mr-2" />
-                                    Dates
-                                </Link>
-                            </div>
-                        </motion.div>
-                    ))}
+                                        <div>
+                                            <CardTitle className="text-xl group-hover:text-[#f6c804] transition-colors">{exam.name}</CardTitle>
+                                            <CardDescription className="line-clamp-1">{exam.fullName}</CardDescription>
+                                        </div>
+                                    </CardHeader>
+                                    <CardContent className="flex-1 space-y-4">
+                                        <p className="text-sm text-muted-foreground line-clamp-3">
+                                            {exam.description}
+                                        </p>
+                                        <div className="flex items-center gap-2 text-sm font-medium">
+                                            <Calendar className="h-4 w-4 text-[#f6c804]" />
+                                            {exam.date}
+                                        </div>
+                                    </CardContent>
+                                    <CardFooter className="grid grid-cols-2 gap-3">
+                                        <Link href={`/exams/${exam.slug}`} className="w-full">
+                                            <Button variant="outline" className="w-full hover:bg-[#f6c804] hover:text-black">
+                                                <GraduationCap className="mr-2 h-4 w-4" /> Details
+                                            </Button>
+                                        </Link>
+                                        <a href={exam.applicationLink} target="_blank" rel="noopener noreferrer" className="w-full">
+                                            <Button className="w-full bg-black text-white hover:bg-black/80">
+                                                Apply <ExternalLink className="ml-2 h-4 w-4" />
+                                            </Button>
+                                        </a>
+                                    </CardFooter>
+                                </Card>
+                            </motion.div>
+                        ))}
+                    </div>
                 </motion.div>
-            </div>
+            </LayoutContainer>
         </div>
-    )
+    );
 }

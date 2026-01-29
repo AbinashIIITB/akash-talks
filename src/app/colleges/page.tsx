@@ -12,18 +12,14 @@ export default function CollegesPage() {
 
     // Extract unique states from the data
     const states = useMemo(() => {
-        const uniqueStates = new Set(collegesData.map(college => {
-            // Assuming location format "City, State" - taking the last part
-            const parts = college.location.split(',');
-            return parts[parts.length - 1].trim();
-        }));
+        const uniqueStates = new Set(collegesData.map(college => college.state));
         return ["All", ...Array.from(uniqueStates).sort()];
     }, []);
 
     // Filter colleges based on selection
     const filteredColleges = useMemo(() => {
         if (selectedState === "All") return collegesData;
-        return collegesData.filter(college => college.location.includes(selectedState));
+        return collegesData.filter(college => college.state === selectedState);
     }, [selectedState]);
 
     const container = {

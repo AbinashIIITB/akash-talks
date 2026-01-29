@@ -2,7 +2,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone } from "lucide-react";
+import { Mail, MapPin, Phone, Clock } from "lucide-react";
 import { companyInfo } from "@/lib/data";
 
 export default function ContactPage() {
@@ -53,6 +53,17 @@ export default function ContactPage() {
                             <p className="text-muted-foreground">
                                 {companyInfo.phones[0]}<br />
                                 {companyInfo.phones[1]}
+                            </p>
+                        </div>
+                    </div>
+                    <div className="flex items-start space-x-4">
+                        <div className="p-3 bg-primary/10 rounded-full">
+                            <Clock className="h-6 w-6 text-primary" />
+                        </div>
+                        <div>
+                            <h3 className="text-lg font-bold">Office Timing</h3>
+                            <p className="text-muted-foreground">
+                                10:00 am to 6:00 pm
                             </p>
                         </div>
                     </div>
