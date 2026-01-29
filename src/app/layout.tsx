@@ -12,6 +12,7 @@ export const metadata: Metadata = {
 
 import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
+import { FloatingContact } from "@/components/ui/floating-contact";
 import { ThemeTransitionProvider } from "@/components/providers/theme-transition-provider";
 
 // ... existing imports
@@ -35,6 +36,7 @@ export default function RootLayout({
               <Navbar />
               <main className="flex-1">{children}</main>
               <Footer />
+              <FloatingContact />
             </div>
           </ThemeTransitionProvider>
         </ThemeProvider>

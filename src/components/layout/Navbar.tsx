@@ -97,14 +97,7 @@ export function Navbar() {
                         </Button>
                     </Link>
 
-                    {/* Contact Button (Desktop) */}
-                    <Link href="/contact" className="hidden md:block">
-                        <Button
-                            className="h-10 bg-[#f6c804] hover:bg-[#e5b703] text-black text-sm font-semibold px-6 rounded-full hover:scale-105 hover:shadow-[0_0_20px_rgba(246,200,4,0.4)] transition-all duration-300"
-                        >
-                            Contact
-                        </Button>
-                    </Link>
+
 
                     {/* Search Component */}
                     <div className="hidden sm:block">
@@ -142,11 +135,7 @@ export function Navbar() {
                                         </Link>
                                     )
                                 })}
-                                <Link href="/contact" className="mt-4">
-                                    <Button className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-semibold rounded-full">
-                                        Contact
-                                    </Button>
-                                </Link>
+
                             </div>
                         </SheetContent>
                     </Sheet>

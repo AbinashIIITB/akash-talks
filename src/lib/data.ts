@@ -84,8 +84,24 @@ export interface Exam {
     description: string;
     date: string;
     applicationLink: string;
+    // Expanded Fields
+    overview: string;
+    importantDates: { event: string; date: string }[];
+    applicationProcess: { step: string; description: string }[];
+    documents: string[];
+    eligibility: string[];
+    examPattern: {
+        mode: string;
+        duration: string;
+        totalMarks: string;
+        markingScheme: string;
+        subjects: string[];
+    };
+    counselling: string; // Brief description
+    faqs: { question: string; answer: string }[];
 }
 
+// --- Colleges Data (Preserved 28 items) ---
 export const colleges: College[] = [
     // --- West Bengal ---
     {
@@ -112,23 +128,7 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹8.4 - 8.65 Lakhs" }], note: "Excludes hostel and mess charges" }],
         placements: { stats: [{ label: "Highest Package", value: "₹32 LPA" }, { label: "Median Package", value: "₹6 LPA" }, { label: "Placement Rate", value: "95%+" }], highlights: ["Consistent placement record for over 35 years", "Multiple offers for top performers"], topRecruiters: [{ category: "Tech Giants", companies: ["Amazon", "TCS", "Cognizant", "Wipro", "Infosys"] }] }
     },
-    {
-        id: "2",
-        slug: "techno-india-salt-lake",
-        name: "Techno India Main Salt Lake",
-        location: "Salt Lake, Kolkata",
-        state: "West Bengal",
-        rating: 4.2,
-        reviews: 1420,
-        fees: "₹ 1L - 1.3L per year",
-        courses: ["B.Tech", "M.Tech", "BBA", "MBA", "MCA"],
-        type: "Private",
-        tags: ["Industry Connect", "NAAC Accredited"],
-        logoUrl: "/footer-logo.jpg",
-        established: "2001",
-        description: "Leading private engineering college in Salt Lake with strong industry connections and placement record.",
-        imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop"
-    },
+    { id: "2", slug: "techno-india-salt-lake", name: "Techno India Main Salt Lake", location: "Salt Lake, Kolkata", state: "West Bengal", rating: 4.2, reviews: 1420, fees: "₹ 1L - 1.3L per year", courses: ["B.Tech", "M.Tech", "BBA", "MBA", "MCA"], type: "Private", tags: ["Industry Connect", "NAAC Accredited"], logoUrl: "/footer-logo.jpg", established: "2001", description: "Leading private engineering college in Salt Lake with strong industry connections and placement record.", imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop" },
     { id: "wb-3", slug: "haldia-institute-of-technology", name: "Haldia Institute of Technology", location: "Haldia, West Bengal", state: "West Bengal", rating: 4.0, reviews: 1200, fees: "₹ 4L - 5L Total", courses: ["B.Tech", "MBA"], type: "Private", tags: ["Oldest Private College", "Core Placements"], description: "First private engineering college in West Bengal with massive campus and strong core placements." },
     { id: "wb-4", slug: "rcc-institute-of-information-technology", name: "RCC Institute of Information Technology", location: "Kolkata, West Bengal", state: "West Bengal", rating: 3.9, reviews: 800, fees: "₹ 3.5L - 4.5L Total", courses: ["B.Tech", "MCA"], type: "Government", tags: ["Semi-Government", "Affordable"], description: "A semi-government engineering college known for specialized IT education." },
     { id: "wb-5", slug: "jis-college-of-engineering", name: "JIS College of Engineering", location: "Kalyani, West Bengal", state: "West Bengal", rating: 4.1, reviews: 1500, fees: "₹ 4L - 5.5L Total", courses: ["B.Tech", "M.Tech"], type: "Private", tags: ["Autonomous", "Research Focus"], description: "Autonomous institute with excellent research facilities and diverse courses." },
@@ -167,6 +167,7 @@ export const colleges: College[] = [
     { id: "od-4", slug: "silicon-university", name: "Silicon University", location: "Bhubaneswar, Odisha", state: "Odisha", rating: 4.1, reviews: 900, fees: "₹ 5L - 6L Total", courses: ["B.Tech"], type: "Private", tags: ["Strict Academics"], description: "Known for rigorous academic curriculum and discipline." }
 ];
 
+// --- Comprehensive Exams Data ---
 export const exams: Exam[] = [
     {
         id: "bitsat",
@@ -176,7 +177,50 @@ export const exams: Exam[] = [
         logoUrl: "https://upload.wikimedia.org/wikipedia/en/thumb/d/d2/Birla_Institute_of_Technology_and_Science_Pilani_Logo.svg/1200px-Birla_Institute_of_Technology_and_Science_Pilani_Logo.svg.png",
         description: "BITSAT is a computer-based online test for admission to Integrated First Degree Programmes of BITS Pilani Campuses in Pilani, Goa, and Hyderabad.",
         date: "Session 1: May 2026 | Session 2: June 2026",
-        applicationLink: "https://www.bitsadmission.com/"
+        applicationLink: "https://www.bitsadmission.com/",
+        overview: "Birla Institute of Technology and Science Admission Test (BITSAT) is an entrance exam conducted by BITS Pilani. It is one of the most competitive engineering entrance exams in India. The exam is held for admission to B.E., B.Pharm, and M.Sc. programs at Pilani, Goa, and Hyderabad campuses. BITSAT 2026 will be conducted in two sessions, allowing candidates two attempts to improve their scores.",
+        importantDates: [
+            { event: "Application Start Date", date: "January 2026" },
+            { event: "Application End Date", date: "April 2026" },
+            { event: "Slot Booking Session 1", date: "early May 2026" },
+            { event: "BITSAT Session 1 Exam", date: "Late May 2026" },
+            { event: "BITSAT Session 2 application", date: "Late May - June 2026" },
+            { event: "BITSAT Session 2 Exam", date: "Mid June 2026" },
+            { event: "Counseling (Iteration 1)", date: "July 2026" }
+        ],
+        applicationProcess: [
+            { step: "Registration", description: "Visit bitsadmission.com and register with a valid email and phone number." },
+            { step: "Fill Application", description: "Complete the form with personal, academic, and contact details." },
+            { step: "Upload Documents", description: "Upload Scanned Photograph (4KB to 100KB) and Signature (1KB to 50KB)." },
+            { step: "Pay Fee", description: "Fee is approx ₹5400 (Male) / ₹4400 (Female) for both sessions. Pay via Net Banking/Card/UPI." },
+            { step: "Slot Booking", description: "Reserve your preferred exam date and center through the slot booking system when it opens." }
+        ],
+        documents: [
+            "Class 10 and 12 Marks Sheets",
+            "Scanned Image of Photograph (JPG/JPEG)",
+            "Scanned Image of Signature (JPG/JPEG)",
+            "Credit/Debit Card or Net Banking details for payment"
+        ],
+        eligibility: [
+            "Passed Class 12th from a recognized Central or State board.",
+            "Must have Physics, Chemistry, and Mathematics (PCM) as subjects.",
+            "Minimum 75% aggregate marks in PCM.",
+            "Minimum 60% marks in each of Physics, Chemistry, and Mathematics individually.",
+            "Proficient in English."
+        ],
+        examPattern: {
+            mode: "Online (Computer Based Test)",
+            duration: "3 Hours (180 Minutes)",
+            totalMarks: "390",
+            markingScheme: "+3 for correct answer, -1 for incorrect answer.",
+            subjects: ["Physics (30 Q)", "Chemistry (30 Q)", "English Proficiency (10 Q)", "Logical Reasoning (20 Q)", "Mathematics (40 Q)"]
+        },
+        counselling: "Admission is purely merit-based on BITSAT score. There are multiple rounds of 'Iterations'. Candidates must fill their preference order for Campuses and Branches carefully. There is no reservation policy (except for BITS Dubai which has its own process).",
+        faqs: [
+            { question: "Can I appear for both sessions?", answer: "Yes, candidates can appear for both sessions. The best of the two scores will be considered for admission." },
+            { question: "Is there any reservation in BITS?", answer: "No, BITS Pilani does not strictly follow a reservation policy like government institutes. Admissions are merit-based." },
+            { question: "What is a good score in BITSAT?", answer: "A score above 300 is generally considered safe for top branches like CSE/ECE in any of the three campuses. For Pilani CSE, 330+ is recommended." }
+        ]
     },
     {
         id: "wbjee",
@@ -186,7 +230,46 @@ export const exams: Exam[] = [
         logoUrl: "https://upload.wikimedia.org/wikipedia/en/8/8c/West_Bengal_Joint_Entrance_Examinations_Board_Logo.png",
         description: "State-level entrance exam for admission to undergraduate engineering and pharmacy courses in West Bengal.",
         date: "April 2026",
-        applicationLink: "https://wbjeeb.nic.in/"
+        applicationLink: "https://wbjeeb.nic.in/",
+        overview: "The West Bengal Joint Entrance Examination (WBJEE) is a state-government controlled centralized test, conducted by the West Bengal Joint Entrance Examinations Board for admission to many private and governmental engineering institutions in West Bengal. It is known for its high standard of questions, especially in Mathematics.",
+        importantDates: [
+            { event: "Registration Begins", date: "December 2025" },
+            { event: "Registration Ends", date: "February 2026" },
+            { event: "Admit Card Download", date: "April 2026" },
+            { event: "WBJEE 2026 Exam Date", date: "Last Sunday of April 2026" },
+            { event: "Result Declaration", date: "June 2026" }
+        ],
+        applicationProcess: [
+            { step: "Online Registration", description: "Register on wbjeeb.nic.in." },
+            { step: "Fill Details", description: "Enter domicile, category, and academic details properly." },
+            { step: "Upload Images", description: "Upload Photo and Signature as per specifications." },
+            { step: "Fee Payment", description: "Pay examination fees (approx ₹500 for General, ₹400 for Reserved)." },
+            { step: "Confirmation Page", description: "Download and print the confirmation page for reference." }
+        ],
+        documents: [
+            "Aadhaar Card / Voter ID",
+            "Class 10 Admit Card/Certificate",
+            "Scanned Photograph & Signature",
+            "Category Certificate (if applicable for SC/ST/OBC/TFW)"
+        ],
+        eligibility: [
+            "Citizen of India.",
+            "Must have passed 10+2 with Physics and Mathematics along with Chemistry/Biotechnology/Biology/Computer Science.",
+            "Minimum 45% aggregate in 3 compulsory subjects (40% for reserved categories).",
+            "Minimum age of 17 years as of 31st Dec 2026. No upper age limit."
+        ],
+        examPattern: {
+            mode: "Offline (OMR Based)",
+            duration: "4 Hours (2 papers of 2 hours each)",
+            totalMarks: "200",
+            markingScheme: "Category 1: +1/-0.25; Category 2: +2/-0.5; Category 3: +2/0 (Multiple correct options)",
+            subjects: ["Mathematics (100 Marks)", "Physics (50 Marks)", "Chemistry (50 Marks)"]
+        },
+        counselling: "WBJEEB conducts purely web-based counseling. Candidates must register, fill, and lock their choices. Seats are allotted based on General Merit Rank (GMR). There are separate rounds for JEE Main candidates.",
+        faqs: [
+            { question: "Is Domicile required for WBJEE?", answer: "Domicile is NOT required to appear for the exam, but it is mandatory for claiming seats in Government colleges and for TFW (Tuition Fee Waiver) schemes." },
+            { question: "Can outside West Bengal students apply?", answer: "Yes, students from all over India can apply. However, they will be treated as General category candidates." }
+        ]
     },
     {
         id: "srmjeee",
@@ -196,7 +279,44 @@ export const exams: Exam[] = [
         logoUrl: "https://upload.wikimedia.org/wikipedia/en/f/fe/Srmseal.png",
         description: "Common entrance examination for admission to B.Tech programs at all SRM Group campuses.",
         date: "Phase 1: April 2026 | Phase 2: June 2026",
-        applicationLink: "https://applications.srmist.edu.in/"
+        applicationLink: "https://applications.srmist.edu.in/",
+        overview: "SRM Joint Engineering Entrance Examination (SRMJEEE) is conducted by SRM Institute of Science and Technology for admission to B.Tech programs across its campuses in Kattankulathur, Ramapuram, Vadapalani, Ghaziabad, and others. It is remote proctored (online) or center-based depending on the year's policy.",
+        importantDates: [
+            { event: "Applications Open", date: "November 2025" },
+            { event: "Phase 1 Exam", date: "April 2026" },
+            { event: "Phase 2 Exam", date: "June 2026" },
+            { event: "Phase 3 Exam (if applicable)", date: "July 2026" }
+        ],
+        applicationProcess: [
+            { step: "Register", description: "Sign up on srmist.edu.in." },
+            { step: "Verify Email", description: "Verify your email ID to proceed." },
+            { step: "Fill Application", description: "Enter personal details and campus preferences." },
+            { step: "Payment", description: "Pay the application fee of ₹1200." },
+            { step: "Upload Photo/Sign", description: "Upload recent photograph and signature." }
+        ],
+        documents: [
+            "Class 10 Marksheet",
+            "Class 12 Marksheet (if available)",
+            "Scanned Photo and Signature",
+            "ID Proof"
+        ],
+        eligibility: [
+            "Passed 10+2 with Physics, Chemistry, and Mathematics/Biology.",
+            "Minimum 60% aggregate in PCM/PCB.",
+            "Age should be 16 years and 6 months by July 31 of admission year."
+        ],
+        examPattern: {
+            mode: "Online (Remote Proctored)",
+            duration: "2 Hours 30 Minutes",
+            totalMarks: "125",
+            markingScheme: "+1 per question, No Negative Marking",
+            subjects: ["Physics (35)", "Chemistry (35)", "Maths/Biology (40)", "English (5)", "Aptitude (10)"]
+        },
+        counselling: "Online counseling is held after results. Rank holders have to fill choices of campus and program. Seats are allotted based on SRMJEEE rank.",
+        faqs: [
+            { question: "Is there negative marking?", answer: "No, SRMJEEE does not have negative marking." },
+            { question: "Can I get KTR campus with low rank?", answer: "KTR (Main Campus) CSE usually closes at a rank around 10,000-15,000." }
+        ]
     },
     {
         id: "iemcet",
@@ -206,7 +326,39 @@ export const exams: Exam[] = [
         logoUrl: "https://iem.edu.in/wp-content/themes/iem/images/logo.png",
         description: "Entrance test for admission to various undergraduate and postgraduate courses at IEM Kolkata and UEM.",
         date: "Various Phases in 2026",
-        applicationLink: "https://iem.edu.in/"
+        applicationLink: "https://iem.edu.in/",
+        overview: "IEMCET is conducted by the IEM-UEM group for admissions into its B.Tech, BCA, BBA, and other courses. It serves as a gateway for students who might not have appeared for WBJEE or want specifically to join the prestigious IEM/UEM group institutions.",
+        importantDates: [
+            { event: "Registration Starts", date: "January 2026" },
+            { event: "Exam Dates", date: "Held in multiple phases from March to July 2026" },
+            { event: "Result", date: "7 days after exam phase" }
+        ],
+        applicationProcess: [
+            { step: "Online Application", description: "Visit the IEM/UEM official website." },
+            { step: "Slot Booking", description: "Choose your exam date and time slot." },
+            { step: "Exam", description: "Appear for the online exam from home or center." }
+        ],
+        documents: [
+            "Class 10 & 12 details",
+            "ID Proof (Aadhaar/PAN)",
+            "Soft copy of photo"
+        ],
+        eligibility: [
+            "10+2 with Physics and Maths.",
+            "Good academic record in Class 10 and 12.",
+            "Must be 17 years of age."
+        ],
+        examPattern: {
+            mode: "Online",
+            duration: "2 Hours",
+            totalMarks: "Variety based on course",
+            markingScheme: "No negative marking usually.",
+            subjects: ["Physics", "Chemistry", "Mathematics", "General Aptitude"]
+        },
+        counselling: "Counseling is done by the institute based on IEMCET score and Class 12 marks.",
+        faqs: [
+            { question: "Is IEMCET mandatory?", answer: "If you do not have a valid WBJEE or JEE Main rank, IEMCET is required for admission to UEM/IEM courses." }
+        ]
     },
     {
         id: "iemjee",
@@ -216,7 +368,34 @@ export const exams: Exam[] = [
         logoUrl: "https://iem.edu.in/wp-content/themes/iem/images/logo.png",
         description: "Exam for admission to B.Tech, BCA, BBA, M.Tech, MCA, MBA courses of IEM Group.",
         date: "Online Modes Available",
-        applicationLink: "https://iemjee.iem.edu.in/"
+        applicationLink: "https://iemjee.iem.edu.in/",
+        overview: "IEMJEE is a common entrance examination for admission to B.Tech, BCA, BBA, M.Tech, MCA, M.Sc, and MBA courses of the IEM Group (IEM Kolkata and UEM Jaipur/Kolkata). It offers a seamless admission process for students aiming for these specific campuses.",
+        importantDates: [
+            { event: "Rolling Application", date: "Open throughout admission season (Jan-July)" },
+            { event: "Exam Mode", date: "Online from Home / Center" }
+        ],
+        applicationProcess: [
+            { step: "Direct Details", description: "Fill the simple form on iemjee.iem.edu.in." },
+            { step: "Instant Exam", description: "In some modes, you can take the exam immediately." }
+        ],
+        documents: [
+            "Standard academic documents."
+        ],
+        eligibility: [
+            "60% in Class 10 & 12 ideally.",
+            "Physics and Maths compulsory for Engineering."
+        ],
+        examPattern: {
+            mode: "Online",
+            duration: "2 Hours",
+            totalMarks: "360",
+            markingScheme: "+4, -1",
+            subjects: ["Physics", "Chemistry", "Maths"]
+        },
+        counselling: "Immediate provisional admission offers are often made based on scores.",
+        faqs: [
+            { question: "Is there an exam fee?", answer: "Usually, there is no exam fee for IEMJEE." }
+        ]
     }
 ];
 
