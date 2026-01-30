@@ -268,9 +268,19 @@ export default function Home() {
                 <Link href={`/colleges/${college.slug}`}>
                   <div className="group relative overflow-hidden rounded-3xl border border-border/50 bg-card/50 p-3 transition-all duration-300 hover:border-[#f6c804]/50 hover:shadow-lg hover:scale-[1.02]">
                     <div className="aspect-video w-full overflow-hidden rounded-2xl bg-muted relative">
-                      <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-gradient-to-br from-secondary to-secondary/50">
-                        <Building2 className="h-12 w-12 opacity-50" />
-                      </div>
+                      {college.imageUrl ? (
+                        <img
+                          src={college.imageUrl}
+                          alt={college.name}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                        />
+                      ) : (
+                        <div className="absolute inset-0 flex items-center justify-center text-muted-foreground bg-gradient-to-br from-secondary to-secondary/50">
+                          <Building2 className="h-12 w-12 opacity-50" />
+                        </div>
+                      )}
+                      {/* Overlay gradient on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                     </div>
                     <div className="p-4">
                       <h3 className="font-semibold text-lg group-hover:text-[#f6c804] transition-colors">{college.name}</h3>
