@@ -123,7 +123,7 @@ export const colleges: College[] = [
         logoUrl: "/footer-logo.jpg",
         established: "1989",
         description: "Premier private engineering college in Kolkata known for strict academic discipline and excellent placements.",
-        imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "/images/colleges/iem-salt-lake.jpg",
         about: "Institute of Engineering & Management (IEM) is a premier private engineering college in Kolkata, established in 1989. It is one of the oldest and most reputed private engineering colleges in West Bengal, known for its strict academic discipline, excellent placement records, and strong alumni network. The institute is affiliated to MAKAUT (Maulana Abul Kalam Azad University of Technology) and approved by AICTE.",
         highlights: ["NAAC 'A' Grade Accredited", "NIRF Ranked Institution", "Oldest Private Engineering College in West Bengal (Est. 1989)", "Located in Salt Lake IT Hub", "1054+ Students Placed in 2024", "₹32 LPA Highest Package"],
         infrastructure: ["3 Campuses located in the IT Hub of Salt Lake", "State-of-the-art Innovation & IoT Labs", "AI/ML Research Center", "Digital Library with IEEE/ACM/Springer Access", "Smart Classrooms with Projectors", "Separate Boys and Girls Hostels", "Cafeteria and Food Court", "Sports Facilities including Cricket, Football, Basketball"],
