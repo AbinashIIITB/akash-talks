@@ -131,7 +131,7 @@ export default function Home() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="h-14 px-10 text-lg rounded-full border-foreground/20 hover:bg-foreground/5 dark:border-white hover:scale-105 hover:shadow-lg transition-all duration-300"
+                        className="h-14 px-10 text-lg rounded-full bg-secondary/50 backdrop-blur-sm border-white/40 dark:border-white hover:bg-white/10 hover:scale-105 hover:shadow-lg transition-all duration-300 text-white"
                       >
                         <Phone className="mr-2 h-5 w-5" />
                         Book Free Consultation

@@ -1,7 +1,9 @@
+"use client"
+
 import Link from "next/link"
 import Image from "next/image"
 import { companyInfo } from "@/lib/data"
-import { ArrowUpRight, MessageCircle, Youtube, Twitter, Facebook, Instagram } from "lucide-react"
+import { ArrowUpRight, MessageCircle, Youtube, Twitter, Facebook } from "lucide-react"
 
 export function Footer() {
     return (
@@ -93,8 +95,8 @@ export function Footer() {
                             <p className="text-lg leading-relaxed">{companyInfo.address.full}</p>
                         </div>
 
-                        {/* Wide Map Widget */}
-                        <div className="w-full h-48 rounded-2xl overflow-hidden border border-gray-800 relative group">
+                        {/* Interactive Map Widget */}
+                        <div className="w-full h-48 rounded-2xl overflow-hidden border border-gray-800 relative">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -102,9 +104,10 @@ export function Footer() {
                                 scrolling="yes"
                                 marginHeight={0}
                                 marginWidth={0}
-                                src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&t=&z=15&ie=UTF8&iwloc=&output=embed"
+                                src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&z=15&ie=UTF8&iwloc=&output=embed"
                                 title="Office Location"
-                                className="filter grayscale group-hover:grayscale-0 transition-all duration-500 opacity-80 group-hover:opacity-100 pointer-events-auto"
+                                className="transition-all duration-500"
+                                style={{ pointerEvents: "auto" }}
                             ></iframe>
                         </div>
 
@@ -141,3 +144,4 @@ export function Footer() {
         </div>
     )
 }
+
