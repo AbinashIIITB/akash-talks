@@ -535,10 +535,20 @@ export default function Home() {
         <motion.button
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1, y: [0, -10, 0] }}
+          whileHover={{
+            scale: 1.1,
+            y: -15,   // Move slightly higher on hover
+            backgroundColor: "#f6c804",
+            color: "#000000",
+            borderColor: "#f6c804",
+            boxShadow: "0px 10px 20px rgba(246, 200, 4, 0.3)"
+          }}
+          whileTap={{ scale: 0.9 }}
           viewport={{ once: true }}
           transition={{
             opacity: { duration: 0.5 },
-            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
+            y: { duration: 2, repeat: Infinity, ease: "easeInOut" }, // Keep the bounce
+            default: { duration: 0.2 } // Fast transition for hover properties
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
           className="p-3 rounded-full backdrop-blur-sm transition-all duration-300 shadow-lg border"
