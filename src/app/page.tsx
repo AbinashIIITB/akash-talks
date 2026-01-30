@@ -2,8 +2,9 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
+import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
@@ -33,6 +34,12 @@ const staggerContainer = {
 export default function Home() {
   const featuredColleges = colleges.slice(0, 6);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const { resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const scrollToSection = (sectionId: string) => {
     const element = document.getElementById(sectionId);
@@ -446,7 +453,12 @@ export default function Home() {
             y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
           }}
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          className="p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 shadow-lg"
+          className="p-3 rounded-full backdrop-blur-sm transition-all duration-300 shadow-lg border"
+          style={{
+            backgroundColor: mounted && resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.1)' : 'rgba(255, 255, 255, 0.8)',
+            borderColor: mounted && resolvedTheme === 'dark' ? 'rgba(255, 255, 255, 0.2)' : '#e2e8f0',
+            color: mounted && resolvedTheme === 'dark' ? '#ffffff' : '#0f172b'
+          }}
           aria-label="Scroll to top"
         >
           <ArrowRight className="h-6 w-6 rotate-[-90deg]" />

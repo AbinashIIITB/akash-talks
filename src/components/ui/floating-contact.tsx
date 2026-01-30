@@ -5,16 +5,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 export function FloatingContact() {
     const [isOpen, setIsOpen] = useState(false);
+    const pathname = usePathname();
 
-    // Open by default only on desktop
-    useEffect(() => {
-        if (window.innerWidth >= 768) {
-            setIsOpen(true);
-        }
-    }, []);
+    // Don't show on contact page
+    if (pathname === '/contact') return null;
 
     return (
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">

@@ -43,6 +43,7 @@ export default async function CollegeDetailPage(props: PageProps) {
         { id: "alumni", label: "Alumni", icon: Users, available: !!college.alumni },
         { id: "compare", label: "Compare", icon: Scale, available: !!college.compare },
         { id: "faqs", label: "FAQs", icon: HelpCircle, available: !!college.faqs },
+        { id: "akashTalks", label: "Why Akash Talks", icon: Award, available: !!college.whyChooseAkashTalks },
     ];
 
     const sections = allSections.filter(s => s.available);
@@ -537,6 +538,39 @@ export default async function CollegeDetailPage(props: PageProps) {
                             </>
                         )}
 
+                        {/* Why Choose Through Akash Talks */}
+                        {college.whyChooseAkashTalks && (
+                            <>
+                                <section id="akashTalks" className="scroll-mt-24 space-y-6">
+                                    <h2 className="text-3xl font-bold flex items-center gap-2">
+                                        <Award className="h-6 w-6 text-[#f6c804]" /> Why Choose {college.name.split('(')[0].trim()} Through Akash Talks?
+                                    </h2>
+                                    <div className="bg-gradient-to-br from-[#f6c804]/10 to-transparent border-2 border-[#f6c804]/30 rounded-2xl p-6">
+                                        <p className="text-muted-foreground mb-4">Akash Talks is your trusted partner for hassle-free admissions. Here's why:</p>
+                                        <div className="grid grid-cols-1 gap-3">
+                                            {college.whyChooseAkashTalks.map((reason, i) => (
+                                                <div key={i} className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">
+                                                    <CheckCircle2 className="h-5 w-5 text-[#f6c804] shrink-0 mt-0.5" />
+                                                    <span className="text-sm">{reason}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                        <div className="mt-6 flex flex-col sm:flex-row gap-3">
+                                            <a href="/contact" className="flex-1">
+                                                <Button className="w-full bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold">
+                                                    Book Free Counseling
+                                                </Button>
+                                            </a>
+                                            <a href="https://wa.me/919874878782" target="_blank" className="flex-1">
+                                                <Button variant="outline" className="w-full border-[#f6c804] text-[#f6c804] hover:bg-[#f6c804]/10">
+                                                    <MessageCircle className="h-4 w-4 mr-2" /> WhatsApp Us
+                                                </Button>
+                                            </a>
+                                        </div>
+                                    </div>
+                                </section>
+                            </>
+                        )}
 
 
                     </div>

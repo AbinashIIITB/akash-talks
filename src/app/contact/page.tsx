@@ -1,11 +1,56 @@
+"use client";
+
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Clock } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, Loader2, CheckCircle, AlertCircle } from "lucide-react";
 import { companyInfo } from "@/lib/data";
 
 export default function ContactPage() {
+    const [isSubmitting, setIsSubmitting] = useState(false);
+    const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
+    const [errorMessage, setErrorMessage] = useState('');
+
+    const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+        e.preventDefault();
+        setIsSubmitting(true);
+        setSubmitStatus('idle');
+        setErrorMessage('');
+
+        const formData = new FormData(e.currentTarget);
+        const data = {
+            firstName: formData.get('firstName'),
+            lastName: formData.get('lastName'),
+            phone: formData.get('phone'),
+            email: formData.get('email'),
+            message: formData.get('message'),
+        };
+
+        try {
+            const response = await fetch('/api/contact', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(data),
+            });
+
+            const result = await response.json();
+
+            if (!response.ok) {
+                throw new Error(result.error || 'Something went wrong');
+            }
+
+            setSubmitStatus('success');
+            (e.target as HTMLFormElement).reset();
+        } catch (error) {
+            setSubmitStatus('error');
+            setErrorMessage(error instanceof Error ? error.message : 'Failed to submit form');
+        } finally {
+            setIsSubmitting(false);
+        }
+    };
+
     return (
         <div className="container px-4 py-12 md:px-6">
             <div className="flex flex-col items-center justify-center space-y-4 text-center mb-12">
@@ -87,27 +132,72 @@ export default function ContactPage() {
                         <h2 className="text-2xl font-bold">Send us a message</h2>
                         <p className="text-sm text-muted-foreground">We usually respond within 24 hours.</p>
                     </div>
-                    <form className="space-y-4">
-                        <div className="grid grid-cols-2 gap-4">
+
+                    {submitStatus === 'success' ? (
+                        <div className="flex flex-col items-center justify-center py-12 space-y-4">
+                            <CheckCircle className="h-16 w-16 text-green-500" />
+                            <h3 className="text-xl font-bold text-green-600">Thank You!</h3>
+                            <p className="text-muted-foreground text-center">
+                                Your message has been received. We will contact you soon.
+                            </p>
+                            <Button
+                                variant="outline"
+                                onClick={() => setSubmitStatus('idle')}
+                            >
+                                Send Another Message
+                            </Button>
+                        </div>
+                    ) : (
+                        <form className="space-y-4" onSubmit={handleSubmit}>
+                            <div className="grid grid-cols-2 gap-4">
+                                <div className="space-y-2">
+                                    <Label htmlFor="firstName">First name <span className="text-red-500">*</span></Label>
+                                    <Input id="firstName" name="firstName" placeholder="Akash" required />
+                                </div>
+                                <div className="space-y-2">
+                                    <Label htmlFor="phone">Phone Number <span className="text-red-500">*</span></Label>
+                                    <Input id="phone" name="phone" placeholder="+91 98765 43210" type="tel" required />
+                                </div>
+                            </div>
+
                             <div className="space-y-2">
-                                <Label htmlFor="first-name">First name</Label>
-                                <Input id="first-name" placeholder="Akash" />
+                                <Label htmlFor="lastName">Last name <span className="text-muted-foreground text-xs font-normal">(Optional)</span></Label>
+                                <Input id="lastName" name="lastName" placeholder="Sharma" />
+                            </div>
+
+                            <div className="space-y-2">
+                                <Label htmlFor="email">Email <span className="text-muted-foreground text-xs font-normal">(Optional)</span></Label>
+                                <Input id="email" name="email" placeholder="akash@example.com" type="email" />
                             </div>
                             <div className="space-y-2">
-                                <Label htmlFor="last-name">Last name</Label>
-                                <Input id="last-name" placeholder="Sharma" />
+                                <Label htmlFor="message">Message <span className="text-muted-foreground text-xs font-normal">(Optional)</span></Label>
+                                <Textarea className="min-h-[120px]" id="message" name="message" placeholder="How can we help you?" />
                             </div>
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="email">Email</Label>
-                            <Input id="email" placeholder="akash@example.com" type="email" />
-                        </div>
-                        <div className="space-y-2">
-                            <Label htmlFor="message">Message</Label>
-                            <Textarea className="min-h-[120px]" id="message" placeholder="How can we help you?" />
-                        </div>
-                        <Button className="w-full text-md font-bold" size="lg">Send Message</Button>
-                    </form>
+
+                            {submitStatus === 'error' && (
+                                <div className="flex items-center gap-2 p-3 bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg text-red-600 dark:text-red-400">
+                                    <AlertCircle className="h-5 w-5" />
+                                    <span className="text-sm">{errorMessage}</span>
+                                </div>
+                            )}
+
+                            <Button
+                                className="w-full text-md font-bold"
+                                size="lg"
+                                type="submit"
+                                disabled={isSubmitting}
+                            >
+                                {isSubmitting ? (
+                                    <>
+                                        <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                                        Sending...
+                                    </>
+                                ) : (
+                                    'Send Message'
+                                )}
+                            </Button>
+                        </form>
+                    )}
                 </div>
             </div>
         </div>
