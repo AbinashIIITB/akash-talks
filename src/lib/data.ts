@@ -289,6 +289,7 @@ export const colleges: College[] = [
         tags: ["Oldest Private College", "Core Placements", "Large Campus"],
         established: "1996",
         description: "First private engineering college in West Bengal with massive campus and strong core engineering placements.",
+        imageUrl: "/images/colleges/haldia-institute-of-technology.jpg",
         about: "Haldia Institute of Technology (HIT) was established in 1996 and is the first self-financing engineering college in West Bengal. Located in the industrial hub of Haldia, it offers excellent exposure to core industries like petrochemicals, refineries, and manufacturing. The institute has a sprawling 60-acre campus.",
         highlights: ["First Private Engineering College in WB (1996)", "60-acre Campus", "Strong Core Engineering Focus", "Industrial Location in Haldia", "Good for Mechanical, Chemical, Civil Engineering"],
         infrastructure: ["60-acre Campus", "Central Library", "Hostels for Boys and Girls", "Workshops and Labs", "Sports Ground"],
