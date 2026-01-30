@@ -8,7 +8,15 @@ export function generateStaticParams() {
     }));
 }
 
-export default function ExamDetailPage({ params }: { params: { slug: string } }) {
+// In Next.js 15+, params is a Promise
+interface PageProps {
+    params: Promise<{
+        slug: string;
+    }>;
+}
+
+export default async function ExamDetailPage(props: PageProps) {
+    const params = await props.params;
     const exam = exams.find((e) => e.slug === params.slug);
 
     if (!exam) {
