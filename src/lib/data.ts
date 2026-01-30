@@ -243,7 +243,7 @@ export const colleges: College[] = [
         logoUrl: "/footer-logo.jpg",
         established: "2001",
         description: "Leading private engineering college in Salt Lake with strong industry connections and excellent placement record.",
-        imageUrl: "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
+        imageUrl: "/images/colleges/techno-india-salt-lake.png",
         about: "Techno India Salt Lake is one of the flagship institutes of the Techno India Group, established in 2001. Located in the heart of Salt Lake City, it offers a wide range of undergraduate and postgraduate programs in engineering, management, and computer applications. The college is known for its affordable fee structure and strong industry connections.",
         highlights: ["NAAC Accredited", "Part of Techno India Group", "Affordable Fee Structure", "Strong Industry Connections", "Modern Campus in Salt Lake"],
         infrastructure: ["Modern Campus with IT Labs", "Well-equipped Libraries", "Seminar Halls", "Sports Facilities", "Cafeteria"],
