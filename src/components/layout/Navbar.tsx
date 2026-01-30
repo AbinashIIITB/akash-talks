@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { Menu } from "lucide-react"
+import { Menu, X, ChevronRight } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion } from "framer-motion"
 
@@ -16,6 +16,7 @@ import {
     Sheet,
     SheetContent,
     SheetTrigger,
+    SheetClose,
 } from "@/components/ui/sheet"
 import { cn } from "@/lib/utils"
 
@@ -115,27 +116,60 @@ export function Navbar() {
                                 <span className="sr-only">Toggle Menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="left" className="pr-0 bg-background/95 backdrop-blur-xl">
-                            <Link href="/" className="flex items-center mb-8">
-                                <span className="font-bold text-xl">Akash Talks</span>
-                            </Link>
-                            <div className="flex flex-col space-y-4">
-                                {navLinks.map((link) => {
-                                    const isActive = pathname === link.href
-                                    return (
-                                        <Link
-                                            key={link.href}
-                                            href={link.href}
-                                            className={cn(
-                                                "text-lg font-medium transition-colors hover:text-[#f6c804]",
-                                                isActive ? "text-[#f6c804]" : "text-foreground/70"
-                                            )}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    )
-                                })}
+                        <SheetContent side="top" hideCloseButton className="w-full h-[100dvh] p-0 border-none flex flex-col" style={{ backgroundColor: mounted ? (resolvedTheme === 'dark' ? '#0f172b' : '#f8fafc') : '#f8fafc' }}>
+                            {/* Header */}
+                            <div className="flex items-center justify-between px-6 py-4 border-b border-dashed border-border/50">
+                                <Link href="/" className="flex items-center">
+                                    <span className="font-bold text-xl text-[#f6c804]">Akash Talks</span>
+                                </Link>
+                                <div className="flex items-center gap-4">
+                                    <Search />
+                                    <SheetTrigger asChild>
+                                        <Button variant="ghost" size="icon" className="h-8 w-8 rounded-full">
+                                            <X className="h-5 w-5" />
+                                        </Button>
+                                    </SheetTrigger>
+                                </div>
+                            </div>
 
+                            {/* Nav Links */}
+                            <div className="flex-1 overflow-y-auto py-2">
+                                <div className="flex flex-col">
+                                    {navLinks.map((link) => (
+                                        <SheetClose asChild key={link.href}>
+                                            <Link
+                                                href={link.href}
+                                                className="flex items-center justify-between px-6 py-5 border-b border-dashed border-border/50 group"
+                                            >
+                                                <span className={cn(
+                                                    "text-lg font-medium transition-colors",
+                                                    pathname === link.href ? "text-[#f6c804]" : "text-foreground group-hover:text-[#f6c804]"
+                                                )}>
+                                                    {link.name}
+                                                </span>
+                                                <ChevronRight className="h-5 w-5 text-muted-foreground group-hover:text-[#f6c804] transition-colors" />
+                                            </Link>
+                                        </SheetClose>
+                                    ))}
+                                </div>
+                            </div>
+
+                            {/* Footer Actions */}
+                            <div className="p-6 pb-8 space-y-4 mt-auto" style={{ backgroundColor: mounted ? (resolvedTheme === 'dark' ? '#0f172b' : '#f8fafc') : '#f8fafc' }}>
+                                <SheetClose asChild>
+                                    <Link href="/contact" className="block w-full">
+                                        <Button className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold rounded-full text-base flex justify-between items-center px-6">
+                                            Book Free Consultation
+                                            <ChevronRight className="h-5 w-5" />
+                                        </Button>
+                                    </Link>
+                                </SheetClose>
+
+                                <SheetClose asChild>
+                                    <Link href="https://wa.me/919874878782" target="_blank" className="flex items-center justify-center gap-2 text-[#f6c804] font-medium hover:underline">
+                                        Whatsapp us <ChevronRight className="h-4 w-4" />
+                                    </Link>
+                                </SheetClose>
                             </div>
                         </SheetContent>
                     </Sheet>

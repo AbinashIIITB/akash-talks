@@ -1,13 +1,20 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, Phone } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import Link from "next/link";
 
 export function FloatingContact() {
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
+
+    // Open by default only on desktop
+    useEffect(() => {
+        if (window.innerWidth >= 768) {
+            setIsOpen(true);
+        }
+    }, []);
 
     return (
         <div className="fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none">
@@ -17,18 +24,18 @@ export function FloatingContact() {
                         initial={{ opacity: 0, y: 20, scale: 0.9 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         exit={{ opacity: 0, y: 20, scale: 0.9 }}
-                        className="pointer-events-auto relative w-[320px] rounded-3xl bg-white border border-gray-100 shadow-[0_8px_30px_rgb(0,0,0,0.12)] dark:bg-zinc-900 dark:border-zinc-800 p-6 pt-8 pr-4"
+                        className="pointer-events-auto relative w-[320px] rounded-3xl bg-zinc-900 border border-zinc-800 shadow-[0_8px_30px_rgb(0,0,0,0.5)] p-6 pt-8 pr-4"
                     >
                         {/* Close Button */}
                         <button
                             onClick={() => setIsOpen(false)}
-                            className="absolute left-4 top-4 z-20 text-muted-foreground/50 hover:text-foreground transition-colors"
+                            className="absolute left-4 top-4 z-20 text-zinc-500 hover:text-white transition-colors"
                         >
                             <X className="h-4 w-4" />
                         </button>
 
                         {/* Pop-out Image */}
-                        <div className="absolute -top-10 -right-4 w-28 h-28 rounded-full border-4 border-background bg-zinc-100 overflow-hidden shadow-lg">
+                        <div className="absolute -top-10 -right-4 w-28 h-28 rounded-full border-4 border-zinc-900 bg-zinc-800 overflow-hidden shadow-lg">
                             <img
                                 src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?q=80&w=400&auto=format&fit=crop"
                                 alt="Counselor"
@@ -38,10 +45,10 @@ export function FloatingContact() {
 
                         <div className="flex flex-col gap-3 mt-4">
                             <div className="pr-16">
-                                <h3 className="text-lg font-bold leading-tight text-foreground">
+                                <h3 className="text-lg font-bold leading-tight text-white">
                                     Get a Free <span className="text-[#f6c804]">Consultation</span>
                                 </h3>
-                                <p className="mt-2 text-xs text-muted-foreground leading-relaxed">
+                                <p className="mt-2 text-xs text-zinc-400 leading-relaxed">
                                     Connect with our counselors for guidance on colleges & exams.
                                 </p>
                             </div>
