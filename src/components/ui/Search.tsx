@@ -101,10 +101,10 @@ export function Search() {
                 ) : (
                     <button
                         onClick={() => setIsOpen(true)}
-                        className="h-10 w-10 flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"
+                        className="h-8 w-8 flex items-center justify-center rounded-full hover:bg-muted/50 transition-colors"
                         aria-label="Search"
                     >
-                        <SearchIcon className="h-5 w-5 text-foreground/70" />
+                        <SearchIcon className="h-4 w-4 text-foreground/70" />
                     </button>
                 )}
             </div>
