@@ -143,7 +143,7 @@ export default function Home() {
                 {/* Phone Numbers */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-wrap justify-center gap-5 md:gap-6 text-xs md:text-sm text-muted-foreground pt-4"
+                  className="flex flex-wrap justify-center gap-5 md:gap-6 text-sm md:text-sm text-muted-foreground pt-4"
                 >
                   {companyInfo.phones.map((phone) => (
                     <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
