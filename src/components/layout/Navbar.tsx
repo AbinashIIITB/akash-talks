@@ -33,6 +33,7 @@ export function Navbar() {
         { name: "Home", href: "/" },
         { name: "Colleges", href: "/colleges" },
         { name: "Exams", href: "/exams" },
+        { name: "About Us", href: "/about" },
     ]
 
     return (

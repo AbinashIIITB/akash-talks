@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { Metadata } from "next";
 
 import { colleges } from "@/lib/data";
 import { Button } from "@/components/ui/button";
@@ -18,6 +19,149 @@ interface PageProps {
     params: Promise<{
         slug: string;
     }>;
+}
+
+// Dynamic metadata generation for SEO
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+    const resolvedParams = await params;
+    const college = colleges.find((c) => c.slug === resolvedParams.slug);
+
+    if (!college) {
+        return {
+            title: "College Not Found",
+            description: "The requested college page could not be found.",
+        };
+    }
+
+    const title = `${college.name} - Admission, Fees, Placements, Cutoffs 2026`;
+    const description = `Get admission in ${college.name}, ${college.location}. Courses: ${college.courses.join(", ")}. Fees: ${college.fees}. ${college.placements ? `Highest Package: ${college.placements.stats[0]?.value}` : ""} Apply through Akash Talks for expert guidance.`;
+
+    const keywords = [
+        college.name,
+        `${college.name} admission`,
+        `${college.name} fees`,
+        `${college.name} placements`,
+        `${college.name} cutoff`,
+        `${college.name} reviews`,
+        ...college.courses.map(c => `${c} in ${college.location}`),
+        `engineering colleges in ${college.state}`,
+        `B.Tech admission ${college.location}`,
+        college.location,
+        college.state,
+    ];
+
+    return {
+        title,
+        description,
+        keywords,
+        openGraph: {
+            title,
+            description,
+            url: `https://www.akashtalks.in/colleges/${college.slug}`,
+            siteName: "Akash Talks",
+            locale: "en_IN",
+            type: "website",
+            images: college.imageUrl ? [
+                {
+                    url: college.imageUrl,
+                    width: 1200,
+                    height: 630,
+                    alt: college.name,
+                },
+            ] : undefined,
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: college.imageUrl ? [college.imageUrl] : undefined,
+        },
+        alternates: {
+            canonical: `https://www.akashtalks.in/colleges/${college.slug}`,
+        },
+    };
+}
+
+// JSON-LD Structured Data Component
+function CollegeJsonLd({ college }: { college: typeof colleges[0] }) {
+    const educationalOrgSchema = {
+        "@context": "https://schema.org",
+        "@type": "EducationalOrganization",
+        "name": college.name,
+        "description": college.about || college.description,
+        "address": {
+            "@type": "PostalAddress",
+            "addressLocality": college.location,
+            "addressRegion": college.state,
+            "addressCountry": "IN"
+        },
+        "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": college.rating,
+            "reviewCount": college.reviews,
+            "bestRating": 5,
+            "worstRating": 1
+        },
+        ...(college.established && { "foundingDate": college.established }),
+        ...(college.contact?.website && { "url": college.contact.website }),
+    };
+
+    const faqSchema = college.faqs && college.faqs.length > 0 ? {
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": college.faqs.map(faq => ({
+            "@type": "Question",
+            "name": faq.question,
+            "acceptedAnswer": {
+                "@type": "Answer",
+                "text": faq.answer
+            }
+        }))
+    } : null;
+
+    const breadcrumbSchema = {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+            {
+                "@type": "ListItem",
+                "position": 1,
+                "name": "Home",
+                "item": "https://www.akashtalks.in"
+            },
+            {
+                "@type": "ListItem",
+                "position": 2,
+                "name": "Colleges",
+                "item": "https://www.akashtalks.in/colleges"
+            },
+            {
+                "@type": "ListItem",
+                "position": 3,
+                "name": college.name,
+                "item": `https://www.akashtalks.in/colleges/${college.slug}`
+            }
+        ]
+    };
+
+    return (
+        <>
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(educationalOrgSchema) }}
+            />
+            {faqSchema && (
+                <script
+                    type="application/ld+json"
+                    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+                />
+            )}
+            <script
+                type="application/ld+json"
+                dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+            />
+        </>
+    );
 }
 
 export default async function CollegeDetailPage(props: PageProps) {
@@ -50,6 +194,9 @@ export default async function CollegeDetailPage(props: PageProps) {
 
     return (
         <div className="min-h-screen bg-background pb-20">
+            {/* JSON-LD Structured Data */}
+            <CollegeJsonLd college={college} />
+
             {/* Hero Section */}
             <div className="relative h-[400px] w-full bg-slate-900 overflow-hidden">
                 <div className="absolute inset-0 bg-black/50 z-10" />
