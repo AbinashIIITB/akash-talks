@@ -3,8 +3,8 @@
 import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
-import { usePathname } from "next/navigation"
-import { ChevronRight, Search as SearchIcon } from "lucide-react"
+import { usePathname, useRouter } from "next/navigation"
+import { ChevronRight, Search as SearchIcon, X } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -19,6 +19,7 @@ export function Navbar() {
     const { resolvedTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
+    const [isSearchOpen, setIsSearchOpen] = React.useState(false)
     const pathname = usePathname()
 
     React.useEffect(() => {
@@ -159,29 +160,51 @@ export function Navbar() {
                         >
                             {/* Header with close button in same position */}
                             <div className="absolute top-0 left-0 right-0 h-16 flex items-center justify-between px-4" style={{ backgroundColor: bgColor }}>
-                                <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
-                                    <span className="font-bold text-xl text-[#f6c804]">Akash Talks</span>
-                                </Link>
-                                <div className="flex items-center gap-3">
-                                    <button
-                                        onClick={() => {
-                                            setIsMenuOpen(false)
-                                            // Small delay to let menu close animation start
-                                            setTimeout(() => {
-                                                const searchButton = document.querySelector('[aria-label="Search"]') as HTMLButtonElement
-                                                searchButton?.click()
-                                            }, 100)
-                                        }}
-                                        className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
-                                        aria-label="Open Search"
-                                    >
-                                        <SearchIcon className="h-4 w-4 text-[#f6c804]" />
-                                    </button>
-                                    <MorphingMenuButton
-                                        isOpen={isMenuOpen}
-                                        onClick={() => setIsMenuOpen(false)}
-                                    />
-                                </div>
+                                {isSearchOpen ? (
+                                    <>
+                                        <div className="flex-1 flex items-center gap-2">
+                                            <input
+                                                type="text"
+                                                placeholder="Search..."
+                                                autoFocus
+                                                className="flex-1 h-10 px-4 rounded-lg bg-[#f6c804]/10 border-none outline-none text-foreground placeholder:text-muted-foreground"
+                                                onKeyDown={(e) => {
+                                                    if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                                                        setIsMenuOpen(false)
+                                                        setIsSearchOpen(false)
+                                                        window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
+                                                    }
+                                                }}
+                                            />
+                                        </div>
+                                        <button
+                                            onClick={() => setIsSearchOpen(false)}
+                                            className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20 ml-2"
+                                            aria-label="Close Search"
+                                        >
+                                            <X className="h-4 w-4 text-[#f6c804]" />
+                                        </button>
+                                    </>
+                                ) : (
+                                    <>
+                                        <Link href="/" className="flex items-center" onClick={() => setIsMenuOpen(false)}>
+                                            <span className="font-bold text-xl text-[#f6c804]">Akash Talks</span>
+                                        </Link>
+                                        <div className="flex items-center gap-3">
+                                            <button
+                                                onClick={() => setIsSearchOpen(true)}
+                                                className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
+                                                aria-label="Open Search"
+                                            >
+                                                <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                                            </button>
+                                            <MorphingMenuButton
+                                                isOpen={isMenuOpen}
+                                                onClick={() => setIsMenuOpen(false)}
+                                            />
+                                        </div>
+                                    </>
+                                )}
                             </div>
 
                             {/* Nav Links */}
