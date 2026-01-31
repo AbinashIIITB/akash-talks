@@ -41,9 +41,9 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
         });
     }
 
-    // Ensure headers exist on row 2 (row 1 is the title row)
-    await sheet.loadHeaderRow(2).catch(async () => {
-        await sheet.setHeaderRow(['First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Submitted At'], 2);
+    // Ensure headers exist
+    await sheet.loadHeaderRow().catch(async () => {
+        await sheet.setHeaderRow(['First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Submitted At']);
     });
 
     // Add the new row

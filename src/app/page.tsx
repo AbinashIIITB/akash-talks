@@ -84,14 +84,14 @@ export default function Home() {
         >
           <div className="relative bg-transparent rounded-[2.5rem] shadow-2xl overflow-hidden">
             {/* Inner Content */}
-            <div className="relative z-10 px-4 md:px-12 lg:px-16 py-2 md:py-12">
+            <div className="relative z-10 px-4 md:px-12 lg:px-16 py-6 md:py-12">
 
               {/* Hero Content */}
               <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                className="text-center space-y-2 md:space-y-6 py-2 md:py-12"
+                className="text-center space-y-4 md:space-y-6 py-6 md:py-12"
               >
                 {/* Headline */}
                 <motion.h1
@@ -107,7 +107,7 @@ export default function Home() {
                 {/* Specific Description Text */}
                 <motion.p
                   variants={fadeInUp}
-                  className="text-white/80 text-sm md:text-xl max-w-3xl mx-auto pt-1 md:pt-4"
+                  className="text-white/80 text-base md:text-xl max-w-3xl mx-auto pt-3 md:pt-4"
                 >
                   Get admission in top colleges of West Bengal, Maharastra, Karnataka, Tamil Nadu, Uttarakhand & Odisha
                 </motion.p>
@@ -115,7 +115,7 @@ export default function Home() {
                 {/* Buttons */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-col sm:flex-row gap-2 md:gap-4 justify-center pt-1 md:pt-4 items-center"
+                  className="flex flex-col sm:flex-row gap-4 md:gap-4 justify-center pt-4 md:pt-4 items-center"
                 >
                   <Link href="/colleges">
                     <Button
@@ -143,7 +143,7 @@ export default function Home() {
                 {/* Phone Numbers */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-wrap justify-center gap-3 md:gap-6 text-xs md:text-sm text-muted-foreground pt-1"
+                  className="flex flex-wrap justify-center gap-5 md:gap-6 text-xs md:text-sm text-muted-foreground pt-4"
                 >
                   {companyInfo.phones.map((phone) => (
                     <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
@@ -158,7 +158,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="flex flex-wrap justify-center gap-2 md:gap-4 pb-1 md:pb-4 pt-2 md:pt-0"
+                className="flex flex-wrap justify-center gap-3 md:gap-4 pb-4 md:pb-4 mt-4 md:mt-0"
               >
                 <div className="animate-float flex items-center gap-1.5 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-3 md:px-5 py-1.5 md:py-2.5 text-xs md:text-sm font-medium">
                   <Shield className="h-3 w-3 md:h-4 md:w-4 text-[#f6c804]" /> Trusted
