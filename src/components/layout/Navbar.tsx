@@ -4,7 +4,7 @@ import * as React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { usePathname } from "next/navigation"
-import { ChevronRight } from "lucide-react"
+import { ChevronRight, Search as SearchIcon } from "lucide-react"
 import { useTheme } from "next-themes"
 import { motion, AnimatePresence } from "framer-motion"
 
@@ -163,7 +163,20 @@ export function Navbar() {
                                     <span className="font-bold text-xl text-[#f6c804]">Akash Talks</span>
                                 </Link>
                                 <div className="flex items-center gap-3">
-                                    <Search />
+                                    <button
+                                        onClick={() => {
+                                            setIsMenuOpen(false)
+                                            // Small delay to let menu close animation start
+                                            setTimeout(() => {
+                                                const searchButton = document.querySelector('[aria-label="Search"]') as HTMLButtonElement
+                                                searchButton?.click()
+                                            }, 100)
+                                        }}
+                                        className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
+                                        aria-label="Open Search"
+                                    >
+                                        <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                                    </button>
                                     <MorphingMenuButton
                                         isOpen={isMenuOpen}
                                         onClick={() => setIsMenuOpen(false)}
