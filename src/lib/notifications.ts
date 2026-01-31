@@ -91,3 +91,49 @@ export async function sendTelegramNotification(data: ContactFormData): Promise<v
         console.error('Telegram notification failed:', await response.text());
     }
 }
+
+/**
+ * Send WhatsApp notification to admin using Callmebot
+ * 
+ * To set up:
+ * 1. Save the Callmebot phone number +34 644 66 51 16 to your contacts
+ * 2. Send "I allow callmebot to send me messages" to this number via WhatsApp
+ * 3. You'll receive an API key
+ * 4. Add WHATSAPP_PHONE (your phone with country code, e.g., 919874878782)
+ * 5. Add WHATSAPP_API_KEY to your environment variables
+ * 
+ * Alternative: Use Twilio WhatsApp API for production
+ */
+export async function sendWhatsAppNotification(data: ContactFormData): Promise<void> {
+    const phone = process.env.WHATSAPP_PHONE;
+    const apiKey = process.env.WHATSAPP_API_KEY;
+
+    if (!phone || !apiKey) {
+        console.warn('WhatsApp notification skipped: Missing WHATSAPP_PHONE or WHATSAPP_API_KEY');
+        return;
+    }
+
+    const message =
+        `🔔 *New Contact Form Submission*\n\n` +
+        `👤 *Name:* ${data.firstName} ${data.lastName || ''}\n` +
+        `📞 *Phone:* ${data.phone}\n` +
+        `📧 *Email:* ${data.email || 'Not provided'}\n` +
+        `💬 *Message:* ${data.message || 'No message'}\n\n` +
+        `🕐 ${data.submittedAt}`;
+
+    // URL encode the message
+    const encodedMessage = encodeURIComponent(message);
+    const url = `https://api.callmebot.com/whatsapp.php?phone=${phone}&text=${encodedMessage}&apikey=${apiKey}`;
+
+    try {
+        const response = await fetch(url);
+
+        if (!response.ok) {
+            console.error('WhatsApp notification failed:', await response.text());
+        } else {
+            console.log('WhatsApp notification sent successfully');
+        }
+    } catch (error) {
+        console.error('WhatsApp notification error:', error);
+    }
+}

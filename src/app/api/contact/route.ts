@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { appendToGoogleSheet } from '@/lib/google-sheets';
-import { sendEmailNotification, sendTelegramNotification } from '@/lib/notifications';
+import { sendEmailNotification, sendTelegramNotification, sendWhatsAppNotification } from '@/lib/notifications';
 
 export async function POST(request: NextRequest) {
     try {
@@ -30,12 +30,13 @@ export async function POST(request: NextRequest) {
             appendToGoogleSheet(formData),
             sendEmailNotification(formData),
             sendTelegramNotification(formData),
+            sendWhatsAppNotification(formData),
         ]);
 
         // Log any failures but don't fail the request
         results.forEach((result, index) => {
             if (result.status === 'rejected') {
-                const operations = ['Google Sheets', 'Email', 'Telegram'];
+                const operations = ['Google Sheets', 'Email', 'Telegram', 'WhatsApp'];
                 console.error(`${operations[index]} operation failed:`, result.reason);
             }
         });
