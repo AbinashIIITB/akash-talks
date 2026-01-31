@@ -62,7 +62,7 @@ export default function Home() {
             src="/college.jpg"
             alt="College Campus"
             fill
-            className={`object-cover transition-all duration-1000 ease-out ${imageLoaded ? 'blur-0 scale-100' : 'blur-xl scale-105 brightness-50'}`}
+            className={`object-cover transition-all duration-1000 ease-out md:object-center object-[center_40%] ${imageLoaded ? 'blur-0 scale-100' : 'blur-xl scale-105 brightness-50'}`}
             priority
             onLoad={() => setImageLoaded(true)}
           />
@@ -84,19 +84,19 @@ export default function Home() {
         >
           <div className="relative bg-transparent rounded-[2.5rem] shadow-2xl overflow-hidden">
             {/* Inner Content */}
-            <div className="relative z-10 px-4 md:px-12 lg:px-16 py-4 md:py-12">
+            <div className="relative z-10 px-5 md:px-12 lg:px-16 py-6 md:py-12">
 
               {/* Hero Content */}
               <motion.div
                 variants={staggerContainer}
                 initial="hidden"
                 animate="visible"
-                className="text-center space-y-3 md:space-y-6 py-4 md:py-12"
+                className="text-center space-y-4 md:space-y-6 py-6 md:py-12"
               >
                 {/* Headline */}
                 <motion.h1
                   variants={fadeInUp}
-                  className="text-3xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-7xl"
+                  className="text-4xl font-bold tracking-tight sm:text-4xl md:text-5xl lg:text-7xl"
                 >
                   Unlock Your{" "}
                   <span className="gradient-text-yellow">Future</span>
@@ -107,7 +107,7 @@ export default function Home() {
                 {/* Specific Description Text */}
                 <motion.p
                   variants={fadeInUp}
-                  className="text-white/80 text-base md:text-xl max-w-3xl mx-auto pt-2 md:pt-4"
+                  className="text-white/80 text-base md:text-xl max-w-3xl mx-auto pt-3 md:pt-4"
                 >
                   Get admission in top colleges of West Bengal, Maharastra, Karnataka, Tamil Nadu, Uttarakhand & Odisha
                 </motion.p>
@@ -115,12 +115,12 @@ export default function Home() {
                 {/* Buttons */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center pt-2 md:pt-4 items-center"
+                  className="flex flex-col sm:flex-row gap-4 md:gap-4 justify-center pt-4 md:pt-4 items-center"
                 >
                   <Link href="/colleges">
                     <Button
                       size="lg"
-                      className="h-12 md:h-14 px-8 md:px-10 text-base md:text-lg font-semibold bg-[#f6c804] hover:bg-[#e5b703] text-black rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(246,200,4,0.5)] transition-all duration-300"
+                      className="h-14 md:h-14 px-10 md:px-10 text-lg md:text-lg font-semibold bg-[#f6c804] hover:bg-[#e5b703] text-black rounded-full hover:scale-105 hover:shadow-[0_0_30px_rgba(246,200,4,0.5)] transition-all duration-300"
                     >
                       Explore Colleges <ArrowRight className="ml-2 h-4 w-4 md:h-5 md:w-5" />
                     </Button>
@@ -131,7 +131,7 @@ export default function Home() {
                       <Button
                         variant="outline"
                         size="lg"
-                        className="h-12 md:h-14 px-8 md:px-10 text-base md:text-lg rounded-full bg-secondary/50 backdrop-blur-sm border-white/40 dark:border-white hover:bg-white/10 hover:scale-105 hover:shadow-lg transition-all duration-300 text-white"
+                        className="h-14 md:h-14 px-10 md:px-10 text-lg md:text-lg rounded-full bg-secondary/50 backdrop-blur-sm border-white/40 dark:border-white hover:bg-white/10 hover:scale-105 hover:shadow-lg transition-all duration-300 text-white"
                       >
                         <Phone className="mr-2 h-5 w-5" />
                         Book Free Consultation
@@ -143,7 +143,7 @@ export default function Home() {
                 {/* Phone Numbers */}
                 <motion.div
                   variants={fadeInUp}
-                  className="flex flex-wrap justify-center gap-4 md:gap-6 text-xs md:text-sm text-muted-foreground pt-2"
+                  className="flex flex-wrap justify-center gap-5 md:gap-6 text-xs md:text-sm text-muted-foreground pt-4"
                 >
                   {companyInfo.phones.map((phone) => (
                     <a key={phone} href={`tel:${phone.replace(/\s/g, '')}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
@@ -158,7 +158,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="flex flex-wrap justify-center gap-2 md:gap-4 pb-2 md:pb-4"
+                className="flex flex-wrap justify-center gap-3 md:gap-4 pb-4 md:pb-4 mt-4 md:mt-0"
               >
                 <div className="animate-float flex items-center gap-1.5 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-3 md:px-5 py-1.5 md:py-2.5 text-xs md:text-sm font-medium">
                   <Shield className="h-3 w-3 md:h-4 md:w-4 text-[#f6c804]" /> Trusted
