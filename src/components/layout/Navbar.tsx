@@ -288,15 +288,9 @@ export function Navbar() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.3, delay: 0.4 }}
-                                className="p-6 pb-8 space-y-4 mt-auto"
+                                className="p-6 pb-8 mt-auto"
                                 style={{ backgroundColor: bgColor }}
                             >
-                                <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block w-full">
-                                    <Button className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold rounded-full text-base flex justify-between items-center px-6">
-                                        Book Free Consultation
-                                        <ChevronRight className="h-5 w-5" />
-                                    </Button>
-                                </Link>
 
                                 <Link
                                     href="https://wa.me/919874878782"
