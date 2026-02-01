@@ -73,8 +73,6 @@ export function CounsellingDialog() {
                             className="relative w-full max-w-md bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
                             onClick={(e) => e.stopPropagation()}
                         >
-                            {/* Header - Yellow accent bar */}
-                            <div className="h-1 bg-[#f6c804]" />
 
                             {/* Close button */}
                             <button
@@ -117,7 +115,7 @@ export function CounsellingDialog() {
                                                         placeholder="Enter your full name"
                                                         value={formData.fullName}
                                                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 placeholder:text-xs focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
                                                     />
                                                 </div>
                                             </div>
@@ -133,7 +131,7 @@ export function CounsellingDialog() {
                                                         placeholder="Enter your phone number"
                                                         value={formData.phone}
                                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 placeholder:text-xs focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
                                                     />
                                                 </div>
                                             </div>
