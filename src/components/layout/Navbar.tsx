@@ -13,6 +13,7 @@ import { Search } from "@/components/ui/Search"
 import { AnimatedThemeToggle } from "@/components/ui/AnimatedThemeToggle"
 import { LayoutContainer } from "@/components/layout/LayoutContainer"
 import { MorphingMenuButton } from "@/components/ui/MorphingMenuButton"
+import { useCounsellingDialog } from "@/components/providers/CounsellingDialogProvider"
 import { cn } from "@/lib/utils"
 
 export function Navbar() {
@@ -21,6 +22,7 @@ export function Navbar() {
     const [isMenuOpen, setIsMenuOpen] = React.useState(false)
     const [isSearchOpen, setIsSearchOpen] = React.useState(false)
     const pathname = usePathname()
+    const { openDialog } = useCounsellingDialog()
 
     React.useEffect(() => {
         setMounted(true)
@@ -343,7 +345,6 @@ export function Navbar() {
                                 </div>
                             </div>
 
-                            {/* Footer Actions */}
                             <motion.div
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -351,12 +352,13 @@ export function Navbar() {
                                 className="p-6 pb-8 space-y-4 mt-auto"
                                 style={{ backgroundColor: bgColor }}
                             >
-                                <Link href="/contact" onClick={() => setIsMenuOpen(false)} className="block w-full">
-                                    <Button className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold rounded-full text-base flex justify-between items-center px-6">
-                                        Book Free Consultation
-                                        <ChevronRight className="h-5 w-5" />
-                                    </Button>
-                                </Link>
+                                <Button
+                                    onClick={() => { setIsMenuOpen(false); openDialog(); }}
+                                    className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold rounded-full text-base flex justify-between items-center px-6"
+                                >
+                                    Book Free Consultation
+                                    <ChevronRight className="h-5 w-5" />
+                                </Button>
 
                                 <Link
                                     href="https://wa.me/919874878782"

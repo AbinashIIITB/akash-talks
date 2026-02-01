@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { companyInfo } from "@/lib/data"
-import { ArrowUpRight, MessageCircle, Youtube, Twitter, Facebook } from "lucide-react"
+import { ArrowUpRight, MessageCircle, Youtube, Facebook } from "lucide-react"
 
 export function Footer() {
     return (
@@ -29,6 +29,7 @@ export function Footer() {
 
                         <nav className="flex flex-col space-y-4 text-gray-300">
                             <Link href="/" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Home</Link>
+                            <Link href="/about" className="hover:text-[#f6c804] transition-colors text-lg w-fit">About Us</Link>
                             <Link href="/colleges" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Colleges</Link>
                             <Link href="/exams" className="hover:text-[#f6c804] transition-colors text-lg w-fit">Exams</Link>
                         </nav>
@@ -39,7 +40,7 @@ export function Footer() {
                                 href="https://www.instagram.com/akash_talks/?utm_source=ig_profile_share"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                className="p-3 rounded-full bg-white/5 hover:bg-gradient-to-tr hover:from-pink-500 hover:via-red-500 hover:to-yellow-500 hover:text-white transition-all duration-300"
                                 aria-label="Instagram"
                             >
                                 <svg
@@ -62,25 +63,34 @@ export function Footer() {
                                 href="https://facebook.com/profile.php?id=61582065763156"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                className="p-3 rounded-full bg-white/5 hover:bg-blue-600 hover:text-white transition-all duration-300"
                                 aria-label="Facebook"
                             >
                                 <Facebook className="h-5 w-5" />
                             </a>
                             <a
-                                href="https://twitter.com/akash_talks"
+                                href="https://x.com/akash_talks"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
-                                aria-label="Twitter"
+                                className="p-3 rounded-full bg-white/5 hover:bg-black hover:text-white transition-all duration-300"
+                                aria-label="X"
                             >
-                                <Twitter className="h-5 w-5" />
+                                {/* X (Twitter) Icon */}
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="20"
+                                    height="20"
+                                    viewBox="0 0 24 24"
+                                    fill="currentColor"
+                                >
+                                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+                                </svg>
                             </a>
                             <a
-                                href="https://youtube.com/@featuredColleges"
+                                href="https://www.youtube.com/@akash_talks"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="p-3 rounded-full bg-white/5 hover:bg-[#f6c804] hover:text-black transition-all duration-300"
+                                className="p-3 rounded-full bg-white/5 hover:bg-red-600 hover:text-white transition-all duration-300"
                                 aria-label="YouTube"
                             >
                                 <Youtube className="h-5 w-5" />

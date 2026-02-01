@@ -2,11 +2,13 @@ import { GoogleSpreadsheet } from 'google-spreadsheet';
 import { JWT } from 'google-auth-library';
 
 export interface ContactFormData {
+    leadType?: string;
     firstName: string;
     lastName?: string;
     phone: string;
     email?: string;
     message?: string;
+    interestedCollege?: string;
     submittedAt: string;
 }
 
@@ -31,28 +33,26 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
     const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
     await doc.loadInfo();
 
-    // Get the first sheet or create one
+    // Get the first sheet
     let sheet = doc.sheetsByIndex[0];
 
     if (!sheet) {
         sheet = await doc.addSheet({
             title: 'Contact Form Submissions',
-            headerValues: ['First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Submitted At'],
+            headerValues: ['Lead Type', 'First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Intrested College', 'Submitted At'],
         });
     }
 
-    // Ensure headers exist
-    await sheet.loadHeaderRow().catch(async () => {
-        await sheet.setHeaderRow(['First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Submitted At']);
-    });
-
-    // Add the new row
+    // Add the new row with all columns
     await sheet.addRow({
+        'Lead Type': data.leadType || 'Contact Us',
         'First Name': data.firstName,
         'Last Name': data.lastName || '',
         'Phone': data.phone,
         'Email': data.email || '',
         'Message': data.message || '',
+        'Intrested College': data.interestedCollege || '',
         'Submitted At': data.submittedAt,
     });
 }
+

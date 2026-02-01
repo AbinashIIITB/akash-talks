@@ -1,11 +1,13 @@
 import { Resend } from 'resend';
 
 export interface ContactFormData {
+    leadType?: string;
     firstName: string;
     lastName?: string;
     phone: string;
     email?: string;
     message?: string;
+    interestedCollege?: string;
     submittedAt: string;
 }
 
@@ -23,16 +25,19 @@ export async function sendEmailNotification(data: ContactFormData): Promise<void
 
     try {
         const resend = new Resend(resendApiKey);
+        const leadType = data.leadType || 'Contact Us';
 
         const result = await resend.emails.send({
             from: 'Akash Talks <onboarding@resend.dev>',
             to: adminEmail,
-            subject: `New Contact Form Submission from ${data.firstName}`,
+            subject: `[${leadType}] New Lead from ${data.firstName}`,
             html: `
-          <h2>New Contact Form Submission</h2>
+          <h2>New ${leadType} Lead</h2>
+          <p><strong>Lead Type:</strong> ${leadType}</p>
           <p><strong>Name:</strong> ${data.firstName} ${data.lastName || ''}</p>
           <p><strong>Phone:</strong> ${data.phone}</p>
           <p><strong>Email:</strong> ${data.email || 'Not provided'}</p>
+          ${data.interestedCollege ? `<p><strong>Interested College:</strong> ${data.interestedCollege}</p>` : ''}
           <p><strong>Message:</strong></p>
           <p>${data.message || 'No message'}</p>
           <hr>
@@ -67,12 +72,17 @@ export async function sendTelegramNotification(data: ContactFormData): Promise<v
         return;
     }
 
+    const leadType = data.leadType || 'Contact Us';
+    const collegeInfo = data.interestedCollege ? `\n🏫 *College:* ${data.interestedCollege}` : '';
+
     const message =
-        `🔔 *New Contact Form Submission*\n\n` +
+        `🔔 *New ${leadType} Lead*\n\n` +
+        `📋 *Type:* ${leadType}\n` +
         `👤 *Name:* ${data.firstName} ${data.lastName || ''}\n` +
         `📞 *Phone:* ${data.phone}\n` +
-        `📧 *Email:* ${data.email || 'Not provided'}\n` +
-        `💬 *Message:* ${data.message || 'No message'}\n\n` +
+        `📧 *Email:* ${data.email || 'Not provided'}` +
+        collegeInfo +
+        `\n💬 *Message:* ${data.message || 'No message'}\n\n` +
         `🕐 ${data.submittedAt}`;
 
     const url = `https://api.telegram.org/bot${botToken}/sendMessage`;

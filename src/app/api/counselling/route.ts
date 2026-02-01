@@ -1,49 +1,52 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { appendToGoogleSheet } from '@/lib/google-sheets';
-import { sendEmailNotification, sendTelegramNotification, sendWhatsAppNotification } from '@/lib/notifications';
+import { sendEmailNotification, sendTelegramNotification } from '@/lib/notifications';
 
 export async function POST(request: NextRequest) {
     try {
         const body = await request.json();
 
-        // Validate required fields
-        const { firstName, phone } = body;
+        const { fullName, phone } = body;
 
-        if (!firstName || !phone) {
+        if (!fullName || !phone) {
             return NextResponse.json(
-                { error: 'First name and phone number are required' },
+                { error: 'Full name and phone number are required' },
                 { status: 400 }
             );
         }
 
+        // Split full name into first and last
+        const nameParts = fullName.trim().split(' ');
+        const firstName = nameParts[0] || '';
+        const lastName = nameParts.slice(1).join(' ') || '';
+
         const formData = {
-            leadType: body.leadType || 'Contact Us',
-            firstName: body.firstName,
-            lastName: body.lastName || '',
-            phone: body.phone,
-            email: body.email || '',
-            message: body.message || '',
-            interestedCollege: body.interestedCollege || '',
+            leadType: 'Free Counselling',
+            firstName,
+            lastName,
+            phone,
+            email: '',
+            message: '',
+            interestedCollege: '',
             submittedAt: new Date().toLocaleString('en-IN', { timeZone: 'Asia/Kolkata' }),
         };
 
-        // Run all operations in parallel for faster response
+        // Run all operations in parallel
         const results = await Promise.allSettled([
             appendToGoogleSheet(formData),
             sendEmailNotification(formData),
             sendTelegramNotification(formData),
-            sendWhatsAppNotification(formData),
         ]);
 
-        // Log any failures but don't fail the request
+        // Log any failures
         results.forEach((result, index) => {
             if (result.status === 'rejected') {
-                const operations = ['Google Sheets', 'Email', 'Telegram', 'WhatsApp'];
+                const operations = ['Google Sheets', 'Email', 'Telegram'];
                 console.error(`${operations[index]} operation failed:`, result.reason);
             }
         });
 
-        // Check if at least Google Sheets succeeded
+        // Check if Google Sheets succeeded
         if (results[0].status === 'rejected') {
             return NextResponse.json(
                 { error: 'Failed to save your submission. Please try again.' },
@@ -57,7 +60,7 @@ export async function POST(request: NextRequest) {
         );
 
     } catch (error) {
-        console.error('Contact form error:', error);
+        console.error('Counselling form error:', error);
         return NextResponse.json(
             { error: 'An unexpected error occurred. Please try again.' },
             { status: 500 }

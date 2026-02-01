@@ -88,6 +88,8 @@ import { Navbar } from "@/components/layout/Navbar";
 import { Footer } from "@/components/layout/Footer";
 import { FloatingContact } from "@/components/ui/floating-contact";
 import { ThemeTransitionProvider } from "@/components/providers/theme-transition-provider";
+import { CounsellingDialogProvider } from "@/components/providers/CounsellingDialogProvider";
+import { CounsellingDialog } from "@/components/ui/CounsellingDialog";
 
 // ... existing imports
 
@@ -150,12 +152,15 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <ThemeTransitionProvider>
-            <div className="relative flex min-h-screen flex-col">
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-              <FloatingContact />
-            </div>
+            <CounsellingDialogProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+                <FloatingContact />
+                <CounsellingDialog />
+              </div>
+            </CounsellingDialogProvider>
           </ThemeTransitionProvider>
         </ThemeProvider>
       </body>

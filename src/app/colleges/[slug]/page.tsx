@@ -4,8 +4,8 @@ import { Metadata } from "next";
 import { colleges } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
-import { Input } from "@/components/ui/input";
 import { ImageGallery } from "@/components/ui/image-gallery";
+import { CollegeEnquiryForm } from "@/components/ui/CollegeEnquiryForm";
 import {
     MapPin, Star, Building2,
     CheckCircle2, Globe, Briefcase,
@@ -730,20 +730,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                                 <h3 className="text-xl font-bold mb-2">Secure Your Admission Now</h3>
                                 <p className="text-sm text-muted-foreground mb-6">Get detailed counseling and fee breakdown for {college.name}.</p>
 
-                                <form className="space-y-4">
-                                    <div className="space-y-2">
-                                        <Input placeholder="Full Name" className="bg-muted/50" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Input type="tel" placeholder="+91 Phone Number" className="bg-muted/50" />
-                                    </div>
-                                    <div className="space-y-2">
-                                        <Input type="email" placeholder="Email Address" className="bg-muted/50" />
-                                    </div>
-                                    <Button className="w-full bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold">
-                                        Apply Now
-                                    </Button>
-                                </form>
+                                <CollegeEnquiryForm collegeName={college.name} />
 
                                 <p className="text-xs text-center text-muted-foreground mt-4">
                                     800+ students applied last week
