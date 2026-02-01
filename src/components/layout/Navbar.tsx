@@ -162,7 +162,7 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed top-0 left-0 right-0 z-50 md:hidden h-16 flex items-center px-4 gap-3"
+                        className="fixed top-0 left-[5%] right-[5%] z-50 md:hidden h-16 flex items-center px-2 gap-2"
                         style={{ backgroundColor: bgColor }}
                     >
                         {/* Search Icon - Floats to left with spring animation */}
@@ -186,9 +186,9 @@ export function Navbar() {
                         >
                             <input
                                 type="text"
-                                placeholder="Search colleges, exams..."
+                                placeholder="Search..."
                                 autoFocus
-                                className="w-full h-10 pl-4 pr-10 rounded-lg bg-[#f6c804]/10 border-none outline-none text-foreground placeholder:text-muted-foreground"
+                                className="w-full h-8 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
                                 onKeyDown={(e) => {
                                     if (e.key === 'Enter' && e.currentTarget.value.trim()) {
                                         setIsSearchOpen(false)
@@ -202,10 +202,10 @@ export function Navbar() {
                             {/* Small X close button inside search bar on rightmost */}
                             <button
                                 onClick={() => setIsSearchOpen(false)}
-                                className="absolute right-2 h-6 w-6 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
+                                className="absolute right-1.5 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
                                 aria-label="Close Search"
                             >
-                                <X className="h-3.5 w-3.5 text-[#f6c804]" />
+                                <X className="h-3 w-3 text-[#f6c804]" />
                             </button>
                         </motion.div>
                     </motion.div>
