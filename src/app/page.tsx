@@ -160,14 +160,14 @@ export default function Home() {
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="flex flex-wrap justify-center gap-3 md:gap-4 pb-4 md:pb-4 mt-4 md:mt-0"
               >
-                <div className="animate-float flex items-center gap-1.5 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium">
-                  <Shield className="h-3.5 w-3.5 md:h-4 md:w-4 text-[#f6c804]" /> Trusted
+                <div className="animate-float flex items-center gap-2 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 md:px-5 py-2.5 md:py-2.5 text-sm md:text-sm font-medium">
+                  <Shield className="h-4 w-4 md:h-4 md:w-4 text-[#f6c804]" /> Trusted
                 </div>
-                <div className="animate-float-delayed flex items-center gap-1.5 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium">
-                  <Award className="h-3.5 w-3.5 md:h-4 md:w-4 text-[#f6c804]" /> 5+ Years
+                <div className="animate-float-delayed flex items-center gap-2 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 md:px-5 py-2.5 md:py-2.5 text-sm md:text-sm font-medium">
+                  <Award className="h-4 w-4 md:h-4 md:w-4 text-[#f6c804]" /> 5+ Years
                 </div>
-                <div className="animate-float-delayed-2 flex items-center gap-1.5 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-4 md:px-5 py-2 md:py-2.5 text-xs md:text-sm font-medium">
-                  <MapPin className="h-3.5 w-3.5 md:h-4 md:w-4 text-[#f6c804]" /> Nationwide
+                <div className="animate-float-delayed-2 flex items-center gap-2 md:gap-2 bg-secondary/50 backdrop-blur-sm border border-border/50 dark:border-white rounded-full px-5 md:px-5 py-2.5 md:py-2.5 text-sm md:text-sm font-medium">
+                  <MapPin className="h-4 w-4 md:h-4 md:w-4 text-[#f6c804]" /> Nationwide
                 </div>
               </motion.div>
             </div>

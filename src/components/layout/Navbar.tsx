@@ -129,6 +129,11 @@ export function Navbar() {
                             <Search />
                         </div>
 
+                        {/* Theme Toggle (Mobile Only - left of search) */}
+                        <div className="md:hidden">
+                            <AnimatedThemeToggle />
+                        </div>
+
                         {/* Search Button (Mobile Only) */}
                         <button
                             onClick={() => setIsSearchOpen(true)}
