@@ -209,31 +209,33 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                 <div className="relative z-30 container h-full flex flex-col justify-end pb-12 px-4 md:px-8">
                     <div className="max-w-4xl space-y-4">
+                        {/* College Name - First for better mobile hierarchy */}
+                        <h1 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
+                            {college.name}
+                        </h1>
+
+                        {/* Badges - Below title for mobile */}
                         <div className="flex flex-wrap gap-2">
-                            <Badge className="bg-[#f6c804] text-black hover:bg-[#e5b703] border-none text-sm px-3 py-1">
+                            <Badge className="bg-[#f6c804] text-black hover:bg-[#e5b703] border-none text-xs md:text-sm px-2 md:px-3 py-1">
                                 {college.type}
                             </Badge>
                             {college.tags.map((tag, i) => (
-                                <Badge key={i} variant="outline" className="text-white border-white/30 backdrop-blur-sm">
+                                <Badge key={i} variant="outline" className="text-white border-white/30 backdrop-blur-sm text-xs md:text-sm">
                                     {tag}
                                 </Badge>
                             ))}
                         </div>
 
-                        <h1 className="text-4xl md:text-6xl font-bold text-white tracking-tight">
-                            {college.name}
-                        </h1>
-
-                        <div className="flex flex-wrap items-center text-gray-300 gap-6 text-lg">
-                            <span className="flex items-center gap-2">
-                                <MapPin className="h-5 w-5 text-[#f6c804]" /> {college.location}
+                        <div className="flex flex-wrap items-center text-gray-300 gap-3 md:gap-6 text-sm md:text-lg">
+                            <span className="flex items-center gap-1.5 md:gap-2">
+                                <MapPin className="h-4 w-4 md:h-5 md:w-5 text-[#f6c804]" /> {college.location}
                             </span>
-                            <span className="flex items-center gap-2">
-                                <Star className="h-5 w-5 fill-[#f6c804] text-[#f6c804]" /> {college.rating} Rating ({college.reviews} reviews)
+                            <span className="flex items-center gap-1.5 md:gap-2">
+                                <Star className="h-4 w-4 md:h-5 md:w-5 fill-[#f6c804] text-[#f6c804]" /> {college.rating} ({college.reviews})
                             </span>
                             {college.established && (
-                                <span className="flex items-center gap-2">
-                                    <Globe className="h-5 w-5 text-blue-400" /> Established {college.established}
+                                <span className="hidden md:flex items-center gap-2">
+                                    <Globe className="h-5 w-5 text-blue-400" /> Est. {college.established}
                                 </span>
                             )}
                         </div>
@@ -242,6 +244,23 @@ export default async function CollegeDetailPage(props: PageProps) {
             </div>
 
             <div className="container px-4 md:px-8 mt-8">
+                {/* Mobile Table of Contents - Horizontal scrolling */}
+                <div className="lg:hidden mb-6">
+                    <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wider mb-3">Jump to Section</p>
+                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
+                        {sections.map(({ id, label, icon: Icon }) => (
+                            <a
+                                key={id}
+                                href={`#${id}`}
+                                className="flex items-center gap-2 px-4 py-2, rounded-full bg-card border border-border text-sm font-medium text-muted-foreground hover:text-[#f6c804] hover:border-[#f6c804]/50 transition-all whitespace-nowrap shrink-0"
+                            >
+                                <Icon className="h-4 w-4" />
+                                {label}
+                            </a>
+                        ))}
+                    </div>
+                </div>
+
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                     {/* Sidebar Navigation (Desktop) */}
