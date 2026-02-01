@@ -44,7 +44,7 @@ export function AnimatedThemeToggle() {
                     stiffness: 500,
                     damping: 30
                 }}
-                className={`relative w-6 h-6 rounded-full shadow-md flex items-center justify-center overflow-hidden ${isDark ? "ml-auto bg-slate-800 text-yellow-400" : "ml-0 bg-[#f9f4e9] text-yellow-500"
+                className={`relative w-6 h-6 rounded-full shadow-md flex items-center justify-center overflow-hidden ${isDark ? "ml-auto bg-slate-800 text-yellow-400" : "ml-0 bg-white text-yellow-500"
                     }`}
             >
                 {/* Icons with Sun/Moon Rise/Set animation */}
