@@ -35,11 +35,14 @@ export function Navbar() {
     React.useEffect(() => {
         if (isMenuOpen) {
             document.body.style.overflow = 'hidden'
+            document.body.setAttribute('data-menu-open', 'true')
         } else {
             document.body.style.overflow = ''
+            document.body.removeAttribute('data-menu-open')
         }
         return () => {
             document.body.style.overflow = ''
+            document.body.removeAttribute('data-menu-open')
         }
     }, [isMenuOpen])
 

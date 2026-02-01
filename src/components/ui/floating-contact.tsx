@@ -9,13 +9,23 @@ import { usePathname } from "next/navigation";
 
 export function FloatingContact() {
     const [isOpen, setIsOpen] = useState(false);
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const pathname = usePathname();
+
+    // Listen for menu open state
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsMenuOpen(document.body.hasAttribute('data-menu-open'));
+        });
+        observer.observe(document.body, { attributes: true, attributeFilter: ['data-menu-open'] });
+        return () => observer.disconnect();
+    }, []);
 
     // Don't show on contact page
     if (pathname === '/contact') return null;
 
     return (
-        <div className="fixed bottom-6 right-6 z-50 hidden md:flex flex-col items-end pointer-events-none">
+        <div className={`fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none transition-opacity duration-200 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             <AnimatePresence>
                 {isOpen && (
                     <motion.div
