@@ -62,7 +62,7 @@ export default function Home() {
             src="/college.jpg"
             alt="College Campus"
             fill
-            className={`object-cover transition-all duration-1000 ease-out md:object-center object-[center_40%] ${imageLoaded ? 'blur-0 scale-100' : 'blur-xl scale-105 brightness-50'}`}
+            className={`object-cover transition-all duration-1000 ease-out md:object-center object-[center_30%] ${imageLoaded ? 'blur-0 scale-100' : 'blur-xl scale-105 brightness-50'}`}
             priority
             onLoad={() => setImageLoaded(true)}
           />

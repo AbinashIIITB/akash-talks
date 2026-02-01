@@ -126,8 +126,19 @@ export function Navbar() {
                             <Search />
                         </div>
 
-                        {/* Animated Theme Toggle */}
-                        <AnimatedThemeToggle />
+                        {/* Search Button (Mobile Only) */}
+                        <button
+                            onClick={() => setIsSearchOpen(true)}
+                            className="md:hidden h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
+                            aria-label="Search"
+                        >
+                            <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                        </button>
+
+                        {/* Animated Theme Toggle (Desktop Only) */}
+                        <div className="hidden md:block">
+                            <AnimatedThemeToggle />
+                        </div>
 
                         {/* Morphing Mobile Menu Button */}
                         <div className="md:hidden">
@@ -139,6 +150,43 @@ export function Navbar() {
                     </div>
                 </LayoutContainer>
             </header>
+
+            {/* Mobile Search Overlay */}
+            <AnimatePresence>
+                {isSearchOpen && (
+                    <motion.div
+                        initial={{ opacity: 0, y: -10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed top-0 left-0 right-0 z-50 md:hidden h-16 flex items-center px-4 gap-2"
+                        style={{ backgroundColor: bgColor }}
+                    >
+                        <input
+                            type="text"
+                            placeholder="Search colleges, exams..."
+                            autoFocus
+                            className="flex-1 h-10 px-4 rounded-lg bg-[#f6c804]/10 border-none outline-none text-foreground placeholder:text-muted-foreground"
+                            onKeyDown={(e) => {
+                                if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                                    setIsSearchOpen(false)
+                                    window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
+                                }
+                                if (e.key === 'Escape') {
+                                    setIsSearchOpen(false)
+                                }
+                            }}
+                        />
+                        <button
+                            onClick={() => setIsSearchOpen(false)}
+                            className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
+                            aria-label="Close Search"
+                        >
+                            <X className="h-4 w-4 text-[#f6c804]" />
+                        </button>
+                    </motion.div>
+                )}
+            </AnimatePresence>
 
             {/* Full Screen Mobile Menu Overlay */}
             <AnimatePresence>
