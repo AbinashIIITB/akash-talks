@@ -213,56 +213,69 @@ export function Navbar() {
                                     <span className="font-bold text-xl text-[#f6c804]">Akash Talks</span>
                                 </Link>
 
-                                {/* Search Bar - Animated */}
-                                <AnimatePresence mode="wait">
-                                    {isSearchOpen ? (
-                                        <motion.div
-                                            key="search-input"
-                                            initial={{ opacity: 0, width: 0 }}
-                                            animate={{ opacity: 1, width: "auto" }}
-                                            exit={{ opacity: 0, width: 0 }}
-                                            transition={{ duration: 0.2 }}
-                                            className="flex-1 flex items-center relative"
-                                        >
-                                            <input
-                                                type="text"
-                                                placeholder="Search..."
-                                                autoFocus
-                                                className="w-full h-9 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
-                                                onKeyDown={(e) => {
-                                                    if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                                                        setIsMenuOpen(false)
-                                                        setIsSearchOpen(false)
-                                                        window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
-                                                    }
-                                                    if (e.key === 'Escape') {
-                                                        setIsSearchOpen(false)
-                                                    }
-                                                }}
-                                            />
-                                            <button
-                                                onClick={() => setIsSearchOpen(false)}
-                                                className="absolute right-2 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
-                                                aria-label="Close Search"
+                                {/* Search Area - Icon floats to left, then search bar fades in */}
+                                <div className="flex-1 flex items-center justify-end gap-2">
+                                    <AnimatePresence mode="popLayout">
+                                        {isSearchOpen ? (
+                                            <>
+                                                {/* Search Icon - Floated to left */}
+                                                <motion.div
+                                                    key="search-icon-left"
+                                                    layoutId="search-icon"
+                                                    className="h-8 w-8 flex items-center justify-center rounded-lg bg-[#f6c804]/10 shrink-0"
+                                                    transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                                                >
+                                                    <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                                                </motion.div>
+
+                                                {/* Search Input - Fades in */}
+                                                <motion.div
+                                                    key="search-input"
+                                                    initial={{ opacity: 0, scaleX: 0 }}
+                                                    animate={{ opacity: 1, scaleX: 1 }}
+                                                    exit={{ opacity: 0, scaleX: 0 }}
+                                                    transition={{ duration: 0.2, delay: 0.1 }}
+                                                    className="flex-1 flex items-center relative origin-left"
+                                                >
+                                                    <input
+                                                        type="text"
+                                                        placeholder="Search..."
+                                                        autoFocus
+                                                        className="w-full h-9 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
+                                                        onKeyDown={(e) => {
+                                                            if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                                                                setIsMenuOpen(false)
+                                                                setIsSearchOpen(false)
+                                                                window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
+                                                            }
+                                                            if (e.key === 'Escape') {
+                                                                setIsSearchOpen(false)
+                                                            }
+                                                        }}
+                                                    />
+                                                    <button
+                                                        onClick={() => setIsSearchOpen(false)}
+                                                        className="absolute right-2 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
+                                                        aria-label="Close Search"
+                                                    >
+                                                        <X className="h-3 w-3 text-[#f6c804]" />
+                                                    </button>
+                                                </motion.div>
+                                            </>
+                                        ) : (
+                                            <motion.button
+                                                key="search-button"
+                                                layoutId="search-icon"
+                                                onClick={() => setIsSearchOpen(true)}
+                                                className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20 shrink-0"
+                                                aria-label="Open Search"
+                                                transition={{ type: "spring", stiffness: 400, damping: 25 }}
                                             >
-                                                <X className="h-3 w-3 text-[#f6c804]" />
-                                            </button>
-                                        </motion.div>
-                                    ) : (
-                                        <motion.button
-                                            key="search-button"
-                                            initial={{ opacity: 0 }}
-                                            animate={{ opacity: 1 }}
-                                            exit={{ opacity: 0 }}
-                                            transition={{ duration: 0.2 }}
-                                            onClick={() => setIsSearchOpen(true)}
-                                            className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20 shrink-0"
-                                            aria-label="Open Search"
-                                        >
-                                            <SearchIcon className="h-4 w-4 text-[#f6c804]" />
-                                        </motion.button>
-                                    )}
-                                </AnimatePresence>
+                                                <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                                            </motion.button>
+                                        )}
+                                    </AnimatePresence>
+                                </div>
 
                                 {/* Menu Close Button - Always visible */}
                                 <div className="shrink-0">
