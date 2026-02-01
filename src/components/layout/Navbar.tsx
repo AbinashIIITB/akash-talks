@@ -158,35 +158,56 @@ export function Navbar() {
             <AnimatePresence>
                 {isSearchOpen && (
                     <motion.div
-                        initial={{ opacity: 0, y: -10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed top-0 left-0 right-0 z-50 md:hidden h-16 flex items-center px-4 gap-2"
+                        className="fixed top-0 left-0 right-0 z-50 md:hidden h-16 flex items-center px-4 gap-3"
                         style={{ backgroundColor: bgColor }}
                     >
-                        <input
-                            type="text"
-                            placeholder="Search colleges, exams..."
-                            autoFocus
-                            className="flex-1 h-10 px-4 rounded-lg bg-[#f6c804]/10 border-none outline-none text-foreground placeholder:text-muted-foreground"
-                            onKeyDown={(e) => {
-                                if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                                    setIsSearchOpen(false)
-                                    window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
-                                }
-                                if (e.key === 'Escape') {
-                                    setIsSearchOpen(false)
-                                }
-                            }}
-                        />
-                        <button
-                            onClick={() => setIsSearchOpen(false)}
-                            className="h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
-                            aria-label="Close Search"
+                        {/* Search Icon - Floats to left with spring animation */}
+                        <motion.div
+                            initial={{ x: 60, opacity: 0 }}
+                            animate={{ x: 0, opacity: 1 }}
+                            exit={{ x: 60, opacity: 0 }}
+                            transition={{ type: "spring", stiffness: 400, damping: 25 }}
+                            className="h-8 w-8 flex items-center justify-center rounded-lg bg-[#f6c804]/10 shrink-0"
                         >
-                            <X className="h-4 w-4 text-[#f6c804]" />
-                        </button>
+                            <SearchIcon className="h-4 w-4 text-[#f6c804]" />
+                        </motion.div>
+
+                        {/* Search Input - Fades in and scales from left */}
+                        <motion.div
+                            initial={{ opacity: 0, scaleX: 0 }}
+                            animate={{ opacity: 1, scaleX: 1 }}
+                            exit={{ opacity: 0, scaleX: 0 }}
+                            transition={{ duration: 0.25, delay: 0.1 }}
+                            className="flex-1 flex items-center relative origin-left"
+                        >
+                            <input
+                                type="text"
+                                placeholder="Search colleges, exams..."
+                                autoFocus
+                                className="w-full h-10 pl-4 pr-10 rounded-lg bg-[#f6c804]/10 border-none outline-none text-foreground placeholder:text-muted-foreground"
+                                onKeyDown={(e) => {
+                                    if (e.key === 'Enter' && e.currentTarget.value.trim()) {
+                                        setIsSearchOpen(false)
+                                        window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
+                                    }
+                                    if (e.key === 'Escape') {
+                                        setIsSearchOpen(false)
+                                    }
+                                }}
+                            />
+                            {/* Small X close button inside search bar on rightmost */}
+                            <button
+                                onClick={() => setIsSearchOpen(false)}
+                                className="absolute right-2 h-6 w-6 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
+                                aria-label="Close Search"
+                            >
+                                <X className="h-3.5 w-3.5 text-[#f6c804]" />
+                            </button>
+                        </motion.div>
                     </motion.div>
                 )}
             </AnimatePresence>
