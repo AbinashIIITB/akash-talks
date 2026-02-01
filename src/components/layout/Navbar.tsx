@@ -191,7 +191,7 @@ export function Navbar() {
                         >
                             <input
                                 type="text"
-                                placeholder="Search for colleges or exams"
+                                placeholder="Search for colleges or exams ..."
                                 autoFocus
                                 className="w-full h-8 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
                                 onKeyDown={(e) => {
