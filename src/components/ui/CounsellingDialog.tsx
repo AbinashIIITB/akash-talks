@@ -58,8 +58,15 @@ export function CounsellingDialog() {
         <AnimatePresence>
             {isOpen && (
                 <>
-                    {/* Backdrop with instant blur - no animation */}
-                    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md" onClick={handleClose} />
+                    {/* Backdrop with blur - animates in/out */}
+                    <motion.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md"
+                        onClick={handleClose}
+                    />
 
                     {/* Dialog */}
                     <motion.div
