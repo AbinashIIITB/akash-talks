@@ -57,111 +57,116 @@ export function CounsellingDialog() {
     return (
         <AnimatePresence>
             {isOpen && (
-                <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    exit={{ opacity: 0 }}
-                    className="fixed inset-0 z-[100] flex items-center justify-center p-4"
-                    onClick={handleClose}
-                >
-                    {/* Backdrop with blur */}
-                    <div className="absolute inset-0 bg-black/60 backdrop-blur-sm" />
+                <>
+                    {/* Backdrop with instant blur - no animation */}
+                    <div className="fixed inset-0 z-[100] bg-black/70 backdrop-blur-md" onClick={handleClose} />
 
                     {/* Dialog */}
                     <motion.div
-                        initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                        initial={{ opacity: 0, scale: 0.9, y: 30 }}
                         animate={{ opacity: 1, scale: 1, y: 0 }}
-                        exit={{ opacity: 0, scale: 0.95, y: 20 }}
+                        exit={{ opacity: 0, scale: 0.9, y: 30 }}
                         transition={{ type: "spring", damping: 25, stiffness: 300 }}
-                        className="relative w-full max-w-md bg-background border border-border rounded-2xl shadow-2xl overflow-hidden"
-                        onClick={(e) => e.stopPropagation()}
+                        className="fixed inset-0 z-[101] flex items-center justify-center p-4 pointer-events-none"
                     >
-                        {/* Header */}
-                        <div className="relative bg-gradient-to-r from-[#f6c804] to-[#e5b703] p-6 text-black">
+                        <div
+                            className="relative w-full max-w-md bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto"
+                            onClick={(e) => e.stopPropagation()}
+                        >
+                            {/* Header - Yellow accent bar */}
+                            <div className="h-1 bg-[#f6c804]" />
+
+                            {/* Close button */}
                             <button
                                 onClick={handleClose}
-                                className="absolute top-4 right-4 p-1 rounded-full hover:bg-black/10 transition-colors"
+                                className="absolute top-4 right-4 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
                                 disabled={isSubmitting}
                             >
-                                <X className="h-5 w-5" />
+                                <X className="h-4 w-4" />
                             </button>
-                            <h2 className="text-2xl font-bold">Book Free Counselling</h2>
-                            <p className="text-black/70 mt-1">Get expert guidance for your admission</p>
-                        </div>
 
-                        {/* Content */}
-                        <div className="p-6">
-                            {isSuccess ? (
-                                <motion.div
-                                    initial={{ opacity: 0, y: 10 }}
-                                    animate={{ opacity: 1, y: 0 }}
-                                    className="text-center py-8"
-                                >
-                                    <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                                    <h3 className="text-xl font-semibold mb-2">Thank You!</h3>
-                                    <p className="text-muted-foreground">We'll contact you shortly.</p>
-                                </motion.div>
-                            ) : (
-                                <form onSubmit={handleSubmit} className="space-y-4">
-                                    {/* Full Name */}
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium">Full Name</label>
-                                        <div className="relative">
-                                            <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                            <input
-                                                type="text"
-                                                required
-                                                placeholder="Enter your full name"
-                                                value={formData.fullName}
-                                                onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                                className="w-full h-12 pl-10 pr-4 rounded-lg bg-muted/50 border border-border focus:border-[#f6c804] focus:ring-2 focus:ring-[#f6c804]/20 outline-none transition-all"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {/* Phone */}
-                                    <div className="space-y-2">
-                                        <label className="text-sm font-medium">Phone Number</label>
-                                        <div className="relative">
-                                            <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                                            <input
-                                                type="tel"
-                                                required
-                                                placeholder="Enter your phone number"
-                                                value={formData.phone}
-                                                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                className="w-full h-12 pl-10 pr-4 rounded-lg bg-muted/50 border border-border focus:border-[#f6c804] focus:ring-2 focus:ring-[#f6c804]/20 outline-none transition-all"
-                                            />
-                                        </div>
-                                    </div>
-
-                                    {error && (
-                                        <p className="text-red-500 text-sm">{error}</p>
-                                    )}
-
-                                    <Button
-                                        type="submit"
-                                        disabled={isSubmitting}
-                                        className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-semibold rounded-lg transition-all"
+                            {/* Content */}
+                            <div className="p-8">
+                                {isSuccess ? (
+                                    <motion.div
+                                        initial={{ opacity: 0, y: 10 }}
+                                        animate={{ opacity: 1, y: 0 }}
+                                        className="text-center py-6"
                                     >
-                                        {isSubmitting ? (
-                                            <>
-                                                <Loader2 className="h-4 w-4 mr-2 animate-spin" />
-                                                Submitting...
-                                            </>
-                                        ) : (
-                                            'Get Free Counselling'
-                                        )}
-                                    </Button>
+                                        <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
+                                        <h3 className="text-xl font-bold text-white mb-2">Thank You!</h3>
+                                        <p className="text-zinc-400">We'll contact you shortly.</p>
+                                    </motion.div>
+                                ) : (
+                                    <>
+                                        {/* Title */}
+                                        <div className="mb-6">
+                                            <h2 className="text-2xl font-bold text-white">Book Free Counselling</h2>
+                                            <p className="text-zinc-400 mt-1">Get expert guidance for your admission</p>
+                                        </div>
 
-                                    <p className="text-xs text-center text-muted-foreground">
-                                        By submitting, you agree to be contacted by our counselors.
-                                    </p>
-                                </form>
-                            )}
+                                        <form onSubmit={handleSubmit} className="space-y-5">
+                                            {/* Full Name */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-zinc-300">Full Name</label>
+                                                <div className="relative">
+                                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                                                    <input
+                                                        type="text"
+                                                        required
+                                                        placeholder="Enter your full name"
+                                                        value={formData.fullName}
+                                                        onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
+                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {/* Phone */}
+                                            <div className="space-y-2">
+                                                <label className="text-sm font-medium text-zinc-300">Phone Number</label>
+                                                <div className="relative">
+                                                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
+                                                    <input
+                                                        type="tel"
+                                                        required
+                                                        placeholder="Enter your phone number"
+                                                        value={formData.phone}
+                                                        onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                                                        className="w-full h-12 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                    />
+                                                </div>
+                                            </div>
+
+                                            {error && (
+                                                <p className="text-red-400 text-sm">{error}</p>
+                                            )}
+
+                                            <Button
+                                                type="submit"
+                                                disabled={isSubmitting}
+                                                className="w-full h-12 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold rounded-lg transition-all"
+                                            >
+                                                {isSubmitting ? (
+                                                    <>
+                                                        <Loader2 className="h-4 w-4 mr-2 animate-spin" />
+                                                        Submitting...
+                                                    </>
+                                                ) : (
+                                                    'Get Free Counselling'
+                                                )}
+                                            </Button>
+
+                                            <p className="text-xs text-center text-zinc-500">
+                                                By submitting, you agree to be contacted by our counselors.
+                                            </p>
+                                        </form>
+                                    </>
+                                )}
+                            </div>
                         </div>
                     </motion.div>
-                </motion.div>
+                </>
             )}
         </AnimatePresence>
     );
