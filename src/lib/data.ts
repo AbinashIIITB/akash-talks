@@ -1538,7 +1538,7 @@ export const medicalColleges: MedicalCollege[] = [
         state: "West Bengal",
         type: "Private",
         established: "2019",
-        imageUrl: "/images/colleges/jmn-medical.jpg",
+        imageUrl: "/images/colleges/jmn-medical-college.png",
         rating: 3.9,
         reviews: 180,
         courses: ["MBBS"],
