@@ -17,8 +17,11 @@ export interface ContactFormData {
  */
 export async function appendToGoogleSheet(data: ContactFormData): Promise<void> {
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
-    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
     const sheetId = process.env.GOOGLE_SHEET_ID;
+
+    // Handle escaped newlines from .env file
+    const rawKey = process.env.GOOGLE_PRIVATE_KEY || '';
+    const privateKey = rawKey.split(String.raw`\n`).join('\n');
 
     if (!serviceAccountEmail || !privateKey || !sheetId) {
         console.error('Missing Google Sheets configuration:', {
@@ -29,6 +32,8 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
         throw new Error('Missing Google Sheets configuration');
     }
 
+    console.log('Attempting to add row to Google Sheet...');
+
     try {
         const serviceAccountAuth = new JWT({
             email: serviceAccountEmail,
@@ -38,6 +43,7 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
 
         const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
         await doc.loadInfo();
+        console.log('Loaded spreadsheet:', doc.title);
 
         // Get the first sheet
         const sheet = doc.sheetsByIndex[0];
@@ -46,20 +52,23 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
             throw new Error('No sheet found in the document');
         }
 
-        // Load header row to ensure proper column mapping
-        await sheet.loadHeaderRow();
+        console.log('Found sheet:', sheet.title);
 
-        // Add the new row with all columns matching header names exactly
-        await sheet.addRow({
-            'Lead Type': data.leadType || 'Contact Us',
-            'First Name': data.firstName,
-            'Last Name': data.lastName || '',
-            'Phone': data.phone,
-            'Email': data.email || '',
-            'Message': data.message || '',
-            'Intrested College': data.interestedCollege || '',
-            'Submitted At': data.submittedAt,
-        });
+        // Use addRows with raw values array - simpler and more reliable
+        // This appends to the end of the sheet without needing header mapping
+        const rowValues = [
+            data.leadType || 'Contact Us',
+            data.firstName,
+            data.lastName || '',
+            data.phone,
+            data.email || '',
+            data.message || '',
+            data.interestedCollege || '',
+            data.submittedAt,
+        ];
+
+        // Use the low-level append API
+        await sheet.addRows([rowValues]);
 
         console.log('Successfully added row to Google Sheet');
     } catch (error) {
