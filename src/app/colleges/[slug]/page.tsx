@@ -243,7 +243,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                 </div>
             </div>
 
-            <div className="container px-4 md:px-8 mt-8">
+            <div className="container max-w-7xl mx-auto px-4 md:px-8 mt-8">
                 {/* Mobile Table of Contents - Horizontal scrolling */}
                 <div className="lg:hidden mb-6">
                     <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wider mb-3">Jump to Section</p>
@@ -261,7 +261,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
 
                     {/* Sidebar Navigation (Desktop) */}
                     <div className="hidden lg:block lg:col-span-3">
@@ -281,7 +281,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-6 space-y-12">
+                    <div className="lg:col-span-6 space-y-10">
 
                         {/* Image Gallery */}
                         {college.galleryImages && college.galleryImages.length > 0 && (
