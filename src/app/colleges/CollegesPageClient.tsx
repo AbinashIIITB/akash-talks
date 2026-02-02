@@ -2,25 +2,39 @@
 
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, ArrowRight } from "lucide-react"
+import { MapPin, ArrowRight, GraduationCap, Stethoscope } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
-import { colleges as collegesData } from "@/lib/data"
+import { colleges as engineeringColleges, medicalColleges } from "@/lib/data"
+
+type CollegeType = "Engineering" | "Medical";
 
 export default function CollegesPageClient() {
+    const [collegeType, setCollegeType] = useState<CollegeType>("Engineering");
     const [selectedState, setSelectedState] = useState("All");
 
-    // Extract unique states from the data
-    const states = useMemo(() => {
-        const uniqueStates = new Set(collegesData.map(college => college.state));
-        return ["All", ...Array.from(uniqueStates).sort()];
-    }, []);
+    // Get current data based on type
+    const currentData = useMemo(() => {
+        return collegeType === "Engineering" ? engineeringColleges : medicalColleges;
+    }, [collegeType]);
 
-    // Filter colleges based on selection
+    // Extract unique states from the current data
+    const states = useMemo(() => {
+        const uniqueStates = new Set(currentData.map((college: { state: string }) => college.state));
+        return ["All", ...Array.from(uniqueStates).sort()];
+    }, [currentData]);
+
+    // Filter colleges based on state selection
     const filteredColleges = useMemo(() => {
-        if (selectedState === "All") return collegesData;
-        return collegesData.filter(college => college.state === selectedState);
-    }, [selectedState]);
+        if (selectedState === "All") return currentData;
+        return currentData.filter((college: { state: string }) => college.state === selectedState);
+    }, [selectedState, currentData]);
+
+    // Reset state filter when changing college type
+    const handleTypeChange = (type: CollegeType) => {
+        setCollegeType(type);
+        setSelectedState("All");
+    };
 
     const container = {
         hidden: { opacity: 0 },
@@ -50,14 +64,40 @@ export default function CollegesPageClient() {
                     </p>
                 </div>
 
-                {/* Filter Section */}
-                <div className="flex flex-wrap justify-center gap-2 pt-4 pb-4">
+                {/* College Type Toggle */}
+                <div className="flex justify-center gap-4 pt-4">
+                    <button
+                        onClick={() => handleTypeChange("Engineering")}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "Engineering"
+                                ? "bg-[#f6c804] text-black shadow-lg scale-105"
+                                : "bg-card border-2 border-border text-muted-foreground hover:bg-[#f6c804]/10 hover:border-[#f6c804]"
+                            }`}
+                    >
+                        <GraduationCap className="h-5 w-5" />
+                        Engineering
+                    </button>
+                    <button
+                        onClick={() => handleTypeChange("Medical")}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "Medical"
+                                ? "bg-blue-600 text-white shadow-lg scale-105"
+                                : "bg-card border-2 border-border text-muted-foreground hover:bg-blue-600/10 hover:border-blue-600"
+                            }`}
+                    >
+                        <Stethoscope className="h-5 w-5" />
+                        Medical
+                    </button>
+                </div>
+
+                {/* State Filter Section */}
+                <div className="flex flex-wrap justify-center gap-2 pt-2 pb-4">
                     {states.map((state) => (
                         <button
                             key={state}
                             onClick={() => setSelectedState(state)}
                             className={`px-4 py-2 rounded-full text-sm font-medium transition-all duration-300 ${selectedState === state
-                                ? "bg-[#f6c804] text-black shadow-md scale-105"
+                                ? collegeType === "Engineering"
+                                    ? "bg-[#f6c804] text-black shadow-md scale-105"
+                                    : "bg-blue-600 text-white shadow-md scale-105"
                                 : "bg-card border border-border text-muted-foreground hover:bg-[#f6c804]/10 hover:text-[#f6c804]"
                                 }`}
                         >
@@ -68,7 +108,7 @@ export default function CollegesPageClient() {
 
                 <AnimatePresence mode="wait">
                     <motion.div
-                        key={selectedState} // Re-trigger animations on filter change
+                        key={`${collegeType}-${selectedState}`}
                         variants={container}
                         initial="hidden"
                         animate="show"
@@ -90,6 +130,13 @@ export default function CollegesPageClient() {
                                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
+                                        {/* Type Badge */}
+                                        <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${collegeType === "Engineering"
+                                                ? "bg-[#f6c804] text-black"
+                                                : "bg-blue-600 text-white"
+                                            }`}>
+                                            {collegeType === "Engineering" ? "B.Tech" : "MBBS"}
+                                        </div>
                                     </div>
 
                                     <div className="p-6 space-y-4">
@@ -107,8 +154,25 @@ export default function CollegesPageClient() {
                                             {college.description}
                                         </p>
 
+                                        {/* Show MQ Fees for Medical Colleges */}
+                                        {collegeType === "Medical" && "mqFees" in college && (
+                                            <div className="text-sm">
+                                                <span className="text-muted-foreground">MQ Fees: </span>
+                                                <span className="font-semibold text-blue-600">{college.mqFees.total}</span>
+                                            </div>
+                                        )}
+
                                         <div className="pt-2">
-                                            <Link href={`/colleges/${college.slug}`} className="w-full inline-flex items-center justify-center rounded-lg bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn">
+                                            <Link
+                                                href={collegeType === "Engineering"
+                                                    ? `/colleges/${college.slug}`
+                                                    : `/medical-colleges/${college.slug}`
+                                                }
+                                                className={`w-full inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn ${collegeType === "Engineering"
+                                                        ? "bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black"
+                                                        : "bg-blue-600/10 hover:bg-blue-600 text-blue-700 hover:text-white"
+                                                    }`}
+                                            >
                                                 See Details
                                                 <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover/btn:translate-x-1" />
                                             </Link>
