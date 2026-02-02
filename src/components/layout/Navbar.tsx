@@ -170,7 +170,7 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.2 }}
-                        className="fixed top-0 left-[5%] right-[5%] z-50 md:hidden h-16 flex items-center px-2 gap-2"
+                        className="fixed top-0 left-[5%] right-[5%] z-50 xl:hidden h-16 flex items-center px-2 gap-2"
                         style={{ backgroundColor: bgColor }}
                     >
                         {/* Search Icon - Floats to left with spring animation */}
@@ -217,7 +217,7 @@ export function Navbar() {
                         animate={{ opacity: 1 }}
                         exit={{ opacity: 0 }}
                         transition={{ duration: 0.3 }}
-                        className="fixed inset-0 z-40 md:hidden"
+                        className="fixed inset-0 z-40 xl:hidden"
                         style={{ backgroundColor: bgColor }}
                     >
                         <motion.div
