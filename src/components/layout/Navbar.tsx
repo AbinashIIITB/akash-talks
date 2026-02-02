@@ -10,6 +10,7 @@ import { motion, AnimatePresence } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { Search } from "@/components/ui/Search"
+import { MobileSearchInput } from "@/components/ui/MobileSearchInput"
 import { AnimatedThemeToggle } from "@/components/ui/AnimatedThemeToggle"
 import { LayoutContainer } from "@/components/layout/LayoutContainer"
 import { MorphingMenuButton } from "@/components/ui/MorphingMenuButton"
@@ -183,7 +184,7 @@ export function Navbar() {
                             <SearchIcon className="h-4 w-4 text-[#f6c804]" />
                         </motion.div>
 
-                        {/* Search Input - Fades in and scales from left */}
+                        {/* Search Input with suggestions */}
                         <motion.div
                             initial={{ opacity: 0, scaleX: 0 }}
                             animate={{ opacity: 1, scaleX: 1 }}
@@ -191,25 +192,14 @@ export function Navbar() {
                             transition={{ duration: 0.25, delay: 0.1 }}
                             className="flex-1 flex items-center relative origin-left"
                         >
-                            <input
-                                type="text"
+                            <MobileSearchInput
                                 placeholder="Search for colleges or exams..."
-                                autoFocus
-                                className="w-full h-8 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
-                                onKeyDown={(e) => {
-                                    if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                                        setIsSearchOpen(false)
-                                        window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
-                                    }
-                                    if (e.key === 'Escape') {
-                                        setIsSearchOpen(false)
-                                    }
-                                }}
+                                onClose={() => setIsSearchOpen(false)}
                             />
                             {/* Small X close button inside search bar on rightmost */}
                             <button
                                 onClick={() => setIsSearchOpen(false)}
-                                className="absolute right-1.5 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
+                                className="absolute right-1.5 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors z-10"
                                 aria-label="Close Search"
                             >
                                 <X className="h-3 w-3 text-[#f6c804]" />
@@ -259,7 +249,7 @@ export function Navbar() {
                                                     <SearchIcon className="h-4 w-4 text-[#f6c804]" />
                                                 </motion.div>
 
-                                                {/* Search Input - Fades in */}
+                                                {/* Search Input with suggestions */}
                                                 <motion.div
                                                     key="search-input"
                                                     initial={{ opacity: 0, scaleX: 0 }}
@@ -268,25 +258,14 @@ export function Navbar() {
                                                     transition={{ duration: 0.2, delay: 0.1 }}
                                                     className="flex-1 flex items-center relative origin-left"
                                                 >
-                                                    <input
-                                                        type="text"
+                                                    <MobileSearchInput
                                                         placeholder="Search..."
-                                                        autoFocus
-                                                        className="w-full h-9 pl-3 pr-8 rounded-lg bg-[#f6c804]/10 border-none outline-none text-sm text-foreground placeholder:text-muted-foreground"
-                                                        onKeyDown={(e) => {
-                                                            if (e.key === 'Enter' && e.currentTarget.value.trim()) {
-                                                                setIsMenuOpen(false)
-                                                                setIsSearchOpen(false)
-                                                                window.location.href = `/search?q=${encodeURIComponent(e.currentTarget.value.trim())}`
-                                                            }
-                                                            if (e.key === 'Escape') {
-                                                                setIsSearchOpen(false)
-                                                            }
-                                                        }}
+                                                        onClose={() => setIsSearchOpen(false)}
+                                                        onNavigate={() => setIsMenuOpen(false)}
                                                     />
                                                     <button
                                                         onClick={() => setIsSearchOpen(false)}
-                                                        className="absolute right-2 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors"
+                                                        className="absolute right-2 h-5 w-5 flex items-center justify-center rounded-full hover:bg-[#f6c804]/20 transition-colors z-10"
                                                         aria-label="Close Search"
                                                     >
                                                         <X className="h-3 w-3 text-[#f6c804]" />
