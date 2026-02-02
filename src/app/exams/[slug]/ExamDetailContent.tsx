@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -29,11 +29,42 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
         { id: "faqs", label: "FAQs", icon: HelpCircle },
     ];
 
+    // Intersection Observer for scroll-based active section detection
+    useEffect(() => {
+        const observers: IntersectionObserver[] = [];
+
+        const observerCallback = (entries: IntersectionObserverEntry[]) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    setActiveSection(entry.target.id);
+                }
+            });
+        };
+
+        const observerOptions = {
+            root: null,
+            rootMargin: "-20% 0px -60% 0px",
+            threshold: 0
+        };
+
+        sections.forEach(({ id }) => {
+            const element = document.getElementById(id);
+            if (element) {
+                const observer = new IntersectionObserver(observerCallback, observerOptions);
+                observer.observe(element);
+                observers.push(observer);
+            }
+        });
+
+        return () => {
+            observers.forEach((observer) => observer.disconnect());
+        };
+    }, []);
+
     const scrollToSection = (id: string) => {
         const element = document.getElementById(id);
         if (element) {
             element.scrollIntoView({ behavior: "smooth", block: "start" });
-            setActiveSection(id);
         }
     };
 
@@ -47,20 +78,29 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                         <div className="sticky top-28 space-y-4">
                             <div className="p-4 rounded-xl bg-card border shadow-sm">
                                 <h3 className="font-bold text-lg mb-4 px-2">Table of Contents</h3>
-                                <nav className="flex flex-col space-y-1">
-                                    {sections.map((section) => (
-                                        <button
-                                            key={section.id}
-                                            onClick={() => scrollToSection(section.id)}
-                                            className={`flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all ${activeSection === section.id
-                                                ? "bg-[#f6c804]/10 text-[#f6c804]"
-                                                : "text-muted-foreground hover:bg-muted hover:text-foreground"
-                                                }`}
-                                        >
-                                            <section.icon className="h-4 w-4" />
-                                            {section.label}
-                                        </button>
-                                    ))}
+                                <nav className="flex flex-col space-y-1 relative">
+                                    {sections.map((section) => {
+                                        const isActive = activeSection === section.id;
+                                        return (
+                                            <button
+                                                key={section.id}
+                                                onClick={() => scrollToSection(section.id)}
+                                                className="relative flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all z-10"
+                                            >
+                                                {isActive && (
+                                                    <motion.span
+                                                        layoutId="activeExamTOC"
+                                                        className="absolute inset-0 bg-[#f6c804]/10 rounded-lg border border-[#f6c804]/30"
+                                                        transition={{ type: "spring", stiffness: 380, damping: 30 }}
+                                                    />
+                                                )}
+                                                <section.icon className={`h-4 w-4 relative z-10 transition-colors ${isActive ? "text-[#f6c804]" : "text-muted-foreground"}`} />
+                                                <span className={`relative z-10 transition-colors ${isActive ? "text-[#f6c804]" : "text-muted-foreground hover:text-foreground"}`}>
+                                                    {section.label}
+                                                </span>
+                                            </button>
+                                        );
+                                    })}
                                 </nav>
                             </div>
 
