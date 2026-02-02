@@ -243,7 +243,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                 </div>
             </div>
 
-            <div className="container max-w-7xl mx-auto px-4 md:px-8 mt-8">
+            <div className="w-full px-4 md:px-8 mt-8">
                 {/* Mobile Table of Contents - Horizontal scrolling */}
                 <div className="lg:hidden mb-6">
                     <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wider mb-3">Jump to Section</p>
@@ -261,10 +261,10 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
                 </div>
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
                     {/* Sidebar Navigation (Desktop) */}
-                    <div className="hidden lg:block lg:col-span-3">
+                    <div className="hidden lg:block lg:col-span-2">
                         <div className="sticky top-24 space-y-1 bg-card border rounded-2xl p-4 shadow-sm max-h-[80vh] overflow-y-auto">
                             <p className="font-semibold text-muted-foreground px-4 mb-2 text-sm uppercase tracking-wider">Table of Contents</p>
                             {sections.map(({ id, label, icon: Icon }) => (
@@ -281,7 +281,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-6 space-y-10">
+                    <div className="lg:col-span-7 space-y-10">
 
                         {/* Image Gallery */}
                         {college.galleryImages && college.galleryImages.length > 0 && (
