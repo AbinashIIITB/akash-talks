@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { Users, Target, Award, Heart, CheckCircle, Building2, GraduationCap, Briefcase } from "lucide-react";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
+import { CursorTrackingCTA } from "@/components/ui/CursorTrackingCTA";
 import { companyInfo } from "@/lib/data";
 
 export const metadata: Metadata = {
@@ -155,58 +156,8 @@ export default function AboutPage() {
                 </div>
             </section>
 
-            {/* CTA Section - Matching Homepage Style */}
-            <section className="relative w-full min-h-[50vh] flex items-center justify-center overflow-hidden mb-16">
-                {/* Side Margin Overlays */}
-                <div className="absolute inset-y-0 left-0 w-[5%] bg-background z-20" />
-                <div className="absolute inset-y-0 right-0 w-[5%] bg-background z-20" />
-
-                {/* Background Container */}
-                <div className="absolute inset-y-0 left-[5%] right-[5%] z-0 rounded-[2rem] overflow-hidden">
-                    {/* Gradient Background */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a]" />
-
-                    {/* Animated Grid Pattern */}
-                    <div
-                        className="absolute inset-0 opacity-10"
-                        style={{
-                            backgroundImage: `linear-gradient(rgba(246, 200, 4, 0.3) 1px, transparent 1px), linear-gradient(90deg, rgba(246, 200, 4, 0.3) 1px, transparent 1px)`,
-                            backgroundSize: '50px 50px'
-                        }}
-                    />
-
-                    {/* Static Glowing Orbs */}
-                    <div className="absolute top-1/4 left-1/4 w-72 h-72 bg-[#f6c804]/10 rounded-full blur-[100px] animate-pulse" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-[#f6c804]/5 rounded-full blur-[120px] animate-pulse" style={{ animationDelay: '1s' }} />
-                </div>
-
-                {/* Content */}
-                <div className="relative z-10 w-[90%] max-w-4xl mx-auto text-white">
-                    <div className="text-center space-y-6 py-12 md:py-16">
-                        <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-                            Ready to Start Your{" "}
-                            <span className="gradient-text-yellow">Journey?</span>
-                        </h2>
-
-                        <p className="max-w-2xl mx-auto text-white/70 text-base md:text-lg">
-                            Get personalized guidance from our expert counselors and take the first step towards your dream college.
-                        </p>
-
-                        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 pt-4">
-                            <Link href="/contact">
-                                <Button size="lg" className="group h-12 md:h-14 px-8 md:px-10 text-base md:text-lg font-semibold bg-[#f6c804] text-black hover:bg-[#e5b703] rounded-full transition-all duration-300 shadow-lg shadow-[#f6c804]/25 hover:shadow-[#f6c804]/40 hover:scale-105">
-                                    Book Free Consultation
-                                </Button>
-                            </Link>
-                            <Link href="/colleges">
-                                <Button size="lg" variant="outline" className="group h-12 md:h-14 px-8 text-base md:text-lg font-semibold rounded-full border-white/20 text-white hover:bg-white/10 hover:border-[#f6c804]/50 transition-all duration-300">
-                                    Explore Colleges
-                                </Button>
-                            </Link>
-                        </div>
-                    </div>
-                </div>
-            </section>
+            {/* CTA Section - Cursor Tracking Interactive */}
+            <CursorTrackingCTA />
         </div>
     );
 }
