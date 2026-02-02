@@ -104,6 +104,82 @@ export interface Exam {
     faqs: { question: string; answer: string }[];
 }
 
+// Medical College Interface
+export interface MedicalCollege {
+    id: string;
+    slug: string;
+    name: string;
+    location: string;
+    state: string;
+    type: "Private" | "Government" | "Deemed";
+    established: string;
+    imageUrl: string;
+    rating: number;
+    reviews: number;
+    courses: string[];
+    description: string;
+    about: string;
+    highlights: string[];
+
+    // NEET Cutoffs
+    neetCutoffs: {
+        year: string;
+        stateQuota?: { rank: string; score: string };
+        aiq?: { rank: string; score: string };
+        managementQuota?: { rank: string; score: string };
+    }[];
+
+    // Fee Structure
+    mqFees: {
+        total: string;
+        perSemester?: string;
+        admissionFee?: string;
+        breakdown?: string;
+    };
+    hostelFees: {
+        roomType: string;
+        annual: string;
+        deposit?: string;
+    }[];
+    miscFees: { label: string; value: string }[];
+    securityDeposit: string;
+
+    // Courses & Seats
+    coursesSeats: {
+        course: string;
+        totalSeats: number;
+        stateQuota?: number;
+        aiq?: number;
+        managementQuota?: number;
+    }[];
+
+    // Hospital Info
+    hospital: {
+        name: string;
+        beds: number;
+        patientLoad?: string;
+        specialities?: string[];
+    };
+
+    // Internship
+    internship: {
+        duration: string;
+        stipend: string;
+    };
+
+    // Admission
+    admissionProcess: string[];
+
+    // Faculty
+    facultyDepartments: string[];
+
+    // Standard sections
+    scholarships?: { title: string; items: { label: string; value: string }[] }[];
+    compare?: { parameter: string; thisCollege: string; competitor1: string; competitor2?: string }[];
+    faqs: { question: string; answer: string }[];
+    whyChooseAkashTalks: string[];
+}
+
 
 // --- Colleges Data (Preserved 28 items) ---
 export const colleges: College[] = [
@@ -1381,10 +1457,251 @@ export const companyInfo = {
     officeTiming: "10:00 am to 6:00 pm",
     services: [
         "Direct B.Tech Admissions",
+        "Direct MBBS Admissions",
         "College Selection Guidance",
         "Career Counseling",
         "Application Support",
         "Scholarship Assistance"
     ],
-    states: ["West Bengal", "Karnataka", "Maharashtra", "Tamil Nadu", "Uttarakhand", "Odisha"]
+    states: ["West Bengal", "Karnataka", "Maharashtra", "Tamil Nadu", "Uttarakhand", "Odisha", "Uttar Pradesh"]
 };
+
+// --- Medical Colleges Data ---
+export const medicalColleges: MedicalCollege[] = [
+    // --- West Bengal Medical Colleges ---
+    {
+        id: "wb-med-1",
+        slug: "jagannath-gupta-institute-of-medical-sciences",
+        name: "Jagannath Gupta Institute of Medical Sciences and Hospital",
+        location: "Kolkata, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2012",
+        imageUrl: "/images/colleges/jagannath-gupta-medical.jpg",
+        rating: 4.0,
+        reviews: 450,
+        courses: ["MBBS"],
+        description: "Private medical college in Kolkata with attached hospital and modern facilities.",
+        about: "Jagannath Gupta Institute of Medical Sciences and Hospital is a private medical college established in 2012 in Kolkata. It offers MBBS program with state-of-the-art facilities and experienced faculty.",
+        highlights: ["Attached Teaching Hospital", "Modern Infrastructure", "Experienced Faculty", "Good Clinical Exposure"],
+        neetCutoffs: [{ year: "2024", stateQuota: { rank: "25000", score: "450" }, managementQuota: { rank: "280000", score: "350" } }],
+        mqFees: { total: "₹99,36,000", perSemester: "₹10,94,000", admissionFee: "₹50,000", breakdown: "1st Year = ₹33.72L (₹32.82L + ₹50K + ₹15K + ₹25K), Remaining = ₹10.94L x 6 semesters" },
+        hostelFees: [
+            { roomType: "Triple Non-AC Room", annual: "₹1,44,000", deposit: "₹15,000" },
+            { roomType: "Triple AC Room", annual: "₹1,68,000", deposit: "₹15,000" },
+            { roomType: "Single AC Room", annual: "₹2,16,000", deposit: "₹25,000" }
+        ],
+        miscFees: [{ label: "Caution Money (Refundable)", value: "₹15,000" }, { label: "Sports & Cultural Fee", value: "₹25,000" }],
+        securityDeposit: "₹3,00,000 (Bank Guarantee Removal)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 150, stateQuota: 50, managementQuota: 100 }],
+        hospital: { name: "Jagannath Gupta Hospital", beds: 500, patientLoad: "High" },
+        internship: { duration: "12 months", stipend: "₹20,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Document verification", "Fee payment via DD/NEFT"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Microbiology", "Medicine", "Surgery", "Pediatrics", "Obstetrics & Gynecology"],
+        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Top NEET Rankers", value: "Fee concession available" }] }],
+        faqs: [{ question: "What is the total MBBS fee at Jagannath Gupta?", answer: "The total MQ fee is approximately ₹99.36 Lakhs for the entire course." }],
+        whyChooseAkashTalks: ["Expert MBBS admission guidance", "Fee negotiation support", "Complete counseling assistance"]
+    },
+    {
+        id: "wb-med-2",
+        slug: "jis-school-of-medical-science",
+        name: "JIS School of Medical Science and Research",
+        location: "Kolkata, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2020",
+        imageUrl: "/images/colleges/jis-medical.jpg",
+        rating: 4.1,
+        reviews: 280,
+        courses: ["MBBS"],
+        description: "Part of reputed JIS Group with modern medical education facilities.",
+        about: "JIS School of Medical Science and Research is a private medical college under the JIS Group in Kolkata. It offers quality medical education with modern infrastructure and good clinical exposure.",
+        highlights: ["Part of JIS Group", "Modern Infrastructure", "Good Hospital Attachment", "Growing Reputation"],
+        neetCutoffs: [{ year: "2024", managementQuota: { rank: "350000", score: "320" } }],
+        mqFees: { total: "₹99,55,000", perSemester: "₹10,85,000", admissionFee: "₹50,000", breakdown: "1st Year = ₹22.6L (₹21.7L + ₹50K + ₹15K + ₹15K + ₹10K), Then ₹10.85L x 6 = ₹65.1L, Last Year = ₹5.2L" },
+        hostelFees: [{ roomType: "Standard Room", annual: "₹1,50,000", deposit: "₹15,000" }],
+        miscFees: [{ label: "Caution Deposit", value: "₹15,000" }, { label: "Sports & Culture Fee", value: "₹15,000/year" }, { label: "Library Charge", value: "₹10,000/year" }],
+        securityDeposit: "₹3,00,000 (Bank Guarantee)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 100, managementQuota: 100 }],
+        hospital: { name: "JIS Hospital", beds: 450, patientLoad: "Good" },
+        internship: { duration: "12 months", stipend: "₹18,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Document verification", "Bank transfer/NEFT/RTGS"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Microbiology", "Medicine", "Surgery"],
+        faqs: [{ question: "What is the total MBBS fee at JIS Medical?", answer: "The total MQ fee is approximately ₹92 Lakhs + Miscellaneous charges." }],
+        whyChooseAkashTalks: ["JIS Group admission guidance", "Fee structure clarity", "Complete admission support"]
+    },
+    {
+        id: "wb-med-3",
+        slug: "jmn-medical-college",
+        name: "JMN Medical College",
+        location: "Near Kalyani, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2019",
+        imageUrl: "/images/colleges/jmn-medical.jpg",
+        rating: 3.9,
+        reviews: 180,
+        courses: ["MBBS"],
+        description: "Located near AIIMS Kalyani with growing medical education facilities.",
+        about: "JMN Medical College is a private medical college located 2 hours from Kolkata, near AIIMS Kalyani. It offers MBBS program with modern facilities and is growing in reputation.",
+        highlights: ["Near AIIMS Kalyani", "Modern Campus", "Growing Infrastructure", "Affordable Fees"],
+        neetCutoffs: [{ year: "2024", managementQuota: { rank: "400000", score: "300" } }],
+        mqFees: { total: "₹88,00,000", perSemester: "₹9,50,000", admissionFee: "₹50,000", breakdown: "Total During Admission = ₹21,50,000" },
+        hostelFees: [
+            { roomType: "Double Occupancy Non-AC", annual: "₹1,44,000", deposit: "₹15,000" },
+            { roomType: "Double Occupancy AC", annual: "₹1,96,000", deposit: "₹15,000" }
+        ],
+        miscFees: [{ label: "Hostel Admission Fee", value: "₹10,000 (One time)" }, { label: "Caution Deposit", value: "₹15,000" }, { label: "Sports & Cultural", value: "₹1,85,000" }],
+        securityDeposit: "₹15,000 (Caution Deposit)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 100, managementQuota: 100 }],
+        hospital: { name: "JMN Hospital", beds: 350, patientLoad: "Moderate" },
+        internship: { duration: "12 months", stipend: "₹15,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Inform college before allotment", "Payment via Cheque/DD"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Medicine", "Surgery"],
+        faqs: [{ question: "Where is JMN Medical College?", answer: "It is located 2 hours from Kolkata, near AIIMS Kalyani." }],
+        whyChooseAkashTalks: ["Affordable MBBS guidance", "Location insights", "Complete admission support"]
+    },
+    {
+        id: "wb-med-4",
+        slug: "shri-ramkrishna-institute-of-medical-sciences",
+        name: "Shri Ramkrishna Institute of Medical Sciences and Sanaka Hospitals",
+        location: "Durgapur, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2020",
+        imageUrl: "/images/colleges/shri-ramkrishna-medical.jpg",
+        rating: 4.0,
+        reviews: 200,
+        courses: ["MBBS"],
+        description: "Medical college in Durgapur with Sanaka Hospitals attachment.",
+        about: "Shri Ramkrishna Institute of Medical Sciences is a private medical college in Durgapur, West Bengal with Sanaka Hospitals as the teaching hospital. It offers quality MBBS education.",
+        highlights: ["Durgapur Location", "Sanaka Hospital Attachment", "Modern Facilities", "Industrial Area"],
+        neetCutoffs: [{ year: "2024", managementQuota: { rank: "380000", score: "310" } }],
+        mqFees: { total: "₹99,31,000", perSemester: "₹10,94,000", admissionFee: "₹50,000", breakdown: "Tution ₹10,94,000 x 9 = ₹98,46,000 + Fees" },
+        hostelFees: [{ roomType: "Standard Room", annual: "₹1,50,000", deposit: "₹10,000" }],
+        miscFees: [{ label: "Caution Money (Refundable)", value: "₹10,000" }, { label: "Sports & Cultural", value: "₹25,000" }],
+        securityDeposit: "₹10,000",
+        coursesSeats: [{ course: "MBBS", totalSeats: 100, managementQuota: 100 }],
+        hospital: { name: "Sanaka Hospitals", beds: 400, patientLoad: "Good" },
+        internship: { duration: "12 months", stipend: "₹18,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Inform before allotment", "Post-dated cheques required"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Medicine", "Surgery", "Orthopedics"],
+        faqs: [{ question: "What is the settlement fee at Shri Ramkrishna?", answer: "Final settlement is approximately ₹92 Lakhs." }],
+        whyChooseAkashTalks: ["Durgapur college guidance", "Fee structure clarity", "Complete admission support"]
+    },
+    {
+        id: "wb-med-5",
+        slug: "kpc-medical-college-hospital",
+        name: "KPC Medical College and Hospital",
+        location: "Jadavpur, Kolkata",
+        state: "West Bengal",
+        type: "Private",
+        established: "2008",
+        imageUrl: "/images/colleges/kpc-medical.jpg",
+        rating: 4.2,
+        reviews: 520,
+        courses: ["MBBS"],
+        description: "Established medical college in Jadavpur, Kolkata with good clinical exposure.",
+        about: "KPC Medical College and Hospital is a well-established private medical college in Jadavpur, Kolkata. Known for good clinical exposure and experienced faculty.",
+        highlights: ["Jadavpur Location", "Established Since 2008", "Good Clinical Exposure", "Experienced Faculty"],
+        neetCutoffs: [{ year: "2024", stateQuota: { rank: "18000", score: "480" }, managementQuota: { rank: "320000", score: "340" } }],
+        mqFees: { total: "₹72,00,000", perSemester: "₹8,00,000", admissionFee: "₹50,000", breakdown: "Tuition = ₹6,00,000/semester" },
+        hostelFees: [{ roomType: "Standard Room", annual: "₹54,500 (per month including food)", deposit: "₹10,000" }],
+        miscFees: [{ label: "Caution Deposit", value: "₹25,000" }],
+        securityDeposit: "₹72,00,000 (Discontinuation Bond)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 150, stateQuota: 50, managementQuota: 100 }],
+        hospital: { name: "KPC Hospital", beds: 550, patientLoad: "High" },
+        internship: { duration: "12 months", stipend: "₹22,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Document verification", "Payment via Demand Draft"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Microbiology", "Medicine", "Surgery", "Pediatrics", "OBG", "Orthopedics"],
+        faqs: [{ question: "What is KPC Medical admission amount?", answer: "Total during admission = ₹37,75,000" }],
+        whyChooseAkashTalks: ["Kolkata medical college guidance", "Fee negotiation", "Complete admission support"]
+    },
+    {
+        id: "wb-med-6",
+        slug: "krishnanagar-institute-of-medical-science",
+        name: "Krishnanagar Institute of Medical Science Private Limited",
+        location: "Krishnanagar, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2019",
+        imageUrl: "/images/colleges/krishnanagar-medical.jpg",
+        rating: 3.8,
+        reviews: 150,
+        courses: ["MBBS"],
+        description: "Medical college located 4 hours from Kolkata in Krishnanagar.",
+        about: "Krishnanagar Institute of Medical Science is a private medical college located in Krishnanagar, about 4 hours from Kolkata. It offers MBBS program with growing infrastructure.",
+        highlights: ["Krishnanagar Location", "Growing Infrastructure", "Affordable", "Good for State Students"],
+        neetCutoffs: [{ year: "2024", managementQuota: { rank: "420000", score: "290" } }],
+        mqFees: { total: "₹91,00,000", perSemester: "₹10,00,000", admissionFee: "₹50,000", breakdown: "Total = ₹91,00,000, Amount During Admission = ₹21,00,000" },
+        hostelFees: [
+            { roomType: "Triple Sharing Non-AC", annual: "₹72,000", deposit: "₹25,000" },
+            { roomType: "Triple Sharing AC", annual: "₹1,08,000", deposit: "₹25,000" }
+        ],
+        miscFees: [{ label: "Caution Money (Refundable)", value: "₹25,000" }, { label: "Sports & Cultural", value: "₹25,000" }, { label: "Fooding", value: "₹90,000/year" }],
+        securityDeposit: "₹25,000",
+        coursesSeats: [{ course: "MBBS", totalSeats: 100, managementQuota: 100 }],
+        hospital: { name: "KIMS Hospital", beds: 350, patientLoad: "Moderate" },
+        internship: { duration: "12 months", stipend: "₹15,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Post-dated cheques required", "Demand Draft/NEFT/RTGS"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Medicine", "Surgery"],
+        faqs: [{ question: "What is the location of KIMS?", answer: "It is located in Krishnanagar, about 4 hours from Kolkata." }],
+        whyChooseAkashTalks: ["Affordable MBBS guidance", "Location insights", "Complete admission support"]
+    },
+    {
+        id: "wb-med-7",
+        slug: "icare-institute-of-medical-science",
+        name: "ICARE Institute of Medical Science and Research and Dr. B.C. Roy Hospital",
+        location: "Haldia, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2019",
+        imageUrl: "/images/colleges/icare-medical.jpg",
+        rating: 4.1,
+        reviews: 220,
+        courses: ["MBBS"],
+        description: "Medical college in industrial hub of Haldia with Dr. B.C. Roy Hospital.",
+        about: "ICARE Institute of Medical Science is located in the industrial hub of Haldia, West Bengal. Attached to Dr. B.C. Roy Hospital, it offers quality medical education with good clinical exposure.",
+        highlights: ["Haldia Industrial Location", "Dr. B.C. Roy Hospital", "Good Clinical Exposure", "Modern Campus"],
+        neetCutoffs: [{ year: "2024", stateQuota: { rank: "22000", score: "460" }, managementQuota: { rank: "350000", score: "320" } }],
+        mqFees: { total: "₹90,00,000 (Settlement)", perSemester: "₹11,00,000", admissionFee: "₹50,000", breakdown: "1st Time = ₹33L + ₹50K + ₹15K + ₹25K + ₹10K = ₹34L + ₹3L (cash), Rest = ₹9L x 6 = ₹54L" },
+        hostelFees: [{ roomType: "Triple Non-AC Room", annual: "₹1,70,000", deposit: "₹10,000" }],
+        miscFees: [{ label: "Caution Money (Refundable)", value: "₹15,000" }, { label: "Sports & Cultural (One Time)", value: "₹25,000" }, { label: "Library Registration (One Time)", value: "₹10,000" }],
+        securityDeposit: "₹2,00,000 (Transfer to college account)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 150, stateQuota: 50, managementQuota: 100 }],
+        hospital: { name: "Dr. B.C. Roy Hospital", beds: 500, patientLoad: "High" },
+        internship: { duration: "12 months", stipend: "₹20,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Document verification", "Fee payment"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Microbiology", "Medicine", "Surgery", "Pediatrics", "OBG"],
+        faqs: [{ question: "What is the total fee at ICARE?", answer: "The settlement fee is approximately ₹90 Lakhs." }],
+        whyChooseAkashTalks: ["Haldia medical college guidance", "Fee negotiation", "Complete admission support"]
+    },
+    {
+        id: "wb-med-8",
+        slug: "iq-city-medical-college",
+        name: "IQ City Medical College",
+        location: "Durgapur, West Bengal",
+        state: "West Bengal",
+        type: "Private",
+        established: "2017",
+        imageUrl: "/images/colleges/iq-city-medical.jpg",
+        rating: 4.2,
+        reviews: 380,
+        courses: ["MBBS"],
+        description: "Part of IQ City Complex in Durgapur with excellent infrastructure.",
+        about: "IQ City Medical College is part of the IQ City Complex in Durgapur, West Bengal. Known for excellent infrastructure, modern facilities, and quality medical education.",
+        highlights: ["IQ City Complex", "Excellent Infrastructure", "Modern Facilities", "Good Hospital"],
+        neetCutoffs: [{ year: "2024", stateQuota: { rank: "20000", score: "470" }, managementQuota: { rank: "340000", score: "330" } }],
+        mqFees: { total: "₹1,00,00,000 (Settlement)", perSemester: "₹10,94,000", admissionFee: "₹50,000", breakdown: "1st = ₹32.82L + Misc + ₹3L (Cash - Bank Guarantee), Then ₹10.946 x 6 = ₹65.64L" },
+        hostelFees: [{ roomType: "Standard Room", annual: "₹1,60,000", deposit: "₹15,000" }],
+        miscFees: [{ label: "Caution Money", value: "₹15,000" }, { label: "Sports & Cultural", value: "₹25,000" }],
+        securityDeposit: "₹2-5,00,000 (Transfer before choice filling)",
+        coursesSeats: [{ course: "MBBS", totalSeats: 150, stateQuota: 50, managementQuota: 100 }],
+        hospital: { name: "IQ City Hospital", beds: 600, patientLoad: "High" },
+        internship: { duration: "12 months", stipend: "₹22,000/month" },
+        admissionProcess: ["Apply through NEET counseling", "Confirm before choice filling", "Transfer ₹2-5L to college account beforehand"],
+        facultyDepartments: ["Anatomy", "Physiology", "Biochemistry", "Pharmacology", "Pathology", "Microbiology", "Medicine", "Surgery", "Pediatrics", "OBG", "Orthopedics", "ENT", "Ophthalmology"],
+        faqs: [{ question: "What is the total fee at IQ City Medical?", answer: "The settlement fee is approximately ₹1 Crore." }],
+        whyChooseAkashTalks: ["Durgapur medical guidance", "IQ City expertise", "Fee negotiation", "Complete admission support"]
+    }
+];

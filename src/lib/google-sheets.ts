@@ -21,38 +21,49 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
     const sheetId = process.env.GOOGLE_SHEET_ID;
 
     if (!serviceAccountEmail || !privateKey || !sheetId) {
+        console.error('Missing Google Sheets configuration:', {
+            hasEmail: !!serviceAccountEmail,
+            hasKey: !!privateKey,
+            hasSheetId: !!sheetId,
+        });
         throw new Error('Missing Google Sheets configuration');
     }
 
-    const serviceAccountAuth = new JWT({
-        email: serviceAccountEmail,
-        key: privateKey,
-        scopes: ['https://www.googleapis.com/auth/spreadsheets'],
-    });
-
-    const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
-    await doc.loadInfo();
-
-    // Get the first sheet
-    let sheet = doc.sheetsByIndex[0];
-
-    if (!sheet) {
-        sheet = await doc.addSheet({
-            title: 'Contact Form Submissions',
-            headerValues: ['Lead Type', 'First Name', 'Last Name', 'Phone', 'Email', 'Message', 'Intrested College', 'Submitted At'],
+    try {
+        const serviceAccountAuth = new JWT({
+            email: serviceAccountEmail,
+            key: privateKey,
+            scopes: ['https://www.googleapis.com/auth/spreadsheets'],
         });
+
+        const doc = new GoogleSpreadsheet(sheetId, serviceAccountAuth);
+        await doc.loadInfo();
+
+        // Get the first sheet
+        const sheet = doc.sheetsByIndex[0];
+
+        if (!sheet) {
+            throw new Error('No sheet found in the document');
+        }
+
+        // Load header row to ensure proper column mapping
+        await sheet.loadHeaderRow();
+
+        // Add the new row with all columns matching header names exactly
+        await sheet.addRow({
+            'Lead Type': data.leadType || 'Contact Us',
+            'First Name': data.firstName,
+            'Last Name': data.lastName || '',
+            'Phone': data.phone,
+            'Email': data.email || '',
+            'Message': data.message || '',
+            'Intrested College': data.interestedCollege || '',
+            'Submitted At': data.submittedAt,
+        });
+
+        console.log('Successfully added row to Google Sheet');
+    } catch (error) {
+        console.error('Google Sheets error:', error);
+        throw error;
     }
-
-    // Add the new row with all columns
-    await sheet.addRow({
-        'Lead Type': data.leadType || 'Contact Us',
-        'First Name': data.firstName,
-        'Last Name': data.lastName || '',
-        'Phone': data.phone,
-        'Email': data.email || '',
-        'Message': data.message || '',
-        'Intrested College': data.interestedCollege || '',
-        'Submitted At': data.submittedAt,
-    });
 }
-
