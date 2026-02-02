@@ -29,7 +29,7 @@
         "location": "Kolkata, West Bengal",
         "description": "Government-aided engineering college affiliated with MAKAUT, focused on IT and related fields.",
         "imageUrl": "https://images.unsplash.com/photo-1592280771190-3e2cb5038c36?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/rcc-institute-information-technology"
+        "link": "/colleges/rcc-institute-of-information-technology"
     },
     {
         "id": 5,
@@ -37,7 +37,7 @@
         "location": "Kalyani, West Bengal",
         "description": "Autonomous NAAC 'A' accredited institute known of its research and innovation.",
         "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/jis-college-engineering"
+        "link": "/colleges/jis-college-of-engineering"
     },
     {
         "id": 6,
@@ -45,7 +45,7 @@
         "location": "Kolkata, West Bengal",
         "description": "Renowned for its lush green campus and rigorous academic curriculum.",
         "imageUrl": "https://images.unsplash.com/photo-1626084605969-90d0b0b8c282?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/heritage-institute-technology"
+        "link": "/colleges/heritage-institute-of-technology"
     },
     {
         "id": 7,
@@ -69,7 +69,7 @@
         "location": "Kolkata, West Bengal",
         "description": "Techno India Group college dedicated to high standards of technical education.",
         "imageUrl": "https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/meghnad-saha-institute-technology"
+        "link": "/colleges/meghnad-saha-institute-of-technology"
     },
     {
         "id": 10,
@@ -85,7 +85,7 @@
         "location": "Bengaluru, Karnataka",
         "description": "Autonomous engineering college renowned for its placement and academic rigour.",
         "imageUrl": "https://images.unsplash.com/photo-1590579491624-9f8290132649?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/rv-college-engineering"
+        "link": "/colleges/rv-college-of-engineering"
     },
     {
         "id": 12,
@@ -101,7 +101,7 @@
         "location": "Bengaluru, Karnataka",
         "description": "First private engineering college in India, known for its historic legacy and quality education.",
         "imageUrl": "https://images.unsplash.com/photo-1576267423048-15c0040fec78?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/bms-college-engineering"
+        "link": "/colleges/bms-college-of-engineering"
     },
     {
         "id": 14,
@@ -109,7 +109,7 @@
         "location": "Bengaluru, Karnataka",
         "description": "Innovation-led university focusing on solving real-world problems.",
         "imageUrl": "https://images.unsplash.com/photo-1536715690462-89b52c159687?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/ramaiah-university"
+        "link": "/colleges/ramaiah-university-of-applied-sciences"
     },
     {
         "id": 15,
@@ -125,7 +125,7 @@
         "location": "Bengaluru, Karnataka",
         "description": "Sprawling campus with state-of-the-art facilities and diverse student community.",
         "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/acharya-institute-technology"
+        "link": "/colleges/acharya-institute-of-technology"
     },
     {
         "id": 17,
@@ -133,7 +133,7 @@
         "location": "Pune, Maharashtra",
         "description": "Deemed-to-be University known for medical and engineering excellence.",
         "imageUrl": "https://images.unsplash.com/photo-1551029506-0807df4e2031?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/dy-patil-vidyapeeth"
+        "link": "/colleges/dr-d-y-patil-vidyapeeth"
     },
     {
         "id": 18,
@@ -141,7 +141,7 @@
         "location": "Pune, Maharashtra",
         "description": "Prestigious private engineering college dedicated to nation-building.",
         "imageUrl": "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/mit-pune"
+        "link": "/colleges/maharashtra-institute-of-technology"
     },
     {
         "id": 19,
@@ -157,7 +157,7 @@
         "location": "Navi Mumbai, Maharashtra",
         "description": "Known for its modern infrastructure and diverse course offerings.",
         "imageUrl": "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/dy-patil-university"
+        "link": "/colleges/d-y-patil-university"
     },
     {
         "id": 21,
@@ -165,7 +165,7 @@
         "location": "Vellore, Tamil Nadu",
         "description": "Ranked among the top engineering institutes in India with a global alumni network.",
         "imageUrl": "https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/vit-vellore"
+        "link": "/colleges/vellore-institute-of-technology"
     },
     {
         "id": 22,
@@ -173,7 +173,7 @@
         "location": "Chennai, Tamil Nadu",
         "description": "Top-ranking deemed university with a focus on research and global partnerships.",
         "imageUrl": "https://images.unsplash.com/photo-1504851149312-7a075b496cc7?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/srm-institute"
+        "link": "/colleges/srm-institute-of-science-and-technology"
     },
     {
         "id": 23,
@@ -181,7 +181,7 @@
         "location": "Dehradun, Uttarakhand",
         "description": "Specialized university known for its energy and allied sector programs.",
         "imageUrl": "https://images.unsplash.com/photo-1498243691581-b145c3f54a5a?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/upes-dehradun"
+        "link": "/colleges/university-of-petroleum-and-energy-studies"
     },
     {
         "id": 24,
@@ -197,7 +197,7 @@
         "location": "Bhubaneswar, Odisha",
         "description": "World-class university offering a wide spectrum of academic programs.",
         "imageUrl": "https://images.unsplash.com/photo-1525921429624-479b6a26d84d?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/kiit-bhubaneswar"
+        "link": "/colleges/kalinga-institute-of-industrial-technology"
     },
     {
         "id": 26,
@@ -205,7 +205,7 @@
         "location": "Bhubaneswar, Odisha",
         "description": "Deemed university known for its medical and engineering programs.",
         "imageUrl": "https://images.unsplash.com/photo-1564981797816-1043664bf78d?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/soa-university"
+        "link": "/colleges/siksha-o-anusandhan-university"
     },
     {
         "id": 27,
@@ -213,7 +213,7 @@
         "location": "Bhubaneswar, Odisha",
         "description": "Focused on technical education and skill development for global industry needs.",
         "imageUrl": "https://images.unsplash.com/photo-1627556944963-71829e577265?q=80&w=1000&auto=format&fit=crop",
-        "link": "/colleges/cv-raman-global-university"
+        "link": "/colleges/c-v-raman-global-university"
     },
     {
         "id": 28,

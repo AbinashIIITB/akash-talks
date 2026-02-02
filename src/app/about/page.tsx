@@ -78,7 +78,7 @@ export default function AboutPage() {
                         About <span className="text-[#f6c804]">Akash Talks</span>
                     </h1>
                     <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto leading-relaxed">
-                        We are India&apos;s trusted educational consultancy dedicated to helping students secure admissions in top engineering and management colleges. With over a decade of experience, we&apos;ve guided thousands of students towards their dream careers.
+                        We are India&apos;s trusted educational consultancy dedicated to helping students secure admissions in top engineering and management colleges. With 5+ years of experience, we&apos;ve guided thousands of students towards their dream careers.
                     </p>
                 </div>
             </section>
