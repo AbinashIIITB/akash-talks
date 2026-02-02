@@ -268,7 +268,9 @@ export const colleges: College[] = [
         },
         keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }, { event: "Classes Begin", date: "August 2026" }],
         whyChoose: ["Affordable fee structure", "Salt Lake location with IT hub proximity", "Part of established Techno India Group", "Good placement support"],
-        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Top Rankers", value: "Up to 50% fee waiver" }] }],
+        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Top WBJEE Rankers", value: "Up to 30% fee waiver" }] }],
+        alumni: { description: "Strong network of Techno India alumni working in IT companies across India.", companies: ["TCS", "Wipro", "Infosys", "Cognizant", "Capgemini"] },
+        compare: [{ parameter: "Average Package", thisCollege: "₹4.5 LPA", competitor1: "₹6.5 LPA (IEM)", competitor2: "₹5.8 LPA (Heritage)" }, { parameter: "Total Fees (4 Years)", thisCollege: "₹4-5.2 Lakhs", competitor1: "₹8.5 Lakhs (IEM)", competitor2: "₹8-9 Lakhs (Heritage)" }],
         faqs: [
             { question: "Is Techno India Salt Lake good for CSE?", answer: "Yes, it offers quality CSE education at an affordable price with decent placements in IT companies." },
             { question: "What is the fee at Techno India?", answer: "The annual fee is around ₹1-1.3 Lakhs, making it one of the most affordable options." }
@@ -308,8 +310,11 @@ export const colleges: College[] = [
             topRecruiters: [{ category: "Core Companies", companies: ["IOCL", "HPCL", "L&T", "Tata Steel", "Jindal"] }]
         },
         admissions: { process: ["WBJEE counseling", "Document verification", "Fee payment"], eligibility: ["10+2 with PCM", "Valid WBJEE score"], documents: ["Marksheets", "WBJEE Rank Card"] },
-        keyDates: [{ event: "Counseling", date: "July 2026" }],
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }, { event: "Classes Begin", date: "August 2026" }],
         whyChoose: ["Affordable fees", "Industrial location", "Strong core placements", "Large campus"],
+        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Merit Students", value: "Up to 25% fee waiver" }] }, { title: "TFW Scheme", items: [{ label: "Tuition Fee Waiver", value: "Full Tuition Fee Waived" }] }],
+        alumni: { description: "HIT alumni work in major core sector companies across India.", companies: ["IOCL", "HPCL", "L&T", "Tata Steel", "ONGC", "NTPC"] },
+        compare: [{ parameter: "Strength", thisCollege: "Core Engineering Focus", competitor1: "IT Focus (IEM)", competitor2: "IT Focus (Techno India)" }, { parameter: "Total Fees (4 Years)", thisCollege: "₹4-5 Lakhs", competitor1: "₹8.5 Lakhs (IEM)", competitor2: "₹4-5.2 Lakhs (Techno India)" }],
         faqs: [{ question: "Is HIT good for core branches?", answer: "Yes, HIT is excellent for Mechanical, Chemical, and Civil Engineering with good industrial exposure." }],
         whyChooseAkashTalks: ["Guidance for core branch selection", "Industrial placement insights", "Hostel and location guidance", "Complete admission assistance"]
     },
@@ -335,6 +340,11 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹3.5 - 4.5 Lakhs" }] }],
         placements: { stats: [{ label: "Highest Package", value: "₹15 LPA" }, { label: "Average Package", value: "₹4 LPA" }], topRecruiters: [{ category: "IT", companies: ["TCS", "Wipro", "Infosys"] }] },
         admissions: { process: ["WBJEE counseling"], eligibility: ["10+2 with PCM"], documents: ["Marksheets", "WBJEE Rank Card"] },
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }],
+        whyChoose: ["Semi-government status", "Affordable fees", "IT focused curriculum", "Central Kolkata location"],
+        scholarships: [{ title: "TFW Scheme", items: [{ label: "Tuition Fee Waiver", value: "Full Tuition Fee Waived for eligible students" }] }],
+        alumni: { description: "RCCIIT alumni work in IT companies across India.", companies: ["TCS", "Wipro", "Infosys", "Cognizant", "Tech Mahindra"] },
+        compare: [{ parameter: "Type", thisCollege: "Semi-Government", competitor1: "Private (IEM)", competitor2: "Private (Heritage)" }, { parameter: "Total Fees", thisCollege: "₹3.5-4.5 Lakhs", competitor1: "₹8.5 Lakhs", competitor2: "₹8-9 Lakhs" }],
         faqs: [{ question: "Is RCCIIT a government college?", answer: "It's a semi-government college with government-aided status, making it affordable." }],
         whyChooseAkashTalks: ["Affordable college guidance", "IT career counseling", "Admission support"]
     },
@@ -361,7 +371,11 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹4 - 5.5 Lakhs" }] }],
         placements: { stats: [{ label: "Highest Package", value: "₹20 LPA" }, { label: "Average Package", value: "₹5 LPA" }, { label: "Placement Rate", value: "85%+" }], topRecruiters: [{ category: "IT", companies: ["TCS", "Wipro", "Cognizant", "Capgemini"] }] },
         admissions: { process: ["WBJEE counseling", "Document verification"], eligibility: ["10+2 with PCM"], documents: ["Marksheets", "WBJEE Rank Card"] },
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }, { event: "Classes Begin", date: "August 2026" }],
         whyChoose: ["Autonomous curriculum", "Research opportunities", "Good placements", "Modern campus"],
+        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Top WBJEE Rankers", value: "Up to 40% fee waiver" }] }, { title: "JIS Group Scholarship", items: [{ label: "Economically Weaker Sections", value: "Special fee concession" }] }],
+        alumni: { description: "Strong alumni network across IT industry.", companies: ["TCS", "Wipro", "Cognizant", "Capgemini", "Infosys"] },
+        compare: [{ parameter: "Status", thisCollege: "Autonomous", competitor1: "Non-Autonomous (RCCIIT)", competitor2: "Autonomous (Heritage)" }, { parameter: "Average Package", thisCollege: "₹5 LPA", competitor1: "₹4 LPA", competitor2: "₹5.8 LPA" }],
         faqs: [{ question: "Is JISCE autonomous?", answer: "Yes, JISCE has autonomous status which allows it to design industry-relevant curriculum." }],
         whyChooseAkashTalks: ["Autonomous college guidance", "Research program information", "Complete admission support"]
     },
@@ -418,7 +432,11 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹5 - 6 Lakhs" }] }],
         placements: { stats: [{ label: "Highest Package", value: "₹20 LPA" }, { label: "Average Package", value: "₹5 LPA" }], topRecruiters: [{ category: "IT", companies: ["TCS", "Wipro", "Cognizant"] }] },
         admissions: { process: ["WBJEE counseling"], eligibility: ["10+2 with PCM"], documents: ["Marksheets", "WBJEE Rank Card"] },
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }],
         whyChoose: ["Modern New Town location", "Innovation focus", "Good infrastructure", "Growing reputation"],
+        scholarships: [{ title: "Techno India Scholarship", items: [{ label: "Top Performers", value: "Up to 30% fee waiver" }] }],
+        alumni: { description: "Growing alumni network in IT companies.", companies: ["TCS", "Wipro", "Cognizant", "Capgemini"] },
+        compare: [{ parameter: "Location", thisCollege: "New Town", competitor1: "Salt Lake (Techno India)", competitor2: "Central Kolkata (IEM)" }, { parameter: "Focus", thisCollege: "Innovation & Startups", competitor1: "Traditional", competitor2: "Placements" }],
         faqs: [{ question: "Is TINT a good college?", answer: "TINT is a good option for students looking for modern infrastructure and innovation-focused education in New Town area." }],
         whyChooseAkashTalks: ["New Town college guidance", "Innovation program information", "Admission assistance"]
     },
@@ -444,6 +462,11 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹4 - 5 Lakhs" }] }],
         placements: { stats: [{ label: "Highest Package", value: "₹12 LPA" }, { label: "Average Package", value: "₹3.8 LPA" }], topRecruiters: [{ category: "IT", companies: ["TCS", "Wipro", "Infosys"] }] },
         admissions: { process: ["WBJEE counseling"], eligibility: ["10+2 with PCM"], documents: ["Marksheets", "WBJEE Rank Card"] },
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }],
+        whyChoose: ["South Kolkata location", "Metro connectivity", "Affordable fees", "Established since 1998"],
+        scholarships: [{ title: "Merit Scholarship", items: [{ label: "Merit Students", value: "Fee concession available" }] }],
+        alumni: { description: "NSEC alumni network in IT sector.", companies: ["TCS", "Wipro", "Infosys", "HCL"] },
+        compare: [{ parameter: "Location", thisCollege: "South Kolkata", competitor1: "Salt Lake (Techno India)", competitor2: "Central Kolkata (IEM)" }, { parameter: "Fees", thisCollege: "₹4-5 Lakhs", competitor1: "₹4-5.2 Lakhs", competitor2: "₹8.5 Lakhs" }],
         faqs: [{ question: "Where is NSEC located?", answer: "NSEC is located in Garia, South Kolkata, with easy metro connectivity." }],
         whyChooseAkashTalks: ["South Kolkata college guidance", "Affordable option counseling", "Admission support"]
     },
@@ -469,6 +492,11 @@ export const colleges: College[] = [
         feesDetails: [{ title: "B.Tech Fee Structure", items: [{ label: "Total B.Tech (4 Years)", value: "₹3.8 - 4.8 Lakhs" }] }],
         placements: { stats: [{ label: "Highest Package", value: "₹15 LPA" }, { label: "Average Package", value: "₹4.2 LPA" }], topRecruiters: [{ category: "IT", companies: ["TCS", "Wipro", "Cognizant", "Infosys"] }] },
         admissions: { process: ["WBJEE counseling"], eligibility: ["10+2 with PCM"], documents: ["Marksheets", "WBJEE Rank Card"] },
+        keyDates: [{ event: "WBJEE Counseling", date: "July 2026" }],
+        whyChoose: ["Part of Techno India Group", "Good faculty", "Affordable fees", "Decent placements"],
+        scholarships: [{ title: "Techno India Scholarship", items: [{ label: "Merit Students", value: "Fee concession available" }] }],
+        alumni: { description: "MSIT alumni work in IT companies.", companies: ["TCS", "Wipro", "Cognizant", "Infosys"] },
+        compare: [{ parameter: "Group", thisCollege: "Techno India Group", competitor1: "Same Group (TISL)", competitor2: "JIS Group (JISCE)" }],
         faqs: [{ question: "Is MSIT part of Techno India Group?", answer: "Yes, MSIT is one of the colleges under the Techno India Group." }],
         whyChooseAkashTalks: ["Techno India Group guidance", "Fee comparison support", "Admission assistance"]
     },
