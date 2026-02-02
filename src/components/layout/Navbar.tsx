@@ -75,7 +75,7 @@ export function Navbar() {
                     </Link>
 
                     {/* Center: Nav Links (Desktop) - Absolutely centered */}
-                    <nav className="hidden lg:flex items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
+                    <nav className="hidden xl:flex items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                         <div className="flex items-center bg-muted/50 backdrop-blur-sm rounded-full px-1 py-1 border border-border/50">
                             {navLinks.map((link) => {
                                 const isActive = pathname === link.href
@@ -108,7 +108,7 @@ export function Navbar() {
                     {/* Right: Actions */}
                     <div className="flex items-center space-x-4">
                         {/* WhatsApp Button (Desktop) */}
-                        <Link href="https://wa.me/917815052090" target="_blank" className="hidden lg:block">
+                        <Link href="https://wa.me/917815052090" target="_blank" className="hidden xl:block">
                             <Button
                                 variant="ghost"
                                 size="icon"
@@ -128,31 +128,31 @@ export function Navbar() {
 
 
                         {/* Search Component (Desktop Only) */}
-                        <div className="hidden lg:block">
+                        <div className="hidden xl:block">
                             <Search />
                         </div>
 
                         {/* Theme Toggle (Tablet/Mobile Only - left of search) */}
-                        <div className="lg:hidden">
+                        <div className="xl:hidden">
                             <AnimatedThemeToggle />
                         </div>
 
                         {/* Search Button (Tablet/Mobile Only) */}
                         <button
                             onClick={() => setIsSearchOpen(true)}
-                            className="lg:hidden h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
+                            className="xl:hidden h-8 w-8 flex items-center justify-center rounded-lg transition-colors bg-[#f6c804]/10 hover:bg-[#f6c804]/20"
                             aria-label="Search"
                         >
                             <SearchIcon className="h-4 w-4 text-[#f6c804]" />
                         </button>
 
                         {/* Animated Theme Toggle (Desktop Only) */}
-                        <div className="hidden lg:block">
+                        <div className="hidden xl:block">
                             <AnimatedThemeToggle />
                         </div>
 
                         {/* Morphing Tablet/Mobile Menu Button */}
-                        <div className="lg:hidden">
+                        <div className="xl:hidden">
                             <MorphingMenuButton
                                 isOpen={isMenuOpen}
                                 onClick={() => setIsMenuOpen(!isMenuOpen)}
