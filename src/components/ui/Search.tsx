@@ -116,13 +116,13 @@ export function Search() {
                         initial={{ opacity: 0, y: 10 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: 10 }}
-                        className="absolute top-12 right-0 w-80 bg-background/95 backdrop-blur-md border border-border rounded-xl shadow-xl overflow-hidden"
+                        className="absolute top-12 right-0 w-80 bg-zinc-900 rounded-lg shadow-xl overflow-hidden"
                     >
                         <div className="max-h-[60vh] overflow-y-auto py-2">
                             {results.length > 0 ? (
                                 <>
                                     {results.some(r => r.type === 'college') && (
-                                        <div className="px-3 py-1.5 text-xs font-semibold text-muted-foreground uppercase tracking-wider">
+                                        <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                                             Colleges
                                         </div>
                                     )}
@@ -130,21 +130,19 @@ export function Search() {
                                         <button
                                             key={`college-${result.item.id}`}
                                             onClick={() => handleSelect(result)}
-                                            className="w-full text-left px-4 py-2.5 hover:bg-muted/50 transition-colors flex items-center justify-between group"
+                                            className="w-full text-left px-4 py-3 hover:bg-zinc-800 transition-colors group"
                                         >
-                                            <div className="flex flex-col">
-                                                <span className="text-sm font-medium group-hover:text-[#f6c804] transition-colors line-clamp-1">
-                                                    {result.item.name}
-                                                </span>
-                                                <span className="text-xs text-muted-foreground line-clamp-1">
-                                                    {result.item.location}
-                                                </span>
-                                            </div>
+                                            <span className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors line-clamp-1 block">
+                                                {result.item.name}
+                                            </span>
+                                            <span className="text-xs text-zinc-500 line-clamp-1 block">
+                                                {result.item.location}
+                                            </span>
                                         </button>
                                     ))}
 
                                     {results.some(r => r.type === 'exam') && (
-                                        <div className="px-3 py-1.5 mt-2 text-xs font-semibold text-muted-foreground uppercase tracking-wider border-t border-border/50 pt-2">
+                                        <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
                                             Exams
                                         </div>
                                     )}
@@ -152,19 +150,17 @@ export function Search() {
                                         <button
                                             key={`exam-${result.item.id}`}
                                             onClick={() => handleSelect(result)}
-                                            className="w-full text-left px-4 py-2.5 hover:bg-muted/50 transition-colors flex items-center justify-between group"
+                                            className="w-full text-left px-4 py-3 hover:bg-zinc-800 transition-colors group"
                                         >
-                                            <div className="flex flex-col">
-                                                <span className="text-sm font-medium group-hover:text-[#f6c804] transition-colors">
-                                                    {result.item.title}
-                                                </span>
-                                            </div>
+                                            <span className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors block">
+                                                {result.item.title}
+                                            </span>
                                         </button>
                                     ))}
                                 </>
                             ) : (
-                                <div className="p-4 text-center text-sm text-muted-foreground">
-                                    No results found.
+                                <div className="p-4 text-center text-sm text-zinc-500">
+                                    No results found
                                 </div>
                             )}
                         </div>

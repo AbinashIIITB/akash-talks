@@ -90,11 +90,11 @@ export function MobileSearchInput({
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
-                        className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl overflow-hidden z-50"
+                        className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 rounded-lg shadow-xl overflow-hidden z-50"
                     >
-                        <div className="max-h-[50vh] overflow-y-auto py-1">
+                        <div className="max-h-[50vh] overflow-y-auto py-2">
                             {results.some(r => r.type === 'college') && (
-                                <div className="px-3 py-1.5 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
+                                <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                                     Colleges
                                 </div>
                             )}
@@ -102,9 +102,9 @@ export function MobileSearchInput({
                                 <button
                                     key={`college-${result.item.id}`}
                                     onClick={() => handleSelect(result)}
-                                    className="w-full text-left px-4 py-2.5 hover:bg-zinc-800 transition-colors"
+                                    className="w-full text-left px-4 py-3 transition-colors hover:bg-zinc-800 group"
                                 >
-                                    <div className="text-sm font-medium text-white line-clamp-1">
+                                    <div className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors line-clamp-1">
                                         {result.item.name}
                                     </div>
                                     <div className="text-xs text-zinc-500 line-clamp-1">
@@ -114,7 +114,7 @@ export function MobileSearchInput({
                             ))}
 
                             {results.some(r => r.type === 'exam') && (
-                                <div className="px-3 py-1.5 mt-1 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800 pt-2">
+                                <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
                                     Exams
                                 </div>
                             )}
@@ -122,9 +122,9 @@ export function MobileSearchInput({
                                 <button
                                     key={`exam-${result.item.id}`}
                                     onClick={() => handleSelect(result)}
-                                    className="w-full text-left px-4 py-2.5 hover:bg-zinc-800 transition-colors"
+                                    className="w-full text-left px-4 py-3 transition-colors hover:bg-zinc-800 group"
                                 >
-                                    <div className="text-sm font-medium text-white">
+                                    <div className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors">
                                         {result.item.title}
                                     </div>
                                 </button>
@@ -141,7 +141,7 @@ export function MobileSearchInput({
                         initial={{ opacity: 0, y: -5 }}
                         animate={{ opacity: 1, y: 0 }}
                         exit={{ opacity: 0, y: -5 }}
-                        className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 border border-zinc-800 rounded-xl shadow-2xl overflow-hidden z-50"
+                        className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 rounded-lg shadow-xl overflow-hidden z-50"
                     >
                         <div className="p-4 text-center text-sm text-zinc-500">
                             No results found
