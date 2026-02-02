@@ -1477,7 +1477,7 @@ export const medicalColleges: MedicalCollege[] = [
         state: "West Bengal",
         type: "Private",
         established: "2012",
-        imageUrl: "/images/colleges/jagannath-gupta-medical.jpg",
+        imageUrl: "/images/colleges/jagannath-gupta-kolkata.png",
         rating: 4.0,
         reviews: 450,
         courses: ["MBBS"],
