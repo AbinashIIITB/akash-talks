@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ImageGallery } from "@/components/ui/image-gallery";
 import { CollegeEnquiryForm } from "@/components/ui/CollegeEnquiryForm";
+import { ScrollSpyTOC, MobileScrollSpyTOC } from "@/components/ui/ScrollSpyTOC";
 import {
     MapPin, Star, Building2,
     CheckCircle2, Globe, Briefcase,
@@ -172,25 +173,25 @@ export default async function CollegeDetailPage(props: PageProps) {
         notFound();
     }
 
-    // Build dynamic sections based on available data
+    // Build dynamic sections based on available data - using iconName strings for Client Component
     const allSections = [
-        { id: "gallery", label: "Gallery", icon: Images, available: !!college.galleryImages && college.galleryImages.length > 0 },
-        { id: "about", label: "About", icon: Building2, available: true },
-        { id: "cutoffs", label: "Cutoffs", icon: TrendingUp, available: !!college.cutoffs },
-        { id: "courses", label: "Courses", icon: BookOpen, available: true },
-        { id: "fees", label: "Fees", icon: DollarSign, available: true },
-        { id: "placements", label: "Placements", icon: Briefcase, available: !!college.placements },
-        { id: "admission", label: "How to Apply", icon: ClipboardList, available: !!college.admissions },
-        { id: "keyDates", label: "Key Dates", icon: Calendar, available: !!college.keyDates },
-        { id: "whyChoose", label: "Why Choose Us", icon: Lightbulb, available: !!college.whyChoose },
-        { id: "scholarships", label: "Scholarships", icon: Award, available: !!college.scholarships },
-        { id: "alumni", label: "Alumni", icon: Users, available: !!college.alumni },
-        { id: "compare", label: "Compare", icon: Scale, available: !!college.compare },
-        { id: "faqs", label: "FAQs", icon: HelpCircle, available: !!college.faqs },
-        { id: "akashTalks", label: "Why Akash Talks", icon: Award, available: !!college.whyChooseAkashTalks },
+        { id: "gallery", label: "Gallery", iconName: "Images", available: !!college.galleryImages && college.galleryImages.length > 0 },
+        { id: "about", label: "About", iconName: "Building2", available: true },
+        { id: "cutoffs", label: "Cutoffs", iconName: "TrendingUp", available: !!college.cutoffs },
+        { id: "courses", label: "Courses", iconName: "BookOpen", available: true },
+        { id: "fees", label: "Fees", iconName: "DollarSign", available: true },
+        { id: "placements", label: "Placements", iconName: "Briefcase", available: !!college.placements },
+        { id: "admission", label: "How to Apply", iconName: "ClipboardList", available: !!college.admissions },
+        { id: "keyDates", label: "Key Dates", iconName: "Calendar", available: !!college.keyDates },
+        { id: "whyChoose", label: "Why Choose Us", iconName: "Lightbulb", available: !!college.whyChoose },
+        { id: "scholarships", label: "Scholarships", iconName: "Award", available: !!college.scholarships },
+        { id: "alumni", label: "Alumni", iconName: "Users", available: !!college.alumni },
+        { id: "compare", label: "Compare", iconName: "Scale", available: !!college.compare },
+        { id: "faqs", label: "FAQs", iconName: "HelpCircle", available: !!college.faqs },
+        { id: "akashTalks", label: "Why Akash Talks", iconName: "Award", available: !!college.whyChooseAkashTalks },
     ];
 
-    const sections = allSections.filter(s => s.available);
+    const sections = allSections.filter(s => s.available).map(({ available, ...rest }) => rest);
 
     return (
         <div className="min-h-screen bg-background pb-20">
@@ -244,40 +245,14 @@ export default async function CollegeDetailPage(props: PageProps) {
             </div>
 
             <div className="w-full px-4 md:px-8 mt-8">
-                {/* Mobile Table of Contents - Horizontal scrolling */}
-                <div className="lg:hidden mb-6">
-                    <p className="font-semibold text-muted-foreground text-xs uppercase tracking-wider mb-3">Jump to Section</p>
-                    <div className="flex gap-2 overflow-x-auto pb-2 scrollbar-hide">
-                        {sections.map(({ id, label, icon: Icon }) => (
-                            <a
-                                key={id}
-                                href={`#${id}`}
-                                className="flex items-center gap-2 px-4 py-2, rounded-full bg-card border border-border text-sm font-medium text-muted-foreground hover:text-[#f6c804] hover:border-[#f6c804]/50 transition-all whitespace-nowrap shrink-0"
-                            >
-                                <Icon className="h-4 w-4" />
-                                {label}
-                            </a>
-                        ))}
-                    </div>
-                </div>
+                {/* Mobile Table of Contents - Horizontal scrolling with scroll spy */}
+                <MobileScrollSpyTOC sections={sections} className="lg:hidden mb-6" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
 
-                    {/* Sidebar Navigation (Desktop) */}
+                    {/* Sidebar Navigation (Desktop) - with scroll spy */}
                     <div className="hidden lg:block lg:col-span-2">
-                        <div className="sticky top-24 space-y-1 bg-card border rounded-2xl p-4 shadow-sm max-h-[80vh] overflow-y-auto">
-                            <p className="font-semibold text-muted-foreground px-4 mb-2 text-sm uppercase tracking-wider">Table of Contents</p>
-                            {sections.map(({ id, label, icon: Icon }) => (
-                                <a
-                                    key={id}
-                                    href={`#${id}`}
-                                    className="flex items-center gap-3 px-4 py-2.5 rounded-lg text-sm font-medium text-muted-foreground hover:text-[#f6c804] hover:bg-[#f6c804]/5 transition-all"
-                                >
-                                    <Icon className="h-4 w-4" />
-                                    {label}
-                                </a>
-                            ))}
-                        </div>
+                        <ScrollSpyTOC sections={sections} />
                     </div>
 
                     {/* Main Content */}
