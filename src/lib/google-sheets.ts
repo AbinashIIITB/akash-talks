@@ -14,6 +14,10 @@ export interface ContactFormData {
 
 /**
  * Appends a new row to the Google Sheet with contact form data
+ * Sheet structure:
+ * - Row 1: Title (ignored)
+ * - Row 2: Headers (Lead Type, First Name, Last Name, Phone, Email, Message, Intrested College, Submitted At)
+ * - Row 3+: Data entries
  */
 export async function appendToGoogleSheet(data: ContactFormData): Promise<void> {
     const serviceAccountEmail = process.env.GOOGLE_SERVICE_ACCOUNT_EMAIL;
@@ -54,23 +58,25 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
 
         console.log('Found sheet:', sheet.title);
 
-        // Use addRows with raw values array - simpler and more reliable
-        // This appends to the end of the sheet without needing header mapping
-        const rowValues = [
-            data.leadType || 'Contact Us',
-            data.firstName,
-            data.lastName || '',
-            data.phone,
-            data.email || '',
-            data.message || '',
-            data.interestedCollege || '',
-            data.submittedAt,
-        ];
+        // Load the header row (row 2, which is index 1 in the API)
+        // The headerRowIndex parameter tells it which row has headers (1-indexed, so 2 means row 2)
+        await sheet.loadHeaderRow(2);
+        console.log('Headers:', sheet.headerValues);
 
-        // Use the low-level append API
-        await sheet.addRows([rowValues]);
+        // Now add the row using header-based mapping
+        // This will append after the last row with data
+        const newRow = await sheet.addRow({
+            'Lead Type': data.leadType || 'Contact Us',
+            'First Name': data.firstName,
+            'Last Name': data.lastName || '',
+            'Phone': data.phone,
+            'Email': data.email || '',
+            'Message': data.message || '',
+            'Intrested College': data.interestedCollege || '',
+            'Submitted At': data.submittedAt,
+        });
 
-        console.log('Successfully added row to Google Sheet');
+        console.log('Successfully added row to Google Sheet, row:', newRow?.rowNumber);
     } catch (error) {
         console.error('Google Sheets error:', error);
         throw error;
