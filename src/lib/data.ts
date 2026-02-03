@@ -1853,7 +1853,7 @@ export const medicalColleges: MedicalCollege[] = [
         state: "Uttar Pradesh",
         type: "Private",
         established: "2015",
-        imageUrl: "/images/colleges/medical-default.jpg",
+        imageUrl: "/images/colleges/heritage-medical-varanasi.png",
         rating: 4.0,
         reviews: 280,
         courses: ["MBBS"],
