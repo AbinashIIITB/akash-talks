@@ -69,8 +69,8 @@ export default function CollegesPageClient() {
                     <button
                         onClick={() => handleTypeChange("Engineering")}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "Engineering"
-                                ? "bg-[#f6c804] text-black shadow-lg scale-105"
-                                : "bg-card border-2 border-border text-muted-foreground hover:bg-[#f6c804]/10 hover:border-[#f6c804]"
+                            ? "bg-[#f6c804] text-black shadow-lg scale-105"
+                            : "bg-card border-2 border-border text-muted-foreground hover:bg-[#f6c804]/10 hover:border-[#f6c804]"
                             }`}
                     >
                         <GraduationCap className="h-5 w-5" />
@@ -79,8 +79,8 @@ export default function CollegesPageClient() {
                     <button
                         onClick={() => handleTypeChange("Medical")}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "Medical"
-                                ? "bg-blue-600 text-white shadow-lg scale-105"
-                                : "bg-card border-2 border-border text-muted-foreground hover:bg-blue-600/10 hover:border-blue-600"
+                            ? "bg-blue-600 text-white shadow-lg scale-105"
+                            : "bg-card border-2 border-border text-muted-foreground hover:bg-blue-600/10 hover:border-blue-600"
                             }`}
                     >
                         <Stethoscope className="h-5 w-5" />
@@ -127,13 +127,16 @@ export default function CollegesPageClient() {
                                             src={college.imageUrl || "/college.jpg"}
                                             alt={college.name}
                                             fill
+                                            sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                                            loading="lazy"
+                                            quality={75}
                                             className="object-cover transition-transform duration-500 group-hover:scale-110"
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
                                         {/* Type Badge */}
                                         <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${collegeType === "Engineering"
-                                                ? "bg-[#f6c804] text-black"
-                                                : "bg-blue-600 text-white"
+                                            ? "bg-[#f6c804] text-black"
+                                            : "bg-blue-600 text-white"
                                             }`}>
                                             {collegeType === "Engineering" ? "B.Tech" : "MBBS"}
                                         </div>
@@ -169,8 +172,8 @@ export default function CollegesPageClient() {
                                                     : `/medical-colleges/${college.slug}`
                                                 }
                                                 className={`w-full inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn ${collegeType === "Engineering"
-                                                        ? "bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black"
-                                                        : "bg-blue-600/10 hover:bg-blue-600 text-blue-700 hover:text-white"
+                                                    ? "bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black"
+                                                    : "bg-blue-600/10 hover:bg-blue-600 text-blue-700 hover:text-white"
                                                     }`}
                                             >
                                                 See Details
