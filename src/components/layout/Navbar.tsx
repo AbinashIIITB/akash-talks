@@ -54,6 +54,7 @@ export function Navbar() {
         { name: "Colleges", href: "/colleges" },
         { name: "Exams", href: "/exams" },
         { name: "About Us", href: "/about" },
+        { name: "Contact Us", href: "/contact" },
     ]
 
     const bgColor = mounted ? (resolvedTheme === 'dark' ? '#0f172b' : '#f8fafc') : '#f8fafc'

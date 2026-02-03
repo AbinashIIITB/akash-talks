@@ -156,6 +156,28 @@ export default function AboutPage() {
                 </div>
             </section>
 
+            {/* Contact Us Section */}
+            <section className="py-16 px-4 bg-secondary/30">
+                <div className="container max-w-5xl mx-auto text-center">
+                    <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+                    <p className="text-muted-foreground max-w-2xl mx-auto mb-8">
+                        Have questions about admissions? Our expert counselors are here to help you make the right choice.
+                    </p>
+                    <div className="flex flex-col sm:flex-row gap-4 justify-center">
+                        <Link href="/contact">
+                            <Button className="bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold px-8 py-3 rounded-full">
+                                Contact Us
+                            </Button>
+                        </Link>
+                        <Link href="https://wa.me/919874878782" target="_blank">
+                            <Button variant="outline" className="border-[#25D366] text-[#25D366] hover:bg-[#25D366]/10 px-8 py-3 rounded-full">
+                                WhatsApp Us
+                            </Button>
+                        </Link>
+                    </div>
+                </div>
+            </section>
+
             {/* CTA Section - Cursor Tracking Interactive */}
             <CursorTrackingCTA />
         </div>
