@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next'
-import { colleges } from '@/lib/data'
+import { colleges, medicalColleges } from '@/lib/data'
 import { exams } from '@/lib/examData'
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -27,6 +27,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
             priority: 0.9,
         },
         {
+            url: `${baseUrl}/about`,
+            lastModified: currentDate,
+            changeFrequency: 'monthly',
+            priority: 0.8,
+        },
+        {
             url: `${baseUrl}/contact`,
             lastModified: currentDate,
             changeFrequency: 'monthly',
@@ -34,9 +40,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
         },
     ]
 
-    // Dynamic college pages (28 colleges)
+    // Dynamic engineering college pages
     const collegePages: MetadataRoute.Sitemap = colleges.map((college) => ({
         url: `${baseUrl}/colleges/${college.slug}`,
+        lastModified: currentDate,
+        changeFrequency: 'weekly' as const,
+        priority: 0.8,
+    }))
+
+    // Dynamic medical college pages
+    const medicalCollegePages: MetadataRoute.Sitemap = medicalColleges.map((college) => ({
+        url: `${baseUrl}/medical-colleges/${college.slug}`,
         lastModified: currentDate,
         changeFrequency: 'weekly' as const,
         priority: 0.8,
@@ -50,5 +64,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
         priority: 0.8,
     }))
 
-    return [...staticPages, ...collegePages, ...examPages]
+    return [...staticPages, ...collegePages, ...medicalCollegePages, ...examPages]
 }
+

@@ -8,25 +8,35 @@ const inter = Inter({ subsets: ["latin"] });
 const siteConfig = {
   name: "Akash Talks",
   url: "https://www.akashtalks.in",
-  description: "Get direct B.Tech, MBA & Engineering admission guidance in top colleges of West Bengal, Karnataka, Maharashtra, Tamil Nadu, Uttarakhand & Odisha. Expert counseling for WBJEE, COMEDK, MHT-CET with 28+ partner colleges.",
+  description: "Get direct B.Tech, MBA & Medical admission guidance in top colleges of West Bengal, Karnataka, Maharashtra, Tamil Nadu, Uttarakhand & Odisha. Expert counseling for WBJEE, COMEDK, MHT-CET, NEET with 28+ partner colleges.",
   keywords: [
-    "B.Tech admission",
-    "MBA admission",
-    "engineering college admission",
-    "direct admission",
-    "WBJEE counseling",
-    "COMEDK admission",
-    "MHT-CET admission",
-    "West Bengal colleges",
-    "Kolkata engineering colleges",
-    "IEM Kolkata",
-    "Heritage Institute of Technology",
-    "Techno India",
-    "VIT Vellore",
-    "RV College Bangalore",
-    "MIT Pune",
-    "college admission consultant",
-    "education consultant India",
+    // High-intent commercial keywords
+    "direct admission in engineering colleges",
+    "management quota admission 2026",
+    "B.Tech admission consultant Kolkata",
+    "MBBS admission guidance",
+    "college admission consultant India",
+    // Location + Course intent
+    "direct B.Tech admission West Bengal",
+    "engineering colleges in Kolkata",
+    "private engineering colleges Karnataka",
+    "management quota fees Maharashtra",
+    // Exam-specific
+    "WBJEE counseling 2026",
+    "COMEDK admission guidance",
+    "MHT-CET college admission",
+    "NEET counseling West Bengal",
+    // College-specific (money keywords)
+    "IEM Kolkata admission",
+    "Heritage Institute of Technology fees",
+    "Techno India Salt Lake admission",
+    "Haldia Institute of Technology placement",
+    "VIT Vellore management quota",
+    "RV College Bangalore admission",
+    "MIT Pune fees structure",
+    // Generic support
+    "career counseling India",
+    "education consultant Kolkata",
   ],
 };
 
@@ -101,22 +111,39 @@ export default function RootLayout({
   // JSON-LD Structured Data for Organization and WebSite
   const organizationSchema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
+    "@type": ["Organization", "EducationalOrganization"],
     "name": "Akash Talks",
     "url": "https://www.akashtalks.in",
     "logo": "https://www.akashtalks.in/logo.png",
-    "description": "Premier educational guidance and college admission consulting service in India",
+    "description": "Premier educational guidance and college admission consulting service in India. Expert counseling for B.Tech, MBA, and Medical admissions across West Bengal, Karnataka, Maharashtra, Tamil Nadu, Uttarakhand & Odisha.",
     "address": {
       "@type": "PostalAddress",
+      "streetAddress": "GN-34/1, Aurora Water Front, Street Number 311, Sector V, Bidhannagar",
       "addressLocality": "Kolkata",
       "addressRegion": "West Bengal",
+      "postalCode": "700091",
       "addressCountry": "IN"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "contactType": "customer service",
-      "availableLanguage": ["English", "Hindi", "Bengali"]
-    },
+    "telephone": ["+91 78150 52090", "+91 98748 78782"],
+    "email": "akashtalks.in@gmail.com",
+    "contactPoint": [
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-78150-52090",
+        "contactType": "customer service",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Bengali"]
+      },
+      {
+        "@type": "ContactPoint",
+        "telephone": "+91-98748-78782",
+        "contactType": "sales",
+        "areaServed": "IN",
+        "availableLanguage": ["English", "Hindi", "Bengali"]
+      }
+    ],
+    "areaServed": ["West Bengal", "Karnataka", "Maharashtra", "Tamil Nadu", "Uttarakhand", "Odisha"],
+    "serviceType": ["College Admission Counseling", "B.Tech Admission Guidance", "MBA Admission Guidance", "Medical Admission Guidance"],
     "sameAs": []
   };
 
