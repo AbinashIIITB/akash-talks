@@ -93,24 +93,14 @@ export default async function MedicalCollegeDetailPage({ params }: PageProps) {
 
     return (
         <div className="min-h-screen bg-background pb-20">
-            {/* Hero Section - Premium Dark Design */}
-            <div className="relative h-[400px] w-full bg-slate-900 overflow-hidden">
-                <div className="absolute inset-0 bg-black/60 z-10" />
+            {/* Hero Section - Premium Medical Theme Design */}
+            <div className="relative h-[400px] w-full bg-slate-800 overflow-hidden">
+                <div className="absolute inset-0 bg-gradient-to-br from-teal-900/80 via-slate-900/70 to-slate-900/90 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-20" />
 
-                {/* Background Image */}
+                {/* Background Image - Generic Medical Theme */}
                 <div className="absolute inset-0">
-                    {college.imageUrl && !college.imageUrl.includes('default') ? (
-                        <Image
-                            src={college.imageUrl}
-                            alt={college.name}
-                            fill
-                            className="object-cover opacity-50"
-                            priority
-                        />
-                    ) : (
-                        <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-30" />
-                    )}
+                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1631217868264-e5b90bb7e133?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
                 </div>
 
                 <div className="relative z-30 container h-full flex flex-col justify-end pb-12 px-4 md:px-8">
