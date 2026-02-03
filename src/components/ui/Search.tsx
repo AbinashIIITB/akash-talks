@@ -6,19 +6,21 @@ import { Search as SearchIcon, X, Loader2 } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
+import { medicalColleges } from "@/lib/data"
 // Import data directly
 import collegesData from "@/data/colleges.json"
 import examsData from "@/data/exams.json"
 
 // Define types based on imported data
 type CollegeItem = typeof collegesData[number]
+type MedicalCollegeItem = typeof medicalColleges[number]
 type ExamItem = typeof examsData[number]
 
 export function Search() {
     const router = useRouter()
     const [isOpen, setIsOpen] = React.useState(false)
     const [query, setQuery] = React.useState("")
-    const [results, setResults] = React.useState<({ type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem })[]>([])
+    const [results, setResults] = React.useState<({ type: 'college', item: CollegeItem } | { type: 'medical', item: MedicalCollegeItem } | { type: 'exam', item: ExamItem })[]>([])
 
     // Ref for click outside
     const containerRef = React.useRef<HTMLDivElement>(null)
@@ -42,28 +44,35 @@ export function Search() {
 
         const lowerQuery = query.toLowerCase()
 
-        // Filter Colleges (High Priority)
+        // Filter Engineering Colleges
         const matchedColleges = collegesData
             .filter(c => c.name.toLowerCase().includes(lowerQuery) || c.location.toLowerCase().includes(lowerQuery))
-            .slice(0, 5)
+            .slice(0, 4)
             .map(c => ({ type: 'college' as const, item: c }))
 
-        // Filter Exams (Low Priority)
+        // Filter Medical Colleges
+        const matchedMedicalColleges = medicalColleges
+            .filter((c: MedicalCollegeItem) => c.name.toLowerCase().includes(lowerQuery) || c.location.toLowerCase().includes(lowerQuery))
+            .slice(0, 4)
+            .map((c: MedicalCollegeItem) => ({ type: 'medical' as const, item: c }))
+
+        // Filter Exams
         const matchedExams = examsData
             .filter(e => e.title.toLowerCase().includes(lowerQuery))
             .slice(0, 3)
             .map(e => ({ type: 'exam' as const, item: e }))
 
-        setResults([...matchedColleges, ...matchedExams])
+        setResults([...matchedColleges, ...matchedMedicalColleges, ...matchedExams])
     }, [query])
 
-    const handleSelect = (result: { type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem }) => {
+    const handleSelect = (result: { type: 'college', item: CollegeItem } | { type: 'medical', item: MedicalCollegeItem } | { type: 'exam', item: ExamItem }) => {
         setIsOpen(false)
         setQuery("")
         if (result.type === 'college') {
-            // Assuming college link structure based on data
-            // If link property exists use it, else construct it
             const href = result.item.link || `/colleges/${result.item.id}`
+            router.push(href)
+        } else if (result.type === 'medical') {
+            const href = `/medical-colleges/${result.item.slug}`
             router.push(href)
         } else {
             const href = result.item.link || `/exams/${result.item.id}`
@@ -123,12 +132,32 @@ export function Search() {
                                 <>
                                     {results.some(r => r.type === 'college') && (
                                         <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                                            Colleges
+                                            Engineering Colleges
                                         </div>
                                     )}
                                     {results.filter(r => r.type === 'college').map((result) => (
                                         <button
                                             key={`college-${result.item.id}`}
+                                            onClick={() => handleSelect(result)}
+                                            className="w-full text-left px-4 py-3 hover:bg-zinc-800 transition-colors group"
+                                        >
+                                            <span className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors line-clamp-1 block">
+                                                {result.item.name}
+                                            </span>
+                                            <span className="text-xs text-zinc-500 line-clamp-1 block">
+                                                {result.item.location}
+                                            </span>
+                                        </button>
+                                    ))}
+
+                                    {results.some(r => r.type === 'medical') && (
+                                        <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
+                                            Medical Colleges
+                                        </div>
+                                    )}
+                                    {results.filter(r => r.type === 'medical').map((result) => (
+                                        <button
+                                            key={`medical-${result.item.slug}`}
                                             onClick={() => handleSelect(result)}
                                             className="w-full text-left px-4 py-3 hover:bg-zinc-800 transition-colors group"
                                         >
