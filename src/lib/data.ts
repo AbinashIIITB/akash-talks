@@ -1993,7 +1993,7 @@ export const medicalColleges: MedicalCollege[] = [
         state: "Uttar Pradesh",
         type: "Private",
         established: "2024",
-        imageUrl: "/images/colleges/medical-default.jpg",
+        imageUrl: "/images/colleges/kmc-medical-mathura.png",
         rating: 3.7,
         reviews: 50,
         courses: ["MBBS"],
