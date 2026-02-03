@@ -106,7 +106,7 @@ export function Footer() {
                         </div>
 
                         {/* Interactive Map Widget */}
-                        <div className="w-full h-48 rounded-2xl overflow-hidden border border-gray-800 relative" style={{ touchAction: "auto" }}>
+                        <div className="w-full h-48 rounded-2xl overflow-hidden border border-gray-800 relative">
                             <iframe
                                 width="100%"
                                 height="100%"
@@ -114,16 +114,10 @@ export function Footer() {
                                 scrolling="yes"
                                 marginHeight={0}
                                 marginWidth={0}
-                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.1234567890123!2d88.4123456!3d22.5791234!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275b4e3f41cd3%3A0x2c7c8b8b8b8b8b8b!2sAurora%20Waterfront!5e0!3m2!1sen!2sin!4v1706961600000!5m2!1sen!2sin"
+                                src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&z=15&ie=UTF8&iwloc=&output=embed"
                                 title="Office Location"
-                                loading="lazy"
-                                referrerPolicy="no-referrer-when-downgrade"
-                                allowFullScreen
-                                allow="fullscreen"
-                                style={{
-                                    pointerEvents: "auto",
-                                    touchAction: "auto"
-                                }}
+                                className="transition-all duration-500"
+                                style={{ pointerEvents: "auto" }}
                             ></iframe>
                         </div>
 
