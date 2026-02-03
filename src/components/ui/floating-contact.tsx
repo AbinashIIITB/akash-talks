@@ -25,31 +25,33 @@ export function FloatingContact() {
 
     return (
         <div className={`fixed bottom-6 right-6 z-50 flex flex-col items-end pointer-events-none transition-opacity duration-200 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
-            {/* Pulse Ring Animation - Smoother */}
+            {/* Pulse Ring Animation - Ultra Smooth */}
             <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                 <motion.div
-                    className="absolute h-14 w-14 rounded-full bg-[#f6c804]/30"
+                    className="absolute h-14 w-14 rounded-full bg-[#f6c804]/25"
                     animate={{
-                        scale: [1, 1.8, 2.2],
-                        opacity: [0.5, 0.2, 0],
+                        scale: [1, 1.4, 1.8, 2.2],
+                        opacity: [0, 0.4, 0.2, 0],
                     }}
                     transition={{
-                        duration: 2.5,
+                        duration: 3,
                         repeat: Infinity,
-                        ease: [0.4, 0, 0.2, 1],
+                        ease: "linear",
+                        times: [0, 0.2, 0.6, 1],
                     }}
                 />
                 <motion.div
-                    className="absolute h-14 w-14 rounded-full bg-[#f6c804]/20"
+                    className="absolute h-14 w-14 rounded-full bg-[#f6c804]/15"
                     animate={{
-                        scale: [1, 1.5, 1.9],
-                        opacity: [0.3, 0.15, 0],
+                        scale: [1, 1.3, 1.6, 2],
+                        opacity: [0, 0.3, 0.15, 0],
                     }}
                     transition={{
-                        duration: 2.5,
+                        duration: 3,
                         repeat: Infinity,
-                        ease: [0.4, 0, 0.2, 1],
-                        delay: 0.8,
+                        ease: "linear",
+                        times: [0, 0.2, 0.6, 1],
+                        delay: 1,
                     }}
                 />
             </div>
