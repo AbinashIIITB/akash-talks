@@ -39,7 +39,6 @@ export default function ExamsPageClient() {
                                             <img
                                                 src={exam.logoUrl}
                                                 alt={exam.name}
-                                                loading="lazy"
                                                 className="w-full h-full object-contain"
                                             />
                                         </div>
