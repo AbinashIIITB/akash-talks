@@ -1510,7 +1510,7 @@ export const medicalColleges: MedicalCollege[] = [
         state: "West Bengal",
         type: "Private",
         established: "2020",
-        imageUrl: "/images/colleges/jis-medical.jpg",
+        imageUrl: "/images/colleges/jis-medical-kolkata.jpg",
         rating: 4.1,
         reviews: 280,
         courses: ["MBBS"],
