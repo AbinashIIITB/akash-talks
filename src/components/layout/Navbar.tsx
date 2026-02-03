@@ -109,7 +109,7 @@ export function Navbar() {
                     {/* Right: Actions */}
                     <div className="flex items-center space-x-4">
                         {/* WhatsApp Button (Desktop) */}
-                        <Link href="https://wa.me/917815052090" target="_blank" className="hidden xl:block">
+                        <Link href="https://wa.me/919874878782" target="_blank" className="hidden xl:block">
                             <Button
                                 variant="ghost"
                                 size="icon"

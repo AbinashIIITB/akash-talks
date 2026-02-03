@@ -732,7 +732,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                             </div>
 
                             <a
-                                href={college.contact?.whatsapp ? `https://wa.me/${college.contact.whatsapp.replace(/[^0-9]/g, '')}` : "https://wa.me/917815052090"}
+                                href={college.contact?.whatsapp ? `https://wa.me/${college.contact.whatsapp.replace(/[^0-9]/g, '')}` : "https://wa.me/919874878782"}
                                 target="_blank"
                                 className="flex items-center justify-center gap-2 w-full p-4 rounded-xl border-2 border-dashed border-green-500/20 bg-green-500/5 text-green-600 font-bold hover:bg-green-500/10 transition-colors cursor-pointer"
                             >

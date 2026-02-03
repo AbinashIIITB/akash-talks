@@ -130,7 +130,7 @@ export function Footer() {
                                 </button>
                             </Link>
                             <a
-                                href="https://wa.me/917815052090"
+                                href="https://wa.me/919874878782"
                                 target="_blank"
                                 rel="noopener noreferrer"
                             >
