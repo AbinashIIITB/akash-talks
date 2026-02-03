@@ -5,13 +5,15 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, MapPin, Phone, Clock, Loader2, CheckCircle, AlertCircle } from "lucide-react";
+import { Mail, MapPin, Phone, Clock, Loader2, CheckCircle, AlertCircle, Calendar } from "lucide-react";
 import { companyInfo } from "@/lib/data";
+import { useCounsellingDialog } from "@/components/providers/CounsellingDialogProvider";
 
 export default function ContactPage() {
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
     const [errorMessage, setErrorMessage] = useState('');
+    const { openDialog } = useCounsellingDialog();
 
     const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();
@@ -61,6 +63,14 @@ export default function ContactPage() {
                             Get in touch with our expert counselors for personalized guidance on B.Tech admissions.
                         </p>
                     </div>
+                    <Button
+                        onClick={openDialog}
+                        className="mt-4 bg-[#f6c804] hover:bg-[#e5b703] text-black font-bold px-8 py-3 rounded-full"
+                        size="lg"
+                    >
+                        <Calendar className="mr-2 h-5 w-5" />
+                        Book a Free Consultation
+                    </Button>
                 </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-5xl mx-auto">
