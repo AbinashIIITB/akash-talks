@@ -198,14 +198,14 @@ export default async function CollegeDetailPage(props: PageProps) {
             {/* JSON-LD Structured Data */}
             <CollegeJsonLd college={college} />
 
-            {/* Hero Section */}
+            {/* Hero Section - Premium Engineering Theme */}
             <div className="relative h-[400px] w-full bg-slate-900 overflow-hidden">
-                <div className="absolute inset-0 bg-black/50 z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-900/70 via-slate-900/80 to-slate-900/90 z-10" />
                 <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent z-20" />
 
-                {/* Background Pattern/Image */}
+                {/* Background Image - Generic Engineering Theme */}
                 <div className="absolute inset-0 flex items-center justify-center">
-                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1562774053-701939374585?q=80&w=1000&auto=format&fit=crop')] bg-cover bg-center opacity-40 mix-blend-overlay" />
+                    <div className="w-full h-full bg-[url('https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=1920&auto=format&fit=crop')] bg-cover bg-center opacity-40" />
                 </div>
 
                 <div className="relative z-30 container h-full flex flex-col justify-end pb-12 px-4 md:px-8">
