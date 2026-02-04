@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
   },
   // Experimental optimizations
   experimental: {
-    optimizeCss: true,
+    // optimizeCss: true, // Requires critters package
   },
   // Enable compression
   compress: true,
