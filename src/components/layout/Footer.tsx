@@ -114,7 +114,7 @@ export function Footer() {
                                 scrolling="no"
                                 marginHeight={0}
                                 marginWidth={0}
-                                src="https://maps.google.com/maps?q=Aurora+Waterfront+Sector+V+Salt+Lake+Kolkata&t=&z=17&ie=UTF8&iwloc=B&output=embed"
+                                src="https://maps.google.com/maps?q=Aurora+Waterfront+Sector+V+Salt+Lake+Kolkata&t=&z=15&ie=UTF8&iwloc=B&output=embed"
                                 title="Aurora Waterfront - Akash Talks Office"
                                 className="transition-all duration-500"
                                 style={{ pointerEvents: "auto" }}
