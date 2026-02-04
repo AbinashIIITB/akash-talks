@@ -12,6 +12,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "placehold.co",
       },
+      {
+        protocol: "https",
+        hostname: "i.ytimg.com",
+      },
     ],
     // Use modern formats for smaller file sizes
     formats: ["image/avif", "image/webp"],

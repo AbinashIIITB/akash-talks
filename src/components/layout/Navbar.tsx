@@ -6,7 +6,7 @@ import Image from "next/image"
 import { usePathname, useRouter } from "next/navigation"
 import { ChevronRight, Search as SearchIcon, X } from "lucide-react"
 import { useTheme } from "next-themes"
-import { motion, AnimatePresence } from "framer-motion"
+import { motion, AnimatePresence, LayoutGroup } from "framer-motion"
 
 import { Button } from "@/components/ui/button"
 import { Search } from "@/components/ui/Search"
@@ -77,32 +77,42 @@ export function Navbar() {
 
                     {/* Center: Nav Links (Desktop) - Absolutely centered */}
                     <nav className="hidden xl:flex items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
-                        <div className="flex items-center bg-muted/50 backdrop-blur-sm rounded-full px-1 py-1 border border-border/50">
-                            {navLinks.map((link) => {
-                                const isActive = pathname === link.href
-                                return (
-                                    <Link
-                                        key={link.href}
-                                        href={link.href}
-                                        className={cn(
-                                            "relative text-sm font-medium px-5 py-2 rounded-full transition-colors",
-                                            isActive
-                                                ? "text-black"
-                                                : "text-foreground/70 hover:text-foreground"
-                                        )}
-                                    >
-                                        {isActive && (
-                                            <motion.span
-                                                layoutId="activeTab"
-                                                className="absolute inset-0 bg-[#f6c804] rounded-full z-[-1]"
-                                                transition={{ type: "spring", stiffness: 380, damping: 30 }}
-                                            />
-                                        )}
-                                        {link.name}
-                                    </Link>
-                                )
-                            })}
-                        </div>
+                        <motion.div className="flex items-center bg-muted/50 backdrop-blur-sm rounded-full px-1 py-1 border border-border/50">
+                            <LayoutGroup>
+                                <motion.div layout className="flex items-center relative">
+                                    {navLinks.map((link) => {
+                                        const isActive = pathname === link.href
+                                        return (
+                                            <Link
+                                                key={link.href}
+                                                href={link.href}
+                                                className={cn(
+                                                    "relative text-sm font-medium px-5 py-2 rounded-full transition-colors z-10",
+                                                    isActive
+                                                        ? "text-black"
+                                                        : "text-foreground/70 hover:text-foreground"
+                                                )}
+                                            >
+                                                {isActive && (
+                                                    <motion.span
+                                                        layoutId="activeTab"
+                                                        className="absolute inset-0 bg-[#f6c804] rounded-full z-[-1]"
+                                                        initial={false}
+                                                        transition={{
+                                                            type: "spring",
+                                                            stiffness: 500,
+                                                            damping: 35,
+                                                            mass: 1
+                                                        }}
+                                                    />
+                                                )}
+                                                {link.name}
+                                            </Link>
+                                        )
+                                    })}
+                                </motion.div>
+                            </LayoutGroup>
+                        </motion.div>
                     </nav>
 
 

@@ -10,10 +10,16 @@ export function AnimatedThemeToggle() {
     const { toggleTheme } = useThemeTransition()
     const { resolvedTheme } = useTheme()
     const [mounted, setMounted] = React.useState(false)
+    const [hasInteracted, setHasInteracted] = React.useState(false)
 
     React.useEffect(() => {
         setMounted(true)
     }, [])
+
+    const handleClick = () => {
+        setHasInteracted(true)
+        toggleTheme()
+    }
 
     if (!mounted) {
         return (
@@ -25,7 +31,7 @@ export function AnimatedThemeToggle() {
 
     return (
         <button
-            onClick={toggleTheme}
+            onClick={handleClick}
             className={`relative w-16 h-8 rounded-full p-1 transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-[#f6c804] focus-visible:ring-offset-2 ${isDark
                 ? "bg-gradient-to-br from-slate-900 to-slate-800 border-slate-700"
                 : "bg-[#f9f4e9] border-amber-200"
@@ -51,7 +57,7 @@ export function AnimatedThemeToggle() {
                 <AnimatePresence mode="wait" initial={false}>
                     <motion.div
                         key={isDark ? "moon" : "sun"}
-                        initial={{ y: 20, opacity: 0, rotate: -45 }}
+                        initial={hasInteracted ? { y: 20, opacity: 0, rotate: -45 } : { y: 0, opacity: 1, rotate: 0 }}
                         animate={{ y: 0, opacity: 1, rotate: 0 }}
                         exit={{ y: 20, opacity: 0, rotate: 45 }}
                         transition={{ duration: 0.2 }}
