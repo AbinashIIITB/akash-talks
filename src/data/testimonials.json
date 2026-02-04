@@ -11,7 +11,7 @@
         "name": "Rahul Verma",
         "role": "CSE, VIT Vellore",
         "message": "The college prediction was spot on. Their insights into the cutoff trends helped me make the right choice.",
-        "avatarUrl": "https://images.unsplash.com/photo-1618077360395-f3068be8e001?q=80&w=150&auto=format&fit=crop"
+        "avatarUrl": "/images/testimonials/boy1.png"
     },
     {
         "id": 3,
@@ -25,7 +25,7 @@
         "name": "Ankit Das",
         "role": "B.Tech, KIIT",
         "message": "Honest reviews and direct admission guidance. Highly recommended for anyone looking for clarity.",
-        "avatarUrl": "https://images.unsplash.com/photo-1633332755192-727a05c4013d?q=80&w=150&auto=format&fit=crop"
+        "avatarUrl": "/images/testimonials/boy2.png"
     },
     {
         "id": 5,
@@ -33,5 +33,12 @@
         "role": "Parent",
         "message": "As a parent, I was worried about my son's admission. The team at Akash Talks handled everything professionally.",
         "avatarUrl": "https://images.unsplash.com/photo-1594744803329-e58b31de8bf5?q=80&w=150&auto=format&fit=crop"
+    },
+    {
+        "id": 6,
+        "name": "Arjun Mehta",
+        "role": "ECE, IEM Kolkata",
+        "message": "From WBJEE counseling to final admission, Akash Talks was with me every step. Got ECE at IEM with their expert guidance!",
+        "avatarUrl": "/images/testimonials/boy3.png"
     }
 ]
