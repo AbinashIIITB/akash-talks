@@ -244,19 +244,19 @@ export default async function CollegeDetailPage(props: PageProps) {
                 </div>
             </div>
 
-            <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 mt-8">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 xl:px-12 mt-8">
                 {/* Mobile Table of Contents - Horizontal scrolling with scroll spy */}
                 <MobileScrollSpyTOC sections={sections} className="lg:hidden mb-6" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                     {/* Sidebar Navigation (Desktop) - with scroll spy */}
-                    <div className="hidden lg:block lg:col-span-2">
+                    <div className="hidden lg:block lg:col-span-3">
                         <ScrollSpyTOC sections={sections} />
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-7 space-y-10">
+                    <div className="lg:col-span-6 space-y-10">
 
                         {/* Image Gallery */}
                         {college.galleryImages && college.galleryImages.length > 0 && (
