@@ -687,7 +687,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                                         <Award className="h-6 w-6 text-[#f6c804]" /> Why Choose {college.name.split('(')[0].trim()} Through Akash Talks?
                                     </h2>
                                     <div className="bg-gradient-to-br from-[#f6c804]/10 to-transparent border-2 border-[#f6c804]/30 rounded-2xl p-6">
-                                        <p className="text-muted-foreground mb-4">Akash Talks is your trusted partner for hassle-free admissions. Here's why:</p>
+                                        <p className="text-muted-foreground mb-4">Akash Talks is your trusted partner for hassle-free admissions. Here&apos;s why:</p>
                                         <div className="grid grid-cols-1 gap-3">
                                             {college.whyChooseAkashTalks.map((reason, i) => (
                                                 <div key={i} className="flex items-start gap-3 p-3 bg-background/50 rounded-lg">

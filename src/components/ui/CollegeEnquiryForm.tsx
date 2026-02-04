@@ -62,7 +62,7 @@ export function CollegeEnquiryForm({ collegeName }: CollegeEnquiryFormProps) {
             <div className="text-center py-8">
                 <CheckCircle className="h-12 w-12 text-green-500 mx-auto mb-4" />
                 <h3 className="text-lg font-semibold mb-2">Thank You!</h3>
-                <p className="text-sm text-muted-foreground">We'll contact you shortly about {collegeName}.</p>
+                <p className="text-sm text-muted-foreground">We&apos;ll contact you shortly about {collegeName}.</p>
                 <Button
                     variant="outline"
                     className="mt-4"

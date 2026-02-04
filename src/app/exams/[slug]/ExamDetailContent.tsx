@@ -110,7 +110,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                             <Card className="bg-gradient-to-br from-[#f6c804]/20 to-transparent border-[#f6c804]/50">
                                 <CardContent className="p-4 space-y-3">
                                     <h4 className="font-bold">Ready to Apply?</h4>
-                                    <p className="text-xs text-muted-foreground">Don't miss the deadline. Start your application now.</p>
+                                    <p className="text-xs text-muted-foreground">Don&apos;t miss the deadline. Start your application now.</p>
                                     <a href={exam.applicationLink} target="_blank" rel="noopener noreferrer">
                                         <Button className="w-full bg-[#f6c804] text-black hover:bg-[#e5b703] font-bold">Apply Now</Button>
                                     </a>

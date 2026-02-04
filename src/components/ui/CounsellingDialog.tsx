@@ -100,7 +100,7 @@ export function CounsellingDialog() {
                                     >
                                         <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
                                         <h3 className="text-xl font-bold text-white mb-2">Thank You!</h3>
-                                        <p className="text-zinc-400">We'll contact you shortly.</p>
+                                        <p className="text-zinc-400">We&apos;ll contact you shortly.</p>
                                     </motion.div>
                                 ) : (
                                     <>

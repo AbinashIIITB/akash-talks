@@ -47,6 +47,7 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
   const { openDialog } = useCounsellingDialog();
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMounted(true);
   }, []);
 
