@@ -114,10 +114,13 @@ export function Footer() {
                                 scrolling="yes"
                                 marginHeight={0}
                                 marginWidth={0}
-                                src="https://maps.google.com/maps?q=GN-34%2F1%2C%20AURORA%20WATER%20FRONT%2C%20Unit%2021%2C%20Salt%20Lake%2C%20Kolkata%20700091&z=15&ie=UTF8&iwloc=&output=embed"
-                                title="Office Location"
+                                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3684.0!2d88.4326!3d22.5726!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0275b020703c0d%3A0xece6f8e0fc2e1613!2sAurora%20Waterfront!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                                title="Aurora Waterfront - Akash Talks Office"
                                 className="transition-all duration-500"
                                 style={{ pointerEvents: "auto" }}
+                                allowFullScreen
+                                loading="lazy"
+                                referrerPolicy="no-referrer-when-downgrade"
                             ></iframe>
                         </div>
 
