@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect } from "react";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -8,6 +8,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Calendar, CheckCircle2, FileText, ChevronRight, HelpCircle, BookOpen, AlertCircle, ExternalLink, Info, GraduationCap, Users } from "lucide-react";
 import { motion } from "framer-motion";
 import { Exam } from "@/lib/data";
+import { ExamCounsellingDialog } from "@/components/ui/ExamCounsellingDialog";
 
 interface ExamDetailContentProps {
     exam: Exam;
@@ -15,6 +16,7 @@ interface ExamDetailContentProps {
 
 export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
     const [activeSection, setActiveSection] = useState("introduction");
+    const [isCounsellingDialogOpen, setIsCounsellingDialogOpen] = useState(false);
 
     const sections = [
         { id: "introduction", label: "Introduction", icon: Info },
@@ -144,9 +146,13 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                                 Official Website <ExternalLink className="ml-2 h-4 w-4" />
                                             </Button>
                                         </a>
-                                        <a href="/contact">
-                                            <Button variant="outline" className="rounded-full">Talk to Counselor</Button>
-                                        </a>
+                                        <Button
+                                            variant="outline"
+                                            className="rounded-full"
+                                            onClick={() => setIsCounsellingDialogOpen(true)}
+                                        >
+                                            Talk to Counselor
+                                        </Button>
                                     </div>
                                 </div>
                             </div>
@@ -308,11 +314,12 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                     <p className="text-muted-foreground leading-relaxed">{exam.counselling}</p>
                                     <div className="mt-6 pt-6 border-t">
                                         <p className="text-sm text-muted-foreground mb-3">Need help with counselling and seat allotment?</p>
-                                        <a href="/contact">
-                                            <Button className="bg-[#f6c804] text-black hover:bg-[#e5b703]">
-                                                Get Expert Counselling Support
-                                            </Button>
-                                        </a>
+                                        <Button
+                                            className="bg-[#f6c804] text-black hover:bg-[#e5b703]"
+                                            onClick={() => setIsCounsellingDialogOpen(true)}
+                                        >
+                                            Get Expert Counselling Support
+                                        </Button>
                                     </div>
                                 </div>
                             </section>
@@ -340,6 +347,13 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                     </div>
                 </div>
             </LayoutContainer>
+            {/* Exam Counselling Dialog */}
+            <ExamCounsellingDialog
+                isOpen={isCounsellingDialogOpen}
+                onClose={() => setIsCounsellingDialogOpen(false)}
+                examName={exam.name}
+                examFullName={exam.fullName}
+            />
         </div>
     );
 }
