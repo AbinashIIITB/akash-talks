@@ -111,7 +111,7 @@ export default function Home() {
                   variants={fadeInUp}
                   className="text-white/80 text-base md:text-xl max-w-3xl mx-auto pt-3 md:pt-4"
                 >
-                  Get admission in top colleges of West Bengal, Maharastra, Karnataka, Tamil Nadu, Uttarakhand & Odisha
+                  Get admission in top colleges of West Bengal, Maharashtra, Karnataka, Tamil Nadu, Uttar Pradesh, Uttarakhand & Odisha
                 </motion.p>
 
                 {/* Buttons */}
