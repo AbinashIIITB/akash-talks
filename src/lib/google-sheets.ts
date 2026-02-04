@@ -65,11 +65,14 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
 
         // Now add the row using header-based mapping
         // This will append after the last row with data
+        // Prefix phone with single quote to prevent Google Sheets formula parsing
+        const safePhone = data.phone.startsWith('+') ? `'${data.phone}` : data.phone;
+
         const newRow = await sheet.addRow({
             'Lead Type': data.leadType || 'Contact Us',
             'First Name': data.firstName,
             'Last Name': data.lastName || '',
-            'Phone': data.phone,
+            'Phone': safePhone,
             'Email': data.email || '',
             'Message': data.message || '',
             'Intrested College': data.interestedCollege || '',
