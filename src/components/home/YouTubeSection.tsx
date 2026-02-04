@@ -92,22 +92,36 @@ export function YouTubeSection({ recentVideos, popularVideos }: YouTubeSectionPr
                     </motion.div>
 
                     {/* Video Grid - matching other sections */}
+                    {/* Video Grid - matching other sections */}
                     <motion.div
+                        key={activeTab}
                         initial="hidden"
-                        whileInView="visible"
-                        viewport={{ once: true, margin: "-100px" }}
+                        animate="visible"
                         variants={staggerContainer}
-                        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+                        className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 min-h-[300px]"
                     >
-                        {displayVideos.slice(0, 6).map((video, index) => (
-                            <motion.div key={video.id} variants={fadeInUp}>
-                                <VideoCard
-                                    video={video}
-                                    index={index}
-                                    onClick={() => setSelectedVideoId(video.id)}
-                                />
+                        {displayVideos.length > 0 ? (
+                            displayVideos.slice(0, 6).map((video, index) => (
+                                <motion.div key={video.id} variants={fadeInUp}>
+                                    <VideoCard
+                                        video={video}
+                                        index={index}
+                                        onClick={() => setSelectedVideoId(video.id)}
+                                    />
+                                </motion.div>
+                            ))
+                        ) : (
+                            <motion.div variants={fadeInUp} className="col-span-full flex flex-col items-center justify-center text-center py-12 text-muted-foreground">
+                                <p className="text-lg">No videos found for this section.</p>
+                                <Button
+                                    variant="link"
+                                    onClick={() => window.open("https://www.youtube.com/@akash_talks", "_blank")}
+                                    className="mt-2 text-[#f6c804]"
+                                >
+                                    Check our YouTube Channel
+                                </Button>
                             </motion.div>
-                        ))}
+                        )}
                     </motion.div>
 
                     {/* Buttons - Visit Channel + Subscribe */}

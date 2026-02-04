@@ -226,6 +226,6 @@ export const getPopularVideos = unstable_cache(
             return [];
         }
     },
-    ['youtube-popular-videos-v2'], // Bumped cache key version
+    ['youtube-popular-videos-v3'], // Bumped cache key version
     { revalidate: 3600 } // Cache for 1 hour
 );
