@@ -79,7 +79,7 @@ export function Navbar() {
                     <nav className="hidden xl:flex items-center absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2">
                         <motion.div className="flex items-center bg-muted/50 backdrop-blur-sm rounded-full px-1 py-1 border border-border/50">
                             <LayoutGroup>
-                                <motion.div layout className="flex items-center relative">
+                                <motion.div className="flex items-center relative">
                                     {navLinks.map((link) => {
                                         const isActive = pathname === link.href
                                         return (
