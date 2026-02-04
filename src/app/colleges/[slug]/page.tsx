@@ -244,11 +244,11 @@ export default async function CollegeDetailPage(props: PageProps) {
                 </div>
             </div>
 
-            <div className="w-full px-4 md:px-8 mt-8">
+            <div className="container mx-auto px-4 md:px-8 lg:px-16 xl:px-24 mt-8">
                 {/* Mobile Table of Contents - Horizontal scrolling with scroll spy */}
                 <MobileScrollSpyTOC sections={sections} className="lg:hidden mb-6" />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
                     {/* Sidebar Navigation (Desktop) - with scroll spy */}
                     <div className="hidden lg:block lg:col-span-2">
