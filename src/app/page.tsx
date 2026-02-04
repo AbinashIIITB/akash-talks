@@ -472,13 +472,13 @@ export default function Home() {
           transition={{ duration: 0.8, ease: "easeOut" }}
           className="relative z-10 w-[90%] max-w-4xl mx-auto text-white"
         >
-          <div className="text-center space-y-6 py-12 md:py-16">
+          <div className="text-center space-y-6 py-12 md:py-16 px-4 md:px-0">
             <motion.h2
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.2 }}
-              className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight"
+              className="text-2xl sm:text-3xl md:text-5xl lg:text-6xl font-bold leading-tight"
             >
               Ready to Start Your{" "}
               <span className="gradient-text-yellow">Journey?</span>
@@ -489,7 +489,7 @@ export default function Home() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: 0.3 }}
-              className="max-w-2xl mx-auto text-white/70 text-lg md:text-xl"
+              className="max-w-2xl mx-auto text-white/70 text-base md:text-xl px-2"
             >
               Get in touch with our expert counselors for personalized guidance on B.Tech admissions across top colleges in India.
             </motion.p>
