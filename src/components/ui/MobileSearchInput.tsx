@@ -1,18 +1,19 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
 import { motion, AnimatePresence } from "framer-motion"
-import collegesData from "@/data/colleges.json"
-import examsData from "@/data/exams.json"
-
-type CollegeItem = typeof collegesData[number]
-type ExamItem = typeof examsData[number]
+import {
+    useSearch,
+    useSearchNavigation,
+    filterByType,
+    hasResultType,
+    SearchResult
+} from "@/hooks/useSearch"
 
 interface MobileSearchInputProps {
     placeholder?: string;
     onClose: () => void;
-    onNavigate?: () => void; // Called after navigation
+    onNavigate?: () => void;
     className?: string;
 }
 
@@ -22,9 +23,9 @@ export function MobileSearchInput({
     onNavigate,
     className = ""
 }: MobileSearchInputProps) {
-    const router = useRouter()
     const [query, setQuery] = React.useState("")
-    const [results, setResults] = React.useState<({ type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem })[]>([])
+    const { results } = useSearch(query)
+    const { navigateToResult } = useSearchNavigation()
     const inputRef = React.useRef<HTMLInputElement>(null)
 
     // Focus input on mount
@@ -32,39 +33,11 @@ export function MobileSearchInput({
         inputRef.current?.focus()
     }, [])
 
-    // Search Logic
-    React.useEffect(() => {
-        if (!query.trim()) {
-            setResults([])
-            return
-        }
-
-        const lowerQuery = query.toLowerCase()
-
-        const matchedColleges = collegesData
-            .filter(c => c.name.toLowerCase().includes(lowerQuery) || c.location.toLowerCase().includes(lowerQuery))
-            .slice(0, 4)
-            .map(c => ({ type: 'college' as const, item: c }))
-
-        const matchedExams = examsData
-            .filter(e => e.title.toLowerCase().includes(lowerQuery))
-            .slice(0, 2)
-            .map(e => ({ type: 'exam' as const, item: e }))
-
-        setResults([...matchedColleges, ...matchedExams])
-    }, [query])
-
-    const handleSelect = (result: { type: 'college', item: CollegeItem } | { type: 'exam', item: ExamItem }) => {
+    const handleSelect = (result: SearchResult) => {
         onClose()
         onNavigate?.()
         setQuery("")
-        if (result.type === 'college') {
-            const href = result.item.link || `/colleges/${result.item.id}`
-            router.push(href)
-        } else {
-            const href = result.item.link || `/exams/${result.item.id}`
-            router.push(href)
-        }
+        navigateToResult(result)
     }
 
     return (
@@ -93,12 +66,13 @@ export function MobileSearchInput({
                         className="absolute top-full left-0 right-0 mt-2 bg-zinc-900 rounded-lg shadow-xl overflow-hidden z-50"
                     >
                         <div className="max-h-[50vh] overflow-y-auto py-2">
-                            {results.some(r => r.type === 'college') && (
+                            {/* Engineering Colleges */}
+                            {hasResultType(results, 'college') && (
                                 <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
-                                    Colleges
+                                    Engineering Colleges
                                 </div>
                             )}
-                            {results.filter(r => r.type === 'college').map((result) => (
+                            {filterByType(results, 'college').map((result) => (
                                 <button
                                     key={`college-${result.item.id}`}
                                     onClick={() => handleSelect(result)}
@@ -113,12 +87,34 @@ export function MobileSearchInput({
                                 </button>
                             ))}
 
-                            {results.some(r => r.type === 'exam') && (
+                            {/* Medical Colleges */}
+                            {hasResultType(results, 'medical') && (
+                                <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
+                                    Medical Colleges
+                                </div>
+                            )}
+                            {filterByType(results, 'medical').map((result) => (
+                                <button
+                                    key={`medical-${result.item.slug}`}
+                                    onClick={() => handleSelect(result)}
+                                    className="w-full text-left px-4 py-3 transition-colors hover:bg-zinc-800 group"
+                                >
+                                    <div className="text-sm font-medium text-white group-hover:text-[#f6c804] transition-colors line-clamp-1">
+                                        {result.item.name}
+                                    </div>
+                                    <div className="text-xs text-zinc-500 line-clamp-1">
+                                        {result.item.location}
+                                    </div>
+                                </button>
+                            ))}
+
+                            {/* Exams */}
+                            {hasResultType(results, 'exam') && (
                                 <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
                                     Exams
                                 </div>
                             )}
-                            {results.filter(r => r.type === 'exam').map((result) => (
+                            {filterByType(results, 'exam').map((result) => (
                                 <button
                                     key={`exam-${result.item.id}`}
                                     onClick={() => handleSelect(result)}

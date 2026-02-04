@@ -1,26 +1,23 @@
 "use client"
 
 import * as React from "react"
-import { useRouter } from "next/navigation"
-import { Search as SearchIcon, X, Loader2 } from "lucide-react"
+import { Search as SearchIcon, X } from "lucide-react"
 import { AnimatePresence, motion } from "framer-motion"
 
 import { cn } from "@/lib/utils"
-import { medicalColleges } from "@/lib/data"
-// Import data directly
-import collegesData from "@/data/colleges.json"
-import examsData from "@/data/exams.json"
-
-// Define types based on imported data
-type CollegeItem = typeof collegesData[number]
-type MedicalCollegeItem = typeof medicalColleges[number]
-type ExamItem = typeof examsData[number]
+import {
+    useSearch,
+    useSearchNavigation,
+    filterByType,
+    hasResultType,
+    SearchResult
+} from "@/hooks/useSearch"
 
 export function Search() {
-    const router = useRouter()
     const [isOpen, setIsOpen] = React.useState(false)
     const [query, setQuery] = React.useState("")
-    const [results, setResults] = React.useState<({ type: 'college', item: CollegeItem } | { type: 'medical', item: MedicalCollegeItem } | { type: 'exam', item: ExamItem })[]>([])
+    const { results } = useSearch(query)
+    const { navigateToResult } = useSearchNavigation()
 
     // Ref for click outside
     const containerRef = React.useRef<HTMLDivElement>(null)
@@ -35,56 +32,17 @@ export function Search() {
         return () => document.removeEventListener("mousedown", handleClickOutside)
     }, [])
 
-    // Search Logic
-    React.useEffect(() => {
-        if (!query.trim()) {
-            setResults([])
-            return
-        }
-
-        const lowerQuery = query.toLowerCase()
-
-        // Filter Engineering Colleges
-        const matchedColleges = collegesData
-            .filter(c => c.name.toLowerCase().includes(lowerQuery) || c.location.toLowerCase().includes(lowerQuery))
-            .slice(0, 4)
-            .map(c => ({ type: 'college' as const, item: c }))
-
-        // Filter Medical Colleges
-        const matchedMedicalColleges = medicalColleges
-            .filter((c: MedicalCollegeItem) => c.name.toLowerCase().includes(lowerQuery) || c.location.toLowerCase().includes(lowerQuery))
-            .slice(0, 4)
-            .map((c: MedicalCollegeItem) => ({ type: 'medical' as const, item: c }))
-
-        // Filter Exams
-        const matchedExams = examsData
-            .filter(e => e.title.toLowerCase().includes(lowerQuery))
-            .slice(0, 3)
-            .map(e => ({ type: 'exam' as const, item: e }))
-
-        setResults([...matchedColleges, ...matchedMedicalColleges, ...matchedExams])
-    }, [query])
-
-    const handleSelect = (result: { type: 'college', item: CollegeItem } | { type: 'medical', item: MedicalCollegeItem } | { type: 'exam', item: ExamItem }) => {
+    const handleSelect = (result: SearchResult) => {
         setIsOpen(false)
         setQuery("")
-        if (result.type === 'college') {
-            const href = result.item.link || `/colleges/${result.item.id}`
-            router.push(href)
-        } else if (result.type === 'medical') {
-            const href = `/medical-colleges/${result.item.slug}`
-            router.push(href)
-        } else {
-            const href = result.item.link || `/exams/${result.item.id}`
-            router.push(href)
-        }
+        navigateToResult(result)
     }
 
     return (
         <div ref={containerRef} className="relative z-50">
             <div className={cn(
                 "relative flex items-center transition-all duration-300",
-                isOpen ? "w-64 md:w-80" : "w-10 md:w-10" // Expand on toggle
+                isOpen ? "w-64 md:w-80" : "w-10 md:w-10"
             )}>
                 {isOpen ? (
                     <div className="relative w-full">
@@ -130,12 +88,13 @@ export function Search() {
                         <div className="max-h-[60vh] overflow-y-auto py-2">
                             {results.length > 0 ? (
                                 <>
-                                    {results.some(r => r.type === 'college') && (
+                                    {/* Engineering Colleges */}
+                                    {hasResultType(results, 'college') && (
                                         <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider">
                                             Engineering Colleges
                                         </div>
                                     )}
-                                    {results.filter(r => r.type === 'college').map((result) => (
+                                    {filterByType(results, 'college').map((result) => (
                                         <button
                                             key={`college-${result.item.id}`}
                                             onClick={() => handleSelect(result)}
@@ -150,12 +109,13 @@ export function Search() {
                                         </button>
                                     ))}
 
-                                    {results.some(r => r.type === 'medical') && (
+                                    {/* Medical Colleges */}
+                                    {hasResultType(results, 'medical') && (
                                         <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
                                             Medical Colleges
                                         </div>
                                     )}
-                                    {results.filter(r => r.type === 'medical').map((result) => (
+                                    {filterByType(results, 'medical').map((result) => (
                                         <button
                                             key={`medical-${result.item.slug}`}
                                             onClick={() => handleSelect(result)}
@@ -170,12 +130,13 @@ export function Search() {
                                         </button>
                                     ))}
 
-                                    {results.some(r => r.type === 'exam') && (
+                                    {/* Exams */}
+                                    {hasResultType(results, 'exam') && (
                                         <div className="px-4 py-2 text-xs font-semibold text-zinc-500 uppercase tracking-wider border-t border-zinc-800">
                                             Exams
                                         </div>
                                     )}
-                                    {results.filter(r => r.type === 'exam').map((result) => (
+                                    {filterByType(results, 'exam').map((result) => (
                                         <button
                                             key={`exam-${result.item.id}`}
                                             onClick={() => handleSelect(result)}
