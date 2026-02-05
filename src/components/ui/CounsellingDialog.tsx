@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, Phone, User, Loader2, CheckCircle } from 'lucide-react';
+import { X, Phone, User, Loader2, CheckCircle, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCounsellingDialog } from '@/components/providers/CounsellingDialogProvider';
 
@@ -161,6 +161,31 @@ export function CounsellingDialog() {
                                                     'Get Free Counselling'
                                                 )}
                                             </Button>
+
+                                            <div className="relative my-4">
+                                                <div className="absolute inset-0 flex items-center">
+                                                    <span className="w-full border-t border-zinc-700"></span>
+                                                </div>
+                                                <div className="relative flex justify-center text-xs uppercase">
+                                                    <span className="bg-zinc-900 px-2 text-zinc-500">Or</span>
+                                                </div>
+                                            </div>
+
+                                            <a
+                                                href="https://wa.me/919874878782"
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="block w-full"
+                                            >
+                                                <Button
+                                                    type="button"
+                                                    variant="outline"
+                                                    className="w-full h-12 border-green-600 text-green-500 hover:bg-green-600/10 hover:text-green-500 font-bold rounded-lg transition-all gap-2"
+                                                >
+                                                    <MessageCircle className="h-5 w-5" />
+                                                    WhatsApp Us
+                                                </Button>
+                                            </a>
 
                                             <p className="text-xs text-center text-zinc-500">
                                                 By submitting, you agree to be contacted by our counselors.

@@ -22,6 +22,9 @@ export const metadata: Metadata = {
         locale: "en_IN",
         type: "website",
     },
+    alternates: {
+        canonical: "https://www.akashtalks.in",
+    },
 };
 
 export default async function Home() {
