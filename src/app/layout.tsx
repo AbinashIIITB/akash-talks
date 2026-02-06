@@ -100,6 +100,7 @@ import { FloatingContact } from "@/components/ui/floating-contact";
 import { ThemeTransitionProvider } from "@/components/providers/theme-transition-provider";
 import { CounsellingDialogProvider } from "@/components/providers/CounsellingDialogProvider";
 import { CounsellingDialog } from "@/components/ui/CounsellingDialog";
+import { Analytics } from "@vercel/analytics/next";
 
 // ... existing imports
 
@@ -186,6 +187,7 @@ export default function RootLayout({
                 <Footer />
                 <FloatingContact />
                 <CounsellingDialog />
+                <Analytics />
               </div>
             </CounsellingDialogProvider>
           </ThemeTransitionProvider>
