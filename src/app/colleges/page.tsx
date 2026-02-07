@@ -35,4 +35,13 @@ export const metadata: Metadata = {
     },
 };
 
-export { default } from "./CollegesPageClient";
+import { Suspense } from "react";
+import CollegesPageClient from "./CollegesPageClient";
+
+export default function CollegesPage() {
+    return (
+        <Suspense fallback={<div className="min-h-screen bg-background pt-24"><div className="text-center">Loading...</div></div>}>
+            <CollegesPageClient />
+        </Suspense>
+    );
+}

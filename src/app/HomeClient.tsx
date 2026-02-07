@@ -417,9 +417,12 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
               <motion.div
                 key={state}
                 variants={fadeInUp}
-                className="p-4 border border-border/50 rounded-2xl bg-card/30 text-center hover:border-[#f6c804]/50 hover:bg-card/50 hover:scale-105 transition-all duration-300"
               >
-                <h3 className="font-semibold">{state}</h3>
+                <Link href={`/colleges?type=All&state=${encodeURIComponent(state)}`} className="block h-full">
+                  <div className="h-full p-4 border border-border/50 rounded-2xl bg-card/30 text-center hover:border-[#f6c804]/50 hover:bg-card/50 hover:scale-105 transition-all duration-300 flex items-center justify-center">
+                    <h3 className="font-semibold">{state}</h3>
+                  </div>
+                </Link>
               </motion.div>
             ))}
           </motion.div>

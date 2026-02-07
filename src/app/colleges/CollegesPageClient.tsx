@@ -2,32 +2,45 @@
 
 import { useState, useMemo } from "react"
 import { motion, AnimatePresence } from "framer-motion"
-import { MapPin, ArrowRight, GraduationCap, Stethoscope } from "lucide-react"
+import { MapPin, ArrowRight, GraduationCap, Stethoscope, Building2 } from "lucide-react"
 import Link from "next/link"
 import Image from "next/image"
+import { useSearchParams } from "next/navigation";
 import { colleges as engineeringColleges, medicalColleges } from "@/lib/data"
 
-type CollegeType = "Engineering" | "Medical";
+type CollegeType = "Engineering" | "Medical" | "All";
 
 export default function CollegesPageClient() {
-    const [collegeType, setCollegeType] = useState<CollegeType>("Engineering");
-    const [selectedState, setSelectedState] = useState("All");
+    const searchParams = useSearchParams();
+    const initialType = (searchParams.get("type") as CollegeType) || "Engineering";
+    const initialState = searchParams.get("state") || "All";
+
+    const [collegeType, setCollegeType] = useState<CollegeType>(initialType);
+    const [selectedState, setSelectedState] = useState(initialState);
 
     // Get current data based on type
     const currentData = useMemo(() => {
-        return collegeType === "Engineering" ? engineeringColleges : medicalColleges;
+        if (collegeType === "All") {
+            return [
+                ...engineeringColleges.map((c: any) => ({ ...c, _category: "Engineering" as const })),
+                ...medicalColleges.map((c: any) => ({ ...c, _category: "Medical" as const }))
+            ];
+        }
+        return collegeType === "Engineering"
+            ? engineeringColleges.map((c: any) => ({ ...c, _category: "Engineering" as const }))
+            : medicalColleges.map((c: any) => ({ ...c, _category: "Medical" as const }));
     }, [collegeType]);
 
     // Extract unique states from the current data
     const states = useMemo(() => {
-        const uniqueStates = new Set(currentData.map((college: { state: string }) => college.state));
+        const uniqueStates = new Set(currentData.map((college: any) => college.state));
         return ["All", ...Array.from(uniqueStates).sort()];
     }, [currentData]);
 
     // Filter colleges based on state selection
     const filteredColleges = useMemo(() => {
         if (selectedState === "All") return currentData;
-        return currentData.filter((college: { state: string }) => college.state === selectedState);
+        return currentData.filter((college: any) => college.state === selectedState);
     }, [selectedState, currentData]);
 
     // Reset state filter when changing college type
@@ -65,7 +78,17 @@ export default function CollegesPageClient() {
                 </div>
 
                 {/* College Type Toggle */}
-                <div className="flex justify-center gap-4 pt-4">
+                <div className="flex justify-center flex-wrap gap-4 pt-4">
+                    <button
+                        onClick={() => handleTypeChange("All")}
+                        className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "All"
+                            ? "bg-purple-600 text-white shadow-lg scale-105"
+                            : "bg-card border-2 border-border text-muted-foreground hover:bg-purple-600/10 hover:border-purple-600"
+                            }`}
+                    >
+                        <Building2 className="h-5 w-5" />
+                        All Colleges
+                    </button>
                     <button
                         onClick={() => handleTypeChange("Engineering")}
                         className={`flex items-center gap-2 px-6 py-3 rounded-full font-semibold transition-all duration-300 ${collegeType === "Engineering"
@@ -116,7 +139,7 @@ export default function CollegesPageClient() {
                         className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 pt-4"
                     >
                         {filteredColleges.length > 0 ? (
-                            filteredColleges.map((college) => (
+                            filteredColleges.map((college: any) => (
                                 <motion.div
                                     key={college.id}
                                     variants={item}
@@ -133,11 +156,11 @@ export default function CollegesPageClient() {
                                         />
                                         <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-60" />
                                         {/* Type Badge */}
-                                        <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${collegeType === "Engineering"
+                                        <div className={`absolute top-3 right-3 px-3 py-1 rounded-full text-xs font-semibold ${(college as any)._category === "Engineering"
                                             ? "bg-[#f6c804] text-black"
                                             : "bg-blue-600 text-white"
                                             }`}>
-                                            {collegeType === "Engineering" ? "B.Tech" : "MBBS"}
+                                            {(college as any)._category === "Engineering" ? "B.Tech" : "MBBS"}
                                         </div>
                                     </div>
 
@@ -166,11 +189,11 @@ export default function CollegesPageClient() {
 
                                         <div className="pt-2">
                                             <Link
-                                                href={collegeType === "Engineering"
+                                                href={(college as any)._category === "Engineering"
                                                     ? `/colleges/${college.slug}`
                                                     : `/medical-colleges/${college.slug}`
                                                 }
-                                                className={`w-full inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn ${collegeType === "Engineering"
+                                                className={`w-full inline-flex items-center justify-center rounded-lg px-4 py-2.5 text-sm font-medium transition-colors duration-300 group/btn ${(college as any)._category === "Engineering"
                                                     ? "bg-yellow-400/10 hover:bg-yellow-400 text-yellow-700 hover:text-black"
                                                     : "bg-blue-600/10 hover:bg-blue-600 text-blue-700 hover:text-white"
                                                     }`}
