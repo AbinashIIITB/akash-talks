@@ -411,7 +411,7 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
             whileInView="visible"
             viewport={{ once: true }}
             variants={staggerContainer}
-            className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-6"
+            className="grid gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-[repeat(7,minmax(0,1fr))]"
           >
             {companyInfo.states.map((state, index) => (
               <motion.div
