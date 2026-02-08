@@ -174,6 +174,7 @@ export default function RootLayout({
         />
       </head>
       <body className={inter.className}>
+        <GoogleAnalytics gaId="G-FF19WBVKF0" />
         <ThemeProvider
           attribute="class"
           defaultTheme="light"
@@ -189,7 +190,6 @@ export default function RootLayout({
                 <FloatingContact />
                 <CounsellingDialog />
                 <Analytics />
-                <GoogleAnalytics gaId="G-FF19WBVKF0" />
               </div>
             </CounsellingDialogProvider>
           </ThemeTransitionProvider>
