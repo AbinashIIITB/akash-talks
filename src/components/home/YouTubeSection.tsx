@@ -130,7 +130,7 @@ export function YouTubeSection({ recentVideos, popularVideos }: YouTubeSectionPr
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
                         transition={{ delay: 0.4 }}
-                        className="mt-12 flex flex-col sm:flex-row justify-center gap-4"
+                        className="mt-12 flex flex-col sm:flex-row items-center justify-center gap-4"
                     >
                         <a
                             href="https://www.youtube.com/@akash_talks"
