@@ -71,9 +71,9 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
     };
 
     return (
-        <div className="min-h-screen bg-background pt-24 pb-12">
+        <div className="min-h-screen bg-background pt-24 pb-12 overflow-x-hidden">
             <LayoutContainer>
-                <div className="grid gap-8 lg:grid-cols-12">
+                <div className="grid gap-8 lg:grid-cols-12 px-4 md:px-0">
 
                     {/* Sidebar / Table of Contents - Hidden on mobile, sticky on desktop */}
                     <div className="lg:col-span-3 hidden lg:block">

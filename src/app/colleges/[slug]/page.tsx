@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { ImageGallery } from "@/components/ui/image-gallery";
 import { CollegeEnquiryForm } from "@/components/ui/CollegeEnquiryForm";
-import { ScrollSpyTOC, MobileScrollSpyTOC } from "@/components/ui/ScrollSpyTOC";
+import { ScrollSpyTOC, FloatingMobileTOC } from "@/components/ui/ScrollSpyTOC";
 import {
     MapPin, Star, Building2,
     CheckCircle2, Globe, Briefcase,
@@ -194,7 +194,7 @@ export default async function CollegeDetailPage(props: PageProps) {
     const sections = allSections.filter(s => s.available).map(({ available, ...rest }) => rest);
 
     return (
-        <div className="min-h-screen bg-background pb-20">
+        <div className="min-h-screen bg-background pb-20 overflow-x-hidden">
             {/* JSON-LD Structured Data */}
             <CollegeJsonLd college={college} />
 
@@ -245,8 +245,8 @@ export default async function CollegeDetailPage(props: PageProps) {
             </div>
 
             <div className="container mx-auto px-4 md:px-6 lg:px-8 xl:px-12 mt-8">
-                {/* Mobile Table of Contents - Horizontal scrolling with scroll spy */}
-                <MobileScrollSpyTOC sections={sections} className="lg:hidden mb-6" />
+                {/* Mobile Table of Contents - Floating button with drawer */}
+                <FloatingMobileTOC sections={sections} className="lg:hidden" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
@@ -256,7 +256,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-6 space-y-10">
+                    <div className="col-span-1 lg:col-span-6 space-y-10">
 
                         {/* Image Gallery */}
                         {college.galleryImages && college.galleryImages.length > 0 && (
@@ -717,7 +717,7 @@ export default async function CollegeDetailPage(props: PageProps) {
                     </div>
 
                     {/* Right Sidebar: Enquiry Form */}
-                    <div className="lg:col-span-3">
+                    <div className="hidden lg:block lg:col-span-3">
                         <div className="sticky top-24 space-y-6">
                             <div className="border border-[#f6c804]/20 rounded-2xl p-6 bg-card shadow-lg relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-1 bg-[#f6c804]" />
