@@ -6,7 +6,7 @@ import { medicalColleges } from "@/lib/data";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { CollegeEnquiryForm } from "@/components/ui/CollegeEnquiryForm";
-import { ScrollSpyTOC, MobileScrollSpyTOC } from "@/components/ui/ScrollSpyTOC";
+import { ScrollSpyTOC, FloatingMobileTOC } from "@/components/ui/ScrollSpyTOC";
 import {
     MapPin, Star, Building2, CheckCircle2, Briefcase,
     Calendar, Users, DollarSign, BookOpen, Award,
@@ -139,8 +139,8 @@ export default async function MedicalCollegeDetailPage({ params }: PageProps) {
             </div>
 
             <div className="w-full px-4 md:px-8 mt-8">
-                {/* Mobile TOC */}
-                <MobileScrollSpyTOC sections={sections} className="lg:hidden mb-6" />
+                {/* Mobile TOC - Floating button with drawer */}
+                <FloatingMobileTOC sections={sections} className="lg:hidden" />
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Sidebar TOC (Desktop) */}

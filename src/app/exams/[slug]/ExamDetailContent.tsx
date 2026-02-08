@@ -73,7 +73,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
     return (
         <div className="min-h-screen bg-background pt-24 pb-12 overflow-x-hidden">
             <LayoutContainer>
-                <div className="grid gap-8 lg:grid-cols-12 px-4 md:px-0">
+                <div className="grid gap-8 lg:grid-cols-12 px-4 md:px-0 w-full max-w-full overflow-hidden">
 
                     {/* Sidebar / Table of Contents - Hidden on mobile, sticky on desktop */}
                     <div className="lg:col-span-3 hidden lg:block">
@@ -120,7 +120,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-9 space-y-10">
+                    <div className="lg:col-span-9 space-y-10 min-w-0 max-w-full overflow-hidden">
 
                         {/* Header Section */}
                         <motion.div
@@ -137,8 +137,8 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                         <Badge className="bg-[#f6c804] text-black hover:bg-[#e5b703] mb-2">Entrance Exam</Badge>
                                         <h1 className="text-3xl md:text-4xl font-bold tracking-tight">{exam.name}</h1>
                                     </div>
-                                    <p className="text-lg text-muted-foreground font-medium">{exam.fullName}</p>
-                                    <p className="text-sm text-foreground/80 leading-relaxed">{exam.description}</p>
+                                    <p className="text-lg text-muted-foreground font-medium break-words">{exam.fullName}</p>
+                                    <p className="text-sm text-foreground/80 leading-relaxed break-words">{exam.description}</p>
 
                                     <div className="flex flex-wrap gap-3 pt-2">
                                         <a href={exam.applicationLink} target="_blank" rel="noopener noreferrer">
@@ -166,7 +166,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                 <h2 className="text-2xl font-bold flex items-center gap-2">
                                     <Info className="h-6 w-6 text-[#f6c804]" /> Introduction
                                 </h2>
-                                <div className="bg-gradient-to-br from-[#f6c804]/5 to-transparent border border-[#f6c804]/20 rounded-2xl p-6 text-foreground leading-relaxed">
+                                <div className="bg-gradient-to-br from-[#f6c804]/5 to-transparent border border-[#f6c804]/20 rounded-2xl p-6 text-foreground leading-relaxed break-words overflow-hidden">
                                     {exam.introduction}
                                 </div>
                             </section>
@@ -176,7 +176,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                 <h2 className="text-2xl font-bold flex items-center gap-2">
                                     <BookOpen className="h-6 w-6 text-[#f6c804]" /> Overview
                                 </h2>
-                                <div className="bg-card border rounded-2xl p-6 text-muted-foreground leading-relaxed">
+                                <div className="bg-card border rounded-2xl p-6 text-muted-foreground leading-relaxed break-words overflow-hidden">
                                     {exam.overview}
                                 </div>
                             </section>
@@ -265,7 +265,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                     <GraduationCap className="h-6 w-6 text-[#f6c804]" /> About {exam.name}
                                 </h2>
                                 <div className="bg-gradient-to-br from-[#f6c804]/5 to-transparent border border-[#f6c804]/20 rounded-2xl p-6">
-                                    <p className="text-foreground leading-relaxed">{exam.aboutExam}</p>
+                                    <p className="text-foreground leading-relaxed break-words">{exam.aboutExam}</p>
                                 </div>
                             </section>
 
