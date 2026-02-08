@@ -101,6 +101,7 @@ import { ThemeTransitionProvider } from "@/components/providers/theme-transition
 import { CounsellingDialogProvider } from "@/components/providers/CounsellingDialogProvider";
 import { CounsellingDialog } from "@/components/ui/CounsellingDialog";
 import { Analytics } from "@vercel/analytics/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
 
 // ... existing imports
 
@@ -188,6 +189,7 @@ export default function RootLayout({
                 <FloatingContact />
                 <CounsellingDialog />
                 <Analytics />
+                <GoogleAnalytics gaId="G-FF19WBVKF0" />
               </div>
             </CounsellingDialogProvider>
           </ThemeTransitionProvider>
