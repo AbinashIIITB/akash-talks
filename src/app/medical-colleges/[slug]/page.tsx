@@ -145,7 +145,9 @@ export default async function MedicalCollegeDetailPage({ params }: PageProps) {
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
                     {/* Sidebar TOC (Desktop) */}
                     <div className="hidden lg:block lg:col-span-2">
-                        <ScrollSpyTOC sections={sections} />
+                        <div className="sticky top-24">
+                            <ScrollSpyTOC sections={sections} />
+                        </div>
                     </div>
 
                     {/* Main Content */}

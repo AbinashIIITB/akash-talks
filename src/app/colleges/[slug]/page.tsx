@@ -252,7 +252,9 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Sidebar Navigation (Desktop) - with scroll spy */}
                     <div className="hidden lg:block lg:col-span-3">
-                        <ScrollSpyTOC sections={sections} />
+                        <div className="sticky top-24">
+                            <ScrollSpyTOC sections={sections} />
+                        </div>
                     </div>
 
                     {/* Main Content */}
