@@ -54,6 +54,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+// SSG: Only allow known slugs, return 404 for others
+export const dynamicParams = false;
+
 export function generateStaticParams() {
     return exams.map((exam) => ({
         slug: exam.slug,
@@ -155,6 +158,30 @@ export default async function ExamDetailPage(props: PageProps) {
         <>
             <ExamJsonLd exam={exam} />
             <ExamDetailContent exam={exam} />
+
+            {/* Related Exams - Internal linking for SEO */}
+            {(() => {
+                const relatedExams = exams.filter(e => e.slug !== exam.slug).slice(0, 4);
+                if (relatedExams.length === 0) return null;
+                return (
+                    <div className="w-full px-4 md:px-8 py-12">
+                        <h2 className="text-2xl font-bold mb-6">Other Exams You Should Know About</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {relatedExams.map((re) => (
+                                <a
+                                    key={re.slug}
+                                    href={`/exams/${re.slug}`}
+                                    className="block p-4 border rounded-xl bg-card hover:border-[#f6c804]/50 hover:shadow-md transition-all"
+                                >
+                                    <h3 className="font-semibold text-sm mb-1">{re.name}</h3>
+                                    <p className="text-xs text-muted-foreground line-clamp-2">{re.fullName}</p>
+                                    <p className="text-xs text-[#f6c804] mt-2">View Details →</p>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })()}
         </>
     );
 }

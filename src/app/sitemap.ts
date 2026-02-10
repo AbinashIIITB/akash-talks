@@ -4,7 +4,9 @@ import { exams } from '@/lib/examData'
 
 export default function sitemap(): MetadataRoute.Sitemap {
     const baseUrl = 'https://www.akashtalks.in'
-    const currentDate = new Date()
+    // Use a stable date to avoid confusing Google with constantly changing lastModified
+    // Update this date when you make meaningful content changes
+    const currentDate = new Date('2026-02-10')
 
     // Static pages
     const staticPages: MetadataRoute.Sitemap = [

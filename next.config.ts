@@ -1,6 +1,19 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
+  // SEO: Consistent URL format (no trailing slashes)
+  trailingSlash: false,
+  // SEO: Redirect non-www to www for domain consolidation
+  async redirects() {
+    return [
+      {
+        source: '/:path*',
+        has: [{ type: 'host', value: 'akashtalks.in' }],
+        destination: 'https://www.akashtalks.in/:path*',
+        permanent: true,
+      },
+    ];
+  },
   // Image optimization for faster loading
   images: {
     remotePatterns: [

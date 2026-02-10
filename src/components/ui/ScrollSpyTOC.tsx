@@ -76,7 +76,7 @@ export function ScrollSpyTOC({ sections, className = "" }: ScrollSpyTOCProps) {
     }, [sections])
 
     return (
-        <div className={`sticky top-24 space-y-1 bg-card border rounded-2xl p-4 shadow-sm max-h-[80vh] overflow-y-auto ${className}`}>
+        <div className={`space-y-1 bg-card border rounded-2xl p-4 shadow-sm max-h-[80vh] overflow-y-auto ${className}`}>
             <p className="font-semibold text-muted-foreground px-4 mb-2 text-sm uppercase tracking-wider">
                 Table of Contents
             </p>
@@ -269,7 +269,7 @@ export function FloatingMobileTOC({ sections, className = "" }: FloatingMobileTO
             {/* Floating Button - positioned above the contact button */}
             <motion.button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-24 right-6 z-40 h-11 w-11 rounded-full bg-[#f6c804] text-black shadow-lg flex items-center justify-center"
+                className="fixed bottom-28 right-6 z-40 h-11 w-11 rounded-full bg-[#f6c804] text-black shadow-lg flex items-center justify-center"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 initial={{ scale: 0, opacity: 0 }}

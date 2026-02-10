@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
+import { FloatingMobileTOC } from "@/components/ui/ScrollSpyTOC";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Card, CardContent } from "@/components/ui/card";
@@ -29,6 +30,20 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
         { id: "pattern", label: "Exam Pattern", icon: AlertCircle },
         { id: "counselling", label: "Counselling", icon: Users },
         { id: "faqs", label: "FAQs", icon: HelpCircle },
+    ];
+
+    // iconName-based sections for FloatingMobileTOC component
+    const mobileSections = [
+        { id: "introduction", label: "Introduction", iconName: "BookOpen" },
+        { id: "overview", label: "Overview", iconName: "BookOpen" },
+        { id: "dates", label: "Important Dates", iconName: "Calendar" },
+        { id: "process", label: "Application Process", iconName: "ClipboardList" },
+        { id: "documents", label: "Documents Required", iconName: "ClipboardList" },
+        { id: "eligibility", label: "Eligibility", iconName: "Award" },
+        { id: "about", label: "About Exam", iconName: "BookOpen" },
+        { id: "pattern", label: "Exam Pattern", iconName: "TrendingUp" },
+        { id: "counselling", label: "Counselling", iconName: "Users" },
+        { id: "faqs", label: "FAQs", iconName: "HelpCircle" },
     ];
 
     // Intersection Observer for scroll-based active section detection
@@ -77,7 +92,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
 
                     {/* Sidebar / Table of Contents - Hidden on mobile, sticky on desktop */}
                     <div className="lg:col-span-3 hidden lg:block">
-                        <div className="sticky top-28 space-y-4">
+                        <div className="space-y-4">
                             <div className="p-4 rounded-xl bg-card border shadow-sm">
                                 <h3 className="font-bold text-lg mb-4 px-2">Table of Contents</h3>
                                 <nav className="flex flex-col space-y-1 relative">
@@ -118,6 +133,9 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                             </Card>
                         </div>
                     </div>
+
+                    {/* Mobile Table of Contents - Floating button with drawer */}
+                    <FloatingMobileTOC sections={mobileSections} className="lg:hidden" />
 
                     {/* Main Content */}
                     <div className="lg:col-span-9 space-y-10 min-w-0 max-w-full overflow-hidden">

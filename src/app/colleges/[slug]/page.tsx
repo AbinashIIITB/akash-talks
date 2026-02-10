@@ -15,6 +15,9 @@ import {
     ClipboardList, HelpCircle, Lightbulb, MessageCircle, Images
 } from "lucide-react";
 
+// SSG: Only allow known slugs, return 404 for others
+export const dynamicParams = false;
+
 // In Next.js 15, params is a Promise
 interface PageProps {
     params: Promise<{
@@ -252,7 +255,7 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Sidebar Navigation (Desktop) - with scroll spy */}
                     <div className="hidden lg:block lg:col-span-3">
-                        <div className="sticky top-24">
+                        <div>
                             <ScrollSpyTOC sections={sections} />
                         </div>
                     </div>
@@ -720,7 +723,7 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Right Sidebar: Enquiry Form */}
                     <div className="hidden lg:block lg:col-span-3">
-                        <div className="sticky top-24 space-y-6">
+                        <div className="space-y-6">
                             <div className="border border-[#f6c804]/20 rounded-2xl p-6 bg-card shadow-lg relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-1 bg-[#f6c804]" />
                                 <h3 className="text-xl font-bold mb-2">Secure Your Admission Now</h3>
@@ -746,6 +749,33 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                 </div>
             </div>
+
+            {/* Related Colleges - Internal linking for SEO */}
+            {(() => {
+                const relatedColleges = colleges
+                    .filter(c => c.state === college.state && c.slug !== college.slug)
+                    .slice(0, 4);
+                if (relatedColleges.length === 0) return null;
+                return (
+                    <div className="w-full px-4 md:px-8 py-12">
+                        <h2 className="text-2xl font-bold mb-6">Related Colleges in {college.state}</h2>
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {relatedColleges.map((rc) => (
+                                <a
+                                    key={rc.slug}
+                                    href={`/colleges/${rc.slug}`}
+                                    className="block p-4 border rounded-xl bg-card hover:border-[#f6c804]/50 hover:shadow-md transition-all"
+                                >
+                                    <h3 className="font-semibold text-sm mb-1 line-clamp-2">{rc.name}</h3>
+                                    <p className="text-xs text-muted-foreground">{rc.location}</p>
+                                    <p className="text-xs text-[#f6c804] mt-2">View Details →</p>
+                                </a>
+                            ))}
+                        </div>
+                    </div>
+                );
+            })()}
+
         </div>
     );
 }

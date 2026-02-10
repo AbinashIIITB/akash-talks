@@ -56,6 +56,9 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     };
 }
 
+// SSG: Only allow known slugs, return 404 for others
+export const dynamicParams = false;
+
 export async function generateStaticParams() {
     return medicalColleges.map((college) => ({
         slug: college.slug,
