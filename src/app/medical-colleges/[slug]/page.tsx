@@ -141,20 +141,20 @@ export default async function MedicalCollegeDetailPage({ params }: PageProps) {
                 </div>
             </div>
 
-            <div className="w-full px-4 md:px-8 mt-8">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 xl:px-12 mt-8">
                 {/* Mobile TOC - Floating button with drawer */}
                 <FloatingMobileTOC sections={sections} className="lg:hidden" />
 
-                <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
                     {/* Sidebar TOC (Desktop) */}
-                    <div className="hidden lg:block lg:col-span-2">
+                    <div className="hidden lg:block lg:col-span-3">
                         <div className="sticky top-24">
                             <ScrollSpyTOC sections={sections} />
                         </div>
                     </div>
 
                     {/* Main Content */}
-                    <div className="lg:col-span-7 space-y-10">
+                    <div className="lg:col-span-6 space-y-10">
                         {/* About */}
                         {college.about && (
                             <>

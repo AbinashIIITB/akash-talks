@@ -241,6 +241,23 @@ export function FloatingMobileTOC({ sections, className = "" }: FloatingMobileTO
         }
     }, [sections])
 
+    const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+
+    // Listen for menu open state to hide TOC button
+    React.useEffect(() => {
+        const checkMenuState = () => {
+            setIsMenuOpen(document.body.hasAttribute('data-menu-open'));
+        };
+
+        // Initial check
+        checkMenuState();
+
+        const observer = new MutationObserver(checkMenuState);
+        observer.observe(document.body, { attributes: true, attributeFilter: ['data-menu-open'] });
+
+        return () => observer.disconnect();
+    }, []);
+
     // Prevent body scroll when drawer is open
     React.useEffect(() => {
         if (isOpen) {
@@ -265,7 +282,7 @@ export function FloatingMobileTOC({ sections, className = "" }: FloatingMobileTO
     }
 
     return (
-        <div className={className}>
+        <div className={`${className} transition-opacity duration-200 ${isMenuOpen ? 'opacity-0 pointer-events-none' : 'opacity-100'}`}>
             {/* Floating Button - positioned above the contact button */}
             <motion.button
                 onClick={() => setIsOpen(true)}

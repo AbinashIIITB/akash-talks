@@ -85,9 +85,7 @@ export const metadata: Metadata = {
     images: ["/college.jpg"],
   },
   verification: {
-    // Replace with your actual Google Search Console verification code
-    // Find it in GSC → Settings → Ownership verification → HTML tag
-    google: "your-verification-code",
+    // Already verified via DNS/domain registrar — no HTML tag needed
   },
   alternates: {
     canonical: siteConfig.url,

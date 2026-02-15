@@ -86,13 +86,13 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
     };
 
     return (
-        <div className="min-h-screen bg-background pt-24 pb-12 overflow-x-hidden">
-            <LayoutContainer>
-                <div className="grid gap-8 lg:grid-cols-12 px-4 md:px-0 w-full max-w-full overflow-hidden">
+        <div className="min-h-screen bg-background pt-24 pb-12">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 xl:px-12">
+                <div className="grid gap-8 lg:grid-cols-12 w-full">
 
                     {/* Sidebar / Table of Contents - Hidden on mobile, sticky on desktop */}
                     <div className="lg:col-span-3 hidden lg:block">
-                        <div className="space-y-4">
+                        <div className="sticky top-24 space-y-4">
                             <div className="p-4 rounded-xl bg-card border shadow-sm">
                                 <h3 className="font-bold text-lg mb-4 px-2">Table of Contents</h3>
                                 <nav className="flex flex-col space-y-1 relative">
@@ -138,7 +138,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                     <FloatingMobileTOC sections={mobileSections} className="lg:hidden" />
 
                     {/* Main Content */}
-                    <div className="lg:col-span-9 space-y-10 min-w-0 max-w-full overflow-hidden">
+                    <div className="lg:col-span-9 space-y-10 min-w-0">
 
                         {/* Header Section */}
                         <motion.div
@@ -364,7 +364,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                         </div>
                     </div>
                 </div>
-            </LayoutContainer>
+            </div>
             {/* Exam Counselling Dialog */}
             <ExamCounsellingDialog
                 isOpen={isCounsellingDialogOpen}

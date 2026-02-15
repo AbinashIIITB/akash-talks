@@ -197,7 +197,7 @@ export default async function CollegeDetailPage(props: PageProps) {
     const sections = allSections.filter(s => s.available).map(({ available, ...rest }) => rest);
 
     return (
-        <div className="min-h-screen bg-background pb-20 overflow-x-hidden">
+        <div className="min-h-screen bg-background pb-20">
             {/* JSON-LD Structured Data */}
             <CollegeJsonLd college={college} />
 
@@ -255,7 +255,7 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Sidebar Navigation (Desktop) - with scroll spy */}
                     <div className="hidden lg:block lg:col-span-3">
-                        <div>
+                        <div className="sticky top-24">
                             <ScrollSpyTOC sections={sections} />
                         </div>
                     </div>
@@ -723,7 +723,7 @@ export default async function CollegeDetailPage(props: PageProps) {
 
                     {/* Right Sidebar: Enquiry Form */}
                     <div className="hidden lg:block lg:col-span-3">
-                        <div className="space-y-6">
+                        <div className="sticky top-24 space-y-6">
                             <div className="border border-[#f6c804]/20 rounded-2xl p-6 bg-card shadow-lg relative overflow-hidden">
                                 <div className="absolute top-0 left-0 w-full h-1 bg-[#f6c804]" />
                                 <h3 className="text-xl font-bold mb-2">Secure Your Admission Now</h3>
