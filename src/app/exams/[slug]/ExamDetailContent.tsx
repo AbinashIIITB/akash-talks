@@ -315,7 +315,7 @@ export default function ExamDetailContent({ exam }: ExamDetailContentProps) {
                                     <h4 className="font-semibold mb-3">Subjects Breakdown:</h4>
                                     <div className="flex flex-wrap gap-2">
                                         {exam.examPattern.subjects.map((sub, idx) => (
-                                            <Badge key={idx} variant="secondary" className="px-3 py-1 text-base font-normal">
+                                            <Badge key={idx} variant="secondary" className="px-3 py-1 text-base font-normal whitespace-normal h-auto text-center">
                                                 {sub}
                                             </Badge>
                                         ))}
