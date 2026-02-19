@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { motion } from "framer-motion";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -12,8 +12,9 @@ import { ArrowRight, Building2, GraduationCap, Users, Phone, ChevronDown, Shield
 import { colleges, companyInfo } from "@/lib/data";
 import testimonials from "@/data/testimonials.json";
 import { useCounsellingDialog } from "@/components/providers/CounsellingDialogProvider";
-import { YouTubeSection } from "@/components/home/YouTubeSection";
 import { YouTubeVideo } from "@/lib/youtube";
+
+const YouTubeSection = lazy(() => import("@/components/home/YouTubeSection").then(mod => ({ default: mod.YouTubeSection })));
 
 // Animation variants
 const fadeInUp = {
@@ -295,14 +296,14 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
                       <p className="text-sm text-muted-foreground">{college.location}</p>
                       <div className="mt-3 flex flex-wrap gap-2">
                         {college.tags.slice(0, 2).map((tag) => (
-                          <span key={tag} className="px-3 py-1 bg-[#f6c804]/10 text-[#f6c804] rounded-full text-xs font-medium">
+                          <span key={tag} className="px-3 py-1 bg-[#f6c804]/10 text-[#946f00] dark:text-[#f6c804] rounded-full text-xs font-medium">
                             {tag}
                           </span>
                         ))}
                       </div>
                       <div className="mt-4 flex items-center justify-between">
                         <span className="text-sm font-medium">{college.fees}</span>
-                        <span className="text-sm text-[#f6c804]">⭐ {college.rating}</span>
+                        <span className="text-sm text-[#946f00] dark:text-[#f6c804]">⭐ {college.rating}</span>
                       </div>
                     </div>
                   </div>
@@ -368,7 +369,7 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
                       />
                     </div>
                     <div>
-                      <h4 className="font-bold text-lg leading-none">{testimonial.name}</h4>
+                      <p className="font-bold text-lg leading-none">{testimonial.name}</p>
                       <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                     </div>
                   </div>
@@ -427,7 +428,9 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
       </section>
 
       {/* YouTube Section */}
-      <YouTubeSection recentVideos={recentVideos} popularVideos={popularVideos} />
+      <Suspense fallback={<div className="py-24" />}>
+        <YouTubeSection recentVideos={recentVideos} popularVideos={popularVideos} />
+      </Suspense>
 
       {/* CTA Section - Hero Style with Cursor Tracking */}
       <section
