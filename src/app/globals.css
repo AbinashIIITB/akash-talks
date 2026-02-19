@@ -227,3 +227,20 @@
     animation-delay: 5s;
   }
 }
+
+/* Respect user preference for reduced motion - accessibility */
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-float,
+  .animate-float-delayed,
+  .animate-float-delayed-2,
+  .animate-scroll,
+  .animate-bounce-slow,
+  .animate-line-sweep {
+    animation: none !important;
+  }
+
+  .hover-lift:hover {
+    transform: none;
+  }
+}

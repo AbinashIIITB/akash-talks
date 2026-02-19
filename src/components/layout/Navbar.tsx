@@ -67,10 +67,12 @@ export function Navbar() {
                     <Link href="/" className="flex items-center z-10">
                         <div className="relative h-10 w-10 overflow-hidden">
                             <Image
-                                src="/logo.png"
+                                src="/logo.webp"
                                 alt="Akash Talks"
                                 fill
+                                sizes="40px"
                                 className="object-contain"
+                                priority
                             />
                         </div>
                     </Link>
