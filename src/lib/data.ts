@@ -1444,7 +1444,7 @@ export const companyInfo = {
     name: "Akash Talks",
     tagline: "Direct Admission in B.Tech",
     phones: ["+91 9874878782", "+91 8825352628"],
-    email: "admissions@akashtalks.com",
+    email: "akashtalkscounselling@gmail.com",
     youtube: "https://www.youtube.com/@akash_talks",
     address: {
         line1: "GN-34/1, Aurora Water Front, Unit 21",

@@ -8,7 +8,7 @@ import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import { MagneticWrapper } from "@/components/ui/magnetic-wrapper";
 import { LayoutContainer } from "@/components/layout/LayoutContainer";
-import { ArrowRight, Building2, GraduationCap, Users, Phone, ChevronDown, Shield, Award, MapPin } from "lucide-react";
+import { ArrowRight, Building2, GraduationCap, Users, Phone, ChevronDown, Shield, Award, MapPin, Mail } from "lucide-react";
 import { colleges, companyInfo } from "@/lib/data";
 import testimonials from "@/data/testimonials.json";
 import { useCounsellingDialog } from "@/components/providers/CounsellingDialogProvider";
@@ -157,6 +157,9 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
                         <Phone className="h-4 w-4" /> {phone}
                       </a>
                     ))}
+                    <a href={`mailto:${companyInfo.email}`} className="flex items-center gap-2 hover:text-[#f6c804] transition-colors">
+                      <Mail className="h-4 w-4" /> {companyInfo.email}
+                    </a>
                   </m.div>
                 </m.div>
 

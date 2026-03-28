@@ -3,7 +3,7 @@
 import Link from "next/link"
 import Image from "next/image"
 import { companyInfo } from "@/lib/data"
-import { ArrowUpRight, Youtube, Facebook } from "lucide-react"
+import { ArrowUpRight, Youtube, Facebook, Mail } from "lucide-react"
 import { useState, useEffect, useRef } from "react"
 
 function LazyMap() {
@@ -148,9 +148,18 @@ export function Footer() {
 
                     {/* Right Column: Map and Contact */}
                     <div className="space-y-6">
-                        <div className="space-y-2">
-                            <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">Office Location</p>
-                            <p className="text-lg leading-relaxed">{companyInfo.address.full}</p>
+                        <div className="space-y-4">
+                            <div className="space-y-2">
+                                <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">Office Location</p>
+                                <p className="text-lg leading-relaxed">{companyInfo.address.full}</p>
+                            </div>
+                            <div className="space-y-2">
+                                <p className="text-sm font-medium text-gray-400 uppercase tracking-wider">Email Us</p>
+                                <a href={`mailto:${companyInfo.email}`} className="text-lg leading-relaxed hover:text-[#f6c804] transition-colors flex items-center gap-2">
+                                    <Mail className="h-4 w-4" />
+                                    {companyInfo.email}
+                                </a>
+                            </div>
                         </div>
 
                         {/* Interactive Map Widget - Lazy Loaded */}
