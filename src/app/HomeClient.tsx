@@ -193,7 +193,7 @@ export default function HomeClient({ recentVideos, popularVideos }: HomeClientPr
               y: { duration: 2, repeat: Infinity, ease: "easeInOut" }
             }}
             onClick={() => scrollToSection('features-section')}
-            className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
+            className="hidden md:block absolute bottom-8 left-1/2 -translate-x-1/2 z-20 p-3 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white hover:bg-white/20 transition-all duration-300 cursor-pointer"
             aria-label="Scroll down"
           >
             <ChevronDown className="h-6 w-6" />
