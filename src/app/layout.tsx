@@ -99,6 +99,7 @@ import { FloatingContact } from "@/components/ui/floating-contact";
 import { ThemeTransitionProvider } from "@/components/providers/theme-transition-provider";
 import { CounsellingDialogProvider } from "@/components/providers/CounsellingDialogProvider";
 import { CounsellingDialog } from "@/components/ui/CounsellingDialog";
+import { OpeningFormDialog } from "@/components/ui/OpeningFormDialog";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import Script from "next/script";
@@ -203,6 +204,7 @@ export default function RootLayout({
                 <Footer />
                 <FloatingContact />
                 <CounsellingDialog />
+                <OpeningFormDialog />
                 <Analytics />
               </div>
             </CounsellingDialogProvider>

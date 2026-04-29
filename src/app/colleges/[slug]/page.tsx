@@ -212,36 +212,45 @@ export default async function CollegeDetailPage(props: PageProps) {
                 </div>
 
                 <div className="relative z-30 container h-full flex flex-col justify-end pb-12 px-4 md:px-8">
-                    <div className="max-w-4xl space-y-4">
-                        {/* College Name - First for better mobile hierarchy */}
-                        <h1 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
-                            {college.name}
-                        </h1>
+                    <div className="flex flex-col md:flex-row md:items-end gap-4 md:gap-6 max-w-5xl">
+                        {college.imageUrl && (
+                            <img 
+                                src={college.imageUrl} 
+                                alt={college.name} 
+                                className="w-20 h-20 md:w-32 md:h-32 rounded-xl object-cover border-4 border-white/10 shadow-lg bg-white shrink-0" 
+                            />
+                        )}
+                        <div className="space-y-4">
+                            {/* College Name - First for better mobile hierarchy */}
+                            <h1 className="text-3xl md:text-6xl font-bold text-white tracking-tight">
+                                {college.name}
+                            </h1>
 
-                        {/* Badges - Below title for mobile */}
-                        <div className="flex flex-wrap gap-2">
-                            <Badge className="bg-[#f6c804] text-black hover:bg-[#e5b703] border-none text-xs md:text-sm px-2 md:px-3 py-1">
-                                {college.type}
-                            </Badge>
-                            {college.tags.map((tag, i) => (
-                                <Badge key={i} variant="outline" className="text-white border-white/30 backdrop-blur-sm text-xs md:text-sm">
-                                    {tag}
+                            {/* Badges - Below title for mobile */}
+                            <div className="flex flex-wrap gap-2">
+                                <Badge className="bg-[#f6c804] text-black hover:bg-[#e5b703] border-none text-xs md:text-sm px-2 md:px-3 py-1">
+                                    {college.type}
                                 </Badge>
-                            ))}
-                        </div>
+                                {college.tags.map((tag, i) => (
+                                    <Badge key={i} variant="outline" className="text-white border-white/30 backdrop-blur-sm text-xs md:text-sm">
+                                        {tag}
+                                    </Badge>
+                                ))}
+                            </div>
 
-                        <div className="flex flex-wrap items-center text-gray-300 gap-3 md:gap-6 text-sm md:text-lg">
-                            <span className="flex items-center gap-1.5 md:gap-2">
-                                <MapPin className="h-4 w-4 md:h-5 md:w-5 text-[#f6c804]" /> {college.location}
-                            </span>
-                            <span className="flex items-center gap-1.5 md:gap-2">
-                                <Star className="h-4 w-4 md:h-5 md:w-5 fill-[#f6c804] text-[#f6c804]" /> {college.rating} ({college.reviews})
-                            </span>
-                            {college.established && (
-                                <span className="hidden md:flex items-center gap-2">
-                                    <Globe className="h-5 w-5 text-blue-400" /> Est. {college.established}
+                            <div className="flex flex-wrap items-center text-gray-300 gap-3 md:gap-6 text-sm md:text-lg">
+                                <span className="flex items-center gap-1.5 md:gap-2">
+                                    <MapPin className="h-4 w-4 md:h-5 md:w-5 text-[#f6c804]" /> {college.location}
                                 </span>
-                            )}
+                                <span className="flex items-center gap-1.5 md:gap-2">
+                                    <Star className="h-4 w-4 md:h-5 md:w-5 fill-[#f6c804] text-[#f6c804]" /> {college.rating} ({college.reviews})
+                                </span>
+                                {college.established && (
+                                    <span className="hidden md:flex items-center gap-2">
+                                        <Globe className="h-5 w-5 text-blue-400" /> Est. {college.established}
+                                    </span>
+                                )}
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -250,6 +259,30 @@ export default async function CollegeDetailPage(props: PageProps) {
             <div className="container mx-auto px-4 md:px-6 lg:px-8 xl:px-12 mt-8">
                 {/* Mobile Table of Contents - Floating button with drawer */}
                 <FloatingMobileTOC sections={sections} className="lg:hidden" />
+
+                {/* Mobile Enquiry Form (Visible only on mobile/tablet) */}
+                <div className="block lg:hidden mb-8">
+                    <div className="border border-[#f6c804]/20 rounded-2xl p-6 bg-card shadow-lg relative overflow-hidden">
+                        <div className="absolute top-0 left-0 w-full h-1 bg-[#f6c804]" />
+                        <h3 className="text-xl font-bold mb-2">Secure Your Admission Now</h3>
+                        <p className="text-sm text-muted-foreground mb-6">Get detailed counseling and fee breakdown for {college.name}.</p>
+
+                        <CollegeEnquiryForm collegeName={college.name} />
+
+                        <p className="text-xs text-center text-muted-foreground mt-4">
+                            800+ students applied last week
+                        </p>
+                    </div>
+
+                    <a
+                        href={college.contact?.whatsapp ? `https://wa.me/${college.contact.whatsapp.replace(/[^0-9]/g, '')}` : "https://wa.me/919874878782"}
+                        target="_blank"
+                        className="mt-4 flex items-center justify-center gap-2 w-full p-4 rounded-xl border-2 border-dashed border-green-500/20 bg-green-500/5 text-green-600 font-bold hover:bg-green-500/10 transition-colors cursor-pointer"
+                    >
+                        <MessageCircle className="h-5 w-5" />
+                        Chat on WhatsApp
+                    </a>
+                </div>
 
                 <div className="grid grid-cols-1 lg:grid-cols-12 gap-8">
 
