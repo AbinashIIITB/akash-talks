@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Loader2, CheckCircle } from 'lucide-react';
+import { trackConversion } from '@/lib/gtag';
 
 interface CollegeEnquiryFormProps {
     collegeName: string;
@@ -48,6 +49,7 @@ export function CollegeEnquiryForm({ collegeName }: CollegeEnquiryFormProps) {
                 throw new Error('Failed to submit');
             }
 
+            trackConversion();
             setIsSuccess(true);
             setFormData({ fullName: '', phone: '', email: '' });
         } catch {

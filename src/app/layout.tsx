@@ -101,6 +101,7 @@ import { CounsellingDialogProvider } from "@/components/providers/CounsellingDia
 import { CounsellingDialog } from "@/components/ui/CounsellingDialog";
 import { Analytics } from "@vercel/analytics/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
+import Script from "next/script";
 
 // ... existing imports
 
@@ -180,6 +181,14 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <GoogleAnalytics gaId="G-FF19WBVKF0" />
+        {/* Google Ads Verification Tag */}
+        <Script id="google-ads-tag" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('config', 'AW-18090757488');
+          `}
+        </Script>
         <ThemeProvider
           attribute="class"
           defaultTheme="light"

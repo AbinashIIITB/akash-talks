@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, User, Loader2, CheckCircle, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { useCounsellingDialog } from '@/components/providers/CounsellingDialogProvider';
+import { trackConversion } from '@/lib/gtag';
 
 export function CounsellingDialog() {
     const { isOpen, closeDialog } = useCounsellingDialog();
@@ -32,6 +33,7 @@ export function CounsellingDialog() {
                 throw new Error('Failed to submit');
             }
 
+            trackConversion();
             setIsSuccess(true);
             setTimeout(() => {
                 closeDialog();

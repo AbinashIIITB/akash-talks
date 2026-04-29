@@ -8,6 +8,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Clock, Loader2, CheckCircle, AlertCircle, Calendar } from "lucide-react";
 import { companyInfo } from "@/lib/data";
 import { useCounsellingDialog } from "@/components/providers/CounsellingDialogProvider";
+import { trackConversion } from "@/lib/gtag";
 
 export default function ContactPageClient() {
     const [isSubmitting, setIsSubmitting] = useState(false);
@@ -43,6 +44,7 @@ export default function ContactPageClient() {
                 throw new Error(result.error || 'Something went wrong');
             }
 
+            trackConversion();
             setSubmitStatus('success');
             (e.target as HTMLFormElement).reset();
         } catch (error) {

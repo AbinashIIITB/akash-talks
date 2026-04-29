@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { X, Phone, User, Loader2, CheckCircle, BookOpen, MessageCircle } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { trackConversion } from '@/lib/gtag';
 
 interface ExamCounsellingDialogProps {
     isOpen: boolean;
@@ -42,6 +43,7 @@ export function ExamCounsellingDialog({ isOpen, onClose, examName, examFullName 
                 throw new Error('Failed to submit');
             }
 
+            trackConversion();
             setIsSuccess(true);
             setTimeout(() => {
                 handleClose();
