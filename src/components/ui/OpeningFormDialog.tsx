@@ -184,13 +184,13 @@ export function OpeningFormDialog() {
                         className="fixed inset-0 z-[201] flex items-start md:items-center justify-center p-3 md:p-4 pointer-events-none overflow-y-auto"
                     >
                         <div
-                            className="relative w-full max-w-lg bg-white dark:bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto my-4 md:my-0"
+                            className="relative w-full max-w-lg bg-zinc-900 rounded-2xl shadow-2xl overflow-hidden pointer-events-auto my-4 md:my-0"
                             onClick={(e) => e.stopPropagation()}
                         >
                             {/* Close Button */}
                             <button
                                 onClick={handleClose}
-                                className="absolute top-3 right-3 p-2 rounded-full bg-black/10 dark:bg-white/10 hover:bg-black/20 dark:hover:bg-white/20 text-zinc-700 dark:text-white transition-colors z-10"
+                                className="absolute top-3 right-3 p-2 rounded-full bg-white/10 hover:bg-white/20 text-white transition-colors z-10"
                                 disabled={isSubmitting}
                                 aria-label="Close dialog"
                             >
@@ -223,8 +223,8 @@ export function OpeningFormDialog() {
                                             className="text-center py-8"
                                         >
                                             <CheckCircle className="h-16 w-16 text-green-500 mx-auto mb-4" />
-                                            <h3 className="text-xl font-bold mb-2">Thank You!</h3>
-                                            <p className="text-zinc-500 dark:text-zinc-400">Our counselor will contact you shortly.</p>
+                                            <h3 className="text-xl font-bold text-white mb-2">Thank You!</h3>
+                                            <p className="text-zinc-400">Our counselor will contact you shortly.</p>
                                         </motion.div>
                                     ) : (
                                         <>
@@ -232,55 +232,55 @@ export function OpeningFormDialog() {
                                             <form onSubmit={handleSubmit} className="space-y-3.5">
                                                 {/* Name */}
                                                 <div className="relative">
-                                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                                                    <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                                                     <input
                                                         type="text"
                                                         required
                                                         placeholder="Full Name *"
                                                         value={formData.fullName}
                                                         onChange={(e) => setFormData({ ...formData, fullName: e.target.value })}
-                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white text-sm placeholder:text-zinc-400 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
                                                     />
                                                 </div>
 
                                                 {/* Email */}
                                                 <div className="relative">
-                                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                                                    <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                                                     <input
                                                         type="email"
                                                         placeholder="Email Address"
                                                         value={formData.email}
                                                         onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white text-sm placeholder:text-zinc-400 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
                                                     />
                                                 </div>
 
                                                 {/* Phone */}
                                                 <div className="relative">
-                                                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400" />
+                                                    <Phone className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500" />
                                                     <input
                                                         type="tel"
                                                         required
                                                         placeholder="Phone Number *"
                                                         value={formData.phone}
                                                         onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-zinc-900 dark:text-white text-sm placeholder:text-zinc-400 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
+                                                        className="w-full h-11 pl-10 pr-4 rounded-lg bg-zinc-800 border border-zinc-700 text-white text-sm placeholder:text-zinc-500 focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804] outline-none transition-all"
                                                     />
                                                 </div>
 
                                                 {/* College Selector */}
                                                 <div className="relative">
-                                                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 z-10" />
+                                                    <Building2 className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500 z-10" />
                                                     <button
                                                         type="button"
                                                         onClick={() => setShowCollegeDropdown(!showCollegeDropdown)}
-                                                        className="w-full h-11 pl-10 pr-10 rounded-lg bg-zinc-100 dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 text-left text-sm outline-none transition-all focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804]"
+                                                        className="w-full h-11 pl-10 pr-10 rounded-lg bg-zinc-800 border border-zinc-700 text-left text-sm outline-none transition-all focus:border-[#f6c804] focus:ring-1 focus:ring-[#f6c804]"
                                                     >
-                                                        <span className={formData.selectedCollege ? 'text-zinc-900 dark:text-white' : 'text-zinc-400'}>
+                                                        <span className={formData.selectedCollege ? 'text-white' : 'text-zinc-500'}>
                                                             {formData.selectedCollege || 'Select College (Optional)'}
                                                         </span>
                                                     </button>
-                                                    <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-400 transition-transform ${showCollegeDropdown ? 'rotate-180' : ''}`} />
+                                                    <ChevronDown className={`absolute right-3 top-1/2 -translate-y-1/2 h-4 w-4 text-zinc-500 transition-transform ${showCollegeDropdown ? 'rotate-180' : ''}`} />
 
                                                     {/* Dropdown */}
                                                     <AnimatePresence>
@@ -290,10 +290,10 @@ export function OpeningFormDialog() {
                                                                 animate={{ opacity: 1, y: 0 }}
                                                                 exit={{ opacity: 0, y: -5 }}
                                                                 transition={{ duration: 0.15 }}
-                                                                className="absolute top-full left-0 right-0 mt-1 bg-white dark:bg-zinc-800 border border-zinc-200 dark:border-zinc-700 rounded-lg shadow-xl z-50 overflow-hidden"
+                                                                className="absolute top-full left-0 right-0 mt-1 bg-zinc-800 border border-zinc-700 rounded-lg shadow-xl z-50 overflow-hidden"
                                                             >
                                                                 {/* Filter Tabs */}
-                                                                <div className="flex border-b border-zinc-200 dark:border-zinc-700">
+                                                                <div className="flex border-b border-zinc-700">
                                                                     {([
                                                                         ['all', 'All'],
                                                                         ['engineering', 'Engineering'],
@@ -305,7 +305,7 @@ export function OpeningFormDialog() {
                                                                             onClick={() => setCollegeFilter(key)}
                                                                             className={`flex-1 py-2 text-xs font-medium transition-colors ${collegeFilter === key
                                                                                 ? 'text-[#f6c804] border-b-2 border-[#f6c804] bg-[#f6c804]/5'
-                                                                                : 'text-zinc-500 hover:text-zinc-700 dark:hover:text-zinc-300'
+                                                                                : 'text-zinc-500 hover:text-zinc-300'
                                                                                 }`}
                                                                         >
                                                                             {label}
@@ -314,7 +314,7 @@ export function OpeningFormDialog() {
                                                                 </div>
 
                                                                 {/* Search */}
-                                                                <div className="p-2 border-b border-zinc-200 dark:border-zinc-700">
+                                                                <div className="p-2 border-b border-zinc-700">
                                                                     <div className="relative">
                                                                         <Search className="absolute left-2.5 top-1/2 -translate-y-1/2 h-3.5 w-3.5 text-zinc-400" />
                                                                         <input
@@ -322,7 +322,7 @@ export function OpeningFormDialog() {
                                                                             placeholder="Search colleges..."
                                                                             value={collegeSearch}
                                                                             onChange={(e) => setCollegeSearch(e.target.value)}
-                                                                            className="w-full h-8 pl-8 pr-3 rounded-md bg-zinc-100 dark:bg-zinc-700 border-none text-xs text-zinc-900 dark:text-white placeholder:text-zinc-400 outline-none"
+                                                                            className="w-full h-8 pl-8 pr-3 rounded-md bg-zinc-700 border-none text-xs text-white placeholder:text-zinc-400 outline-none"
                                                                             onClick={(e) => e.stopPropagation()}
                                                                         />
                                                                     </div>
@@ -342,13 +342,13 @@ export function OpeningFormDialog() {
                                                                                 setShowCollegeDropdown(false);
                                                                                 setCollegeSearch('');
                                                                             }}
-                                                                            className={`w-full text-left px-3 py-2 text-xs hover:bg-[#f6c804]/10 transition-colors flex items-center justify-between ${formData.selectedCollege === c.name ? 'bg-[#f6c804]/10 text-[#f6c804]' : 'text-zinc-700 dark:text-zinc-300'
+                                                                            className={`w-full text-left px-3 py-2 text-xs hover:bg-[#f6c804]/10 transition-colors flex items-center justify-between ${formData.selectedCollege === c.name ? 'bg-[#f6c804]/10 text-[#f6c804]' : 'text-zinc-300'
                                                                                 }`}
                                                                         >
                                                                             <span className="truncate pr-2">{c.name}</span>
                                                                             <span className={`text-[10px] px-1.5 py-0.5 rounded-full shrink-0 ${c.type === 'engineering'
-                                                                                ? 'bg-blue-100 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400'
-                                                                                : 'bg-green-100 dark:bg-green-900/30 text-green-600 dark:text-green-400'
+                                                                                ? 'bg-blue-900/30 text-blue-400'
+                                                                                : 'bg-green-900/30 text-green-400'
                                                                                 }`}>
                                                                                 {c.type === 'engineering' ? 'Engg' : 'Medical'}
                                                                             </span>
@@ -360,7 +360,7 @@ export function OpeningFormDialog() {
                                                     </AnimatePresence>
                                                 </div>
 
-                                                {error && <p className="text-red-500 text-xs">{error}</p>}
+                                                {error && <p className="text-red-400 text-xs">{error}</p>}
 
                                                 {/* Submit Button */}
                                                 <Button
@@ -384,7 +384,7 @@ export function OpeningFormDialog() {
                                                         <Button
                                                             type="button"
                                                             variant="outline"
-                                                            className="w-full h-10 text-xs font-semibold rounded-lg gap-1.5 border-zinc-300 dark:border-zinc-600 hover:border-[#f6c804] hover:text-[#f6c804] transition-all"
+                                                            className="w-full h-10 text-xs font-semibold rounded-lg gap-1.5 border-zinc-600 text-zinc-300 hover:border-[#f6c804] hover:text-[#f6c804] transition-all"
                                                         >
                                                             <Phone className="h-3.5 w-3.5" />
                                                             Call Us
@@ -394,7 +394,7 @@ export function OpeningFormDialog() {
                                                         <Button
                                                             type="button"
                                                             variant="outline"
-                                                            className="w-full h-10 text-xs font-semibold rounded-lg gap-1.5 border-green-500/50 text-green-600 dark:text-green-500 hover:bg-green-500/10 hover:border-green-500 transition-all"
+                                                            className="w-full h-10 text-xs font-semibold rounded-lg gap-1.5 border-green-500/50 text-green-500 hover:bg-green-500/10 hover:border-green-500 transition-all"
                                                         >
                                                             <MessageCircle className="h-3.5 w-3.5" />
                                                             WhatsApp Us
@@ -404,11 +404,11 @@ export function OpeningFormDialog() {
                                             </form>
 
                                             {/* Divider */}
-                                            <div className="my-5 border-t border-zinc-200 dark:border-zinc-700" />
+                                            <div className="my-5 border-t border-zinc-700" />
 
                                             {/* Top Colleges Section */}
                                             <div>
-                                                <h3 className="text-sm font-bold text-zinc-800 dark:text-zinc-200 mb-3">
+                                                <h3 className="text-sm font-bold text-zinc-200 mb-3">
                                                     Get admission into top colleges
                                                 </h3>
                                                 <div className="grid grid-cols-3 gap-2">
@@ -417,9 +417,9 @@ export function OpeningFormDialog() {
                                                             key={college.slug}
                                                             href={`/colleges/${college.slug}`}
                                                             onClick={handleClose}
-                                                            className="group block rounded-lg border border-zinc-200 dark:border-zinc-700 overflow-hidden hover:border-[#f6c804]/50 hover:shadow-md transition-all duration-200"
+                                                            className="group block rounded-lg border border-zinc-700 overflow-hidden hover:border-[#f6c804]/50 hover:shadow-md transition-all duration-200"
                                                         >
-                                                            <div className="relative aspect-[4/3] bg-zinc-100 dark:bg-zinc-800">
+                                                            <div className="relative aspect-[4/3] bg-zinc-800">
                                                                 <Image
                                                                     src={college.imageUrl}
                                                                     alt={college.name}
@@ -429,10 +429,10 @@ export function OpeningFormDialog() {
                                                                 />
                                                             </div>
                                                             <div className="p-1.5">
-                                                                <p className="text-[10px] font-semibold leading-tight text-zinc-800 dark:text-zinc-200 line-clamp-2 group-hover:text-[#f6c804] transition-colors">
+                                                                <p className="text-[10px] font-semibold leading-tight text-zinc-200 line-clamp-2 group-hover:text-[#f6c804] transition-colors">
                                                                     {college.name}
                                                                 </p>
-                                                                <span className="inline-block mt-0.5 text-[8px] px-1.5 py-0.5 bg-[#f6c804]/10 text-[#946f00] dark:text-[#f6c804] rounded-full font-medium">
+                                                                <span className="inline-block mt-0.5 text-[8px] px-1.5 py-0.5 bg-[#f6c804]/10 text-[#f6c804] rounded-full font-medium">
                                                                     {college.tag}
                                                                 </span>
                                                             </div>
@@ -444,14 +444,14 @@ export function OpeningFormDialog() {
                                                 <Link
                                                     href="/colleges"
                                                     onClick={handleClose}
-                                                    className="mt-3 flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-semibold text-[#946f00] dark:text-[#f6c804] bg-[#f6c804]/10 hover:bg-[#f6c804]/20 transition-colors"
+                                                    className="mt-3 flex items-center justify-center gap-1.5 w-full py-2 rounded-lg text-xs font-semibold text-[#f6c804] bg-[#f6c804]/10 hover:bg-[#f6c804]/20 transition-colors"
                                                 >
                                                     Explore All Colleges <ArrowRight className="h-3 w-3" />
                                                 </Link>
                                             </div>
 
                                             {/* Bottom Note */}
-                                            <p className="mt-4 text-[10px] text-center text-zinc-400 dark:text-zinc-500 leading-relaxed">
+                                            <p className="mt-4 text-[10px] text-center text-zinc-500 leading-relaxed">
                                                 <strong>Note:</strong> We connect you with colleges and support your next steps.
                                             </p>
                                         </>

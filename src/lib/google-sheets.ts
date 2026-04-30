@@ -68,7 +68,7 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
         // Prefix phone with single quote to prevent Google Sheets formula parsing
         const safePhone = data.phone.startsWith('+') ? `'${data.phone}` : data.phone;
 
-        const newRow = await sheet.addRow({
+        const rowData: Record<string, string | number | boolean> = {
             'Lead Type': data.leadType || 'Contact Us',
             'First Name': data.firstName,
             'Last Name': data.lastName || '',
@@ -77,7 +77,17 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
             'Message': data.message || '',
             'Intrested College': data.interestedCollege || '',
             'Submitted At': data.submittedAt,
-        });
+        };
+
+        // Add checkbox default values if the user has added these columns to the sheet
+        if (sheet.headerValues.includes('Pending')) {
+            rowData['Pending'] = 'FALSE'; // FALSE ensures the checkbox is unchecked
+        }
+        if (sheet.headerValues.includes('Completed')) {
+            rowData['Completed'] = 'FALSE';
+        }
+
+        const newRow = await sheet.addRow(rowData);
 
         console.log('Successfully added row to Google Sheet, row:', newRow?.rowNumber);
     } catch (error) {

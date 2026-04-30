@@ -182,11 +182,16 @@ export default function RootLayout({
       </head>
       <body className={inter.className}>
         <GoogleAnalytics gaId="G-FF19WBVKF0" />
-        {/* Google Ads Verification Tag */}
+        {/* Google Ads Conversion Tracking Tag */}
+        <Script 
+          src="https://www.googletagmanager.com/gtag/js?id=AW-18090757488" 
+          strategy="afterInteractive" 
+        />
         <Script id="google-ads-tag" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
             gtag('config', 'AW-18090757488');
           `}
         </Script>
