@@ -88,7 +88,7 @@ export function OpeningFormDialog() {
         }
     }, []);
 
-    // Build combined college list sorted by popularity (reviews count)
+    // Build combined college list keeping their original order from data.ts
     const allColleges = useMemo(() => {
         const engg = colleges.map(c => ({
             name: c.name,
@@ -100,7 +100,7 @@ export function OpeningFormDialog() {
             type: 'medical' as const,
             reviews: c.reviews,
         }));
-        return [...engg, ...med].sort((a, b) => b.reviews - a.reviews);
+        return [...engg, ...med];
     }, []);
 
     const filteredColleges = useMemo(() => {
@@ -329,7 +329,7 @@ export function OpeningFormDialog() {
                                                                 </div>
 
                                                                 {/* List */}
-                                                                <div className="max-h-40 overflow-y-auto">
+                                                                <div className="max-h-60 overflow-y-auto">
                                                                     {filteredColleges.length === 0 && (
                                                                         <p className="text-xs text-zinc-400 text-center py-3">No colleges found</p>
                                                                     )}

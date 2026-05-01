@@ -68,24 +68,34 @@ export async function appendToGoogleSheet(data: ContactFormData): Promise<void> 
         // Prefix phone with single quote to prevent Google Sheets formula parsing
         const safePhone = data.phone.startsWith('+') ? `'${data.phone}` : data.phone;
 
-        const rowData: Record<string, string | number | boolean> = {
-            'Lead Type': data.leadType || 'Contact Us',
-            'First Name': data.firstName,
-            'Last Name': data.lastName || '',
-            'Phone': safePhone,
-            'Email': data.email || '',
-            'Message': data.message || '',
-            'Intrested College': data.interestedCollege || '',
-            'Submitted At': data.submittedAt,
-        };
+        const rowData: Record<string, string | number | boolean> = {};
+        
+        // Dynamically map fields only if the column exists in the spreadsheet
+        const headers = sheet.headerValues || [];
+        
+        if (headers.includes('Lead Type')) rowData['Lead Type'] = data.leadType || 'Contact Us';
+        if (headers.includes('First Name')) rowData['First Name'] = data.firstName;
+        if (headers.includes('Last Name')) rowData['Last Name'] = data.lastName || '';
+        if (headers.includes('Phone')) rowData['Phone'] = safePhone;
+        if (headers.includes('Email')) rowData['Email'] = data.email || '';
+        if (headers.includes('Message')) rowData['Message'] = data.message || '';
+        
+        // Handle variations of 'Interested College' column
+        if (headers.includes('Interested College')) {
+            rowData['Interested College'] = data.interestedCollege || '';
+        } else if (headers.includes('Intrested College')) {
+            rowData['Intrested College'] = data.interestedCollege || '';
+        } else if (headers.includes('College')) {
+            rowData['College'] = data.interestedCollege || '';
+        }
+        
+        if (headers.includes('Submitted At')) rowData['Submitted At'] = data.submittedAt;
+        if (headers.includes('Date')) rowData['Date'] = data.submittedAt;
 
-        // Add checkbox default values if the user has added these columns to the sheet
-        if (sheet.headerValues.includes('Pending')) {
-            rowData['Pending'] = 'FALSE'; // FALSE ensures the checkbox is unchecked
-        }
-        if (sheet.headerValues.includes('Completed')) {
-            rowData['Completed'] = 'FALSE';
-        }
+        // Note: We intentionally do NOT set 'Pending' or 'Completed' here.
+        // Google Sheets automatically renders empty cells as unchecked checkboxes
+        // if the column is formatted as checkboxes. Setting any explicit value
+        // (even false) overrides the formatting and renders as text.
 
         const newRow = await sheet.addRow(rowData);
 
